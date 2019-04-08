@@ -4,26 +4,59 @@
     display: flex;
     flex-direction: column;
     width: min-content;
+    text-align: center;
 
-    div
+    .groundContainer
     {
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        margin-bottom: 10px;
-
-        .lbR
+        display: flex;
+        flex-direction: row;
+        
+        .container
         {
-            color: red;
+            display: flex;
+            flex-direction: column;
+            
+            div
+            {
+                display: grid;
+                grid-template-columns: 1fr 2fr;
+                margin-bottom: 10px;
+                
+                .lbR
+                {
+                    color: red;
+                }
+                
+                .lbG
+                {
+                    color: green;
+                }
+                
+                .lbB
+                {
+                    color: blue;
+                }
+
+                input
+                {
+                    margin-left: 5px;
+                }
+            }
         }
 
-        .lbG
+        .rightMargin
         {
-            color: green;
+            margin-left: 20px;
         }
+    }
 
-        .lbB
+    .spanContainer
+    {
+        margin: 10px 0 10px;
+        
+        span
         {
-            color: blue;
+            font-size: larger;
         }
     }
 }

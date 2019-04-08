@@ -3,18 +3,39 @@
   display: flex;
   flex-direction: column;
   width: min-content;
+  text-align: center;
 }
-.wrap div {
+.wrap .groundContainer {
+  display: flex;
+  flex-direction: row;
+}
+.wrap .groundContainer .container {
+  display: flex;
+  flex-direction: column;
+}
+.wrap .groundContainer .container div {
   display: grid;
   grid-template-columns: 1fr 2fr;
   margin-bottom: 10px;
 }
-.wrap div .lbR {
+.wrap .groundContainer .container div .lbR {
   color: red;
 }
-.wrap div .lbG {
+.wrap .groundContainer .container div .lbG {
   color: green;
 }
-.wrap div .lbB {
+.wrap .groundContainer .container div .lbB {
   color: blue;
+}
+.wrap .groundContainer .container div input {
+  margin-left: 5px;
+}
+.wrap .groundContainer .rightMargin {
+  margin-left: 20px;
+}
+.wrap .spanContainer {
+  margin: 10px 0 10px;
+}
+.wrap .spanContainer span {
+  font-size: larger;
 }
