@@ -92,9 +92,31 @@
             <input type="submit" value="Get Month">
         </div>
 
-        <table>
-                
-        </table>
+        <div class="divTable">
+            <div class="weekDay">
+                <span>Monday</span>
+                <span>Tuesday</span>
+                <span>Wendsday</span>
+                <span>Thursday</span>
+                <span>Friday</span>
+                <span>Saturday</span>
+                <span>Sunday</span>
+            </div>
+
+            <div class="monthDay">
+                <label>1</label>
+                <label>1</label>
+                <label>1</label>
+                <label>1</label>
+                <label>1</label>
+                <label>1</label>
+                <label>1</label>
+                <label>1</label>
+                <label>1</label>
+                <label>1</label>
+            </div>
+        </div>
+
     </form>
 </body>
 </html>
