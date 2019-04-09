@@ -3,24 +3,25 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    width: min-content;
     text-align: center;
-
+    width: 500px;
+     
     .groundContainer
     {
-        display: flex;
-        flex-direction: row;
+        display: flex; 
+        flex-direction: row;  
         
         .container
         {
-            display: flex;
+            display: flex; 
             flex-direction: column;
             
             div
             {
                 display: grid;
-                grid-template-columns: 1fr 2fr;
+                grid-template-columns: 1fr 2fr 1fr;
                 margin-bottom: 10px;
+                border: 1px solid lightgray;
                 
                 .lbR
                 {
@@ -34,7 +35,8 @@
                 
                 .lbB
                 {
-                    color: blue;
+                    color: blue; 
+                    background-color: rgb();
                 }
 
                 input

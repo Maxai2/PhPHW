@@ -2,8 +2,8 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  width: min-content;
   text-align: center;
+  width: 500px;
 }
 .wrap .groundContainer {
   display: flex;
@@ -15,8 +15,9 @@
 }
 .wrap .groundContainer .container div {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 2fr 1fr;
   margin-bottom: 10px;
+  border: 1px solid lightgray;
 }
 .wrap .groundContainer .container div .lbR {
   color: red;
