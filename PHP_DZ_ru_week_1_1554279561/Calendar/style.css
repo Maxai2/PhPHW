@@ -1,0 +1,19 @@
+.wrap {
+  margin: 30px auto 0;
+  width: min-content;
+}
+.wrap .monthNum {
+  text-align: center;
+}
+.wrap .monthContainer {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  width: 400px;
+}
+.wrap .cont {
+  display: grid;
+  grid-template-columns: 50px auto;
+}
+.wrap .cont input {
+  box-sizing: border-box;
+}
