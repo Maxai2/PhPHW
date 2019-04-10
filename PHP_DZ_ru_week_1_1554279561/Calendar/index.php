@@ -10,43 +10,19 @@
 <body>
     <form class="wrap" method="POST" action="index.php">
         <?php 
-            function numToMonth($str) {
-                switch($str) {
-                    case '1':
-                        return 'January';
-                    case '2':
-                        return 'February';
-                    case '3':
-                        return 'March';
-                    case '4':
-                        return 'April';
-                    case '5':
-                        return 'May';
-                    case '6':
-                        return 'June';
-                    case '7':
-                        return 'July';
-                    case '8':
-                        return 'August';
-                    case '9':
-                        return 'September';
-                    case '10':
-                        return 'October';
-                    case '11':
-                        return 'November';
-                    case '12':
-                        return 'December';
-                }
-            }
-        ?>
-
-        <?php 
-            $month = $_POST['monthRange'] ?? 1;
-            $monthStr = "";
+            $month = $_POST['monthRange'] ?? -1;
         ?>
 
         <div class="monthContainer">
-            <label id="monthResult" class="monthNum"><?php echo $month.'/ '.numToMonth($month) ?></label>
+            <span id="monthResult" class="monthNum">
+                <?php
+                    if ($month != -1) {
+                        $dateObj = DateTime::createFromFormat('!m', $month);
+                        $monthName = $dateObj->format('F');
+                        echo $month.'/ '.$monthName;
+                    }
+                ?>
+            </span>
 
             <div class="cont">
                 <span>Month:</span>
@@ -54,45 +30,26 @@
             </div>
 
             <script>
-                monthRange.oninput = function() {
-                    tempStr = monthRange.value + '/ ' + numToMonth(monthRange.value);
-                    monthResult.innerHTML = tempStr;
-                }
+                var monthArray = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-                function numToMonth(str) {
-                    switch(str) {
-                        case '1':
-                            return 'January';
-                        case '2':
-                            return 'February';
-                        case '3':
-                            return 'March';
-                        case '4':
-                            return 'April';
-                        case '5':
-                            return 'May';
-                        case '6':
-                            return 'June';
-                        case '7':
-                            return 'July';
-                        case '8':
-                            return 'August';
-                        case '9':
-                            return 'September';
-                        case '10':
-                            return 'October';
-                        case '11':
-                            return 'November';
-                        case '12':
-                            return 'December';
-                    }
+                monthRange.oninput = function() {
+                    tempStr = monthRange.value + '/ ' + monthArray[monthRange.value - 1];
+                    monthResult.innerHTML = tempStr;
                 }
             </script>
 
             <input type="submit" value="Get Month">
         </div>
 
-        <div class="divTable">
+        <div class="divTable" style="display: <?php
+            if ($month == -1) {
+                echo 'none';
+            } else {
+                echo 'block';
+            }
+          ?>">
+            <h1><?= $monthName; ?></h1>
+
             <div class="weekDay">
                 <span>Monday</span>
                 <span>Tuesday</span>
@@ -104,16 +61,33 @@
             </div>
 
             <div class="monthDay">
-                <label>1</label>
-                <label>1</label>
-                <label>1</label>
-                <label>1</label>
-                <label>1</label>
-                <label>1</label>
-                <label>1</label>
-                <label>1</label>
-                <label>1</label>
-                <label>1</label>
+                <?php 
+                    $currentYear = date("Y");
+
+                    function getWeekNum($dayNum, $curMonth, $curYear) {
+                        $date = new DateTime($curYear.'-'.$curMonth.'-'.$dayNum);
+                        $weekNum = $date->format("N");
+
+                        return (int)$weekNum;
+                    }
+
+                    $days = cal_days_in_month(CAL_GREGORIAN, $month, $currentYear);
+
+                    for ($i = 1; ; $i++) { 
+                        if ($i == getWeekNum(1, $month, $currentYear)) {
+                            for ($j = 1; $j <= $days; $j++) { 
+                                $curWeekNum = getWeekNum($j, $month, $currentYear);
+
+                                if ($curWeekNum == 6 || $curWeekNum == 7)
+                                    echo '<span class="weekend">'.$j.'</span>';
+                                else
+                                    echo '<span>'.$j.'</span>';
+                            }
+                            break;
+                        }
+                        echo '<span></span>';
+                    }
+                ?>
             </div>
         </div>
 

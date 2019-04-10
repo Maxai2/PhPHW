@@ -18,27 +18,36 @@
 .wrap .monthContainer .cont input {
   box-sizing: border-box;
 }
-.wrap .divTable .weekDay {
+.wrap .divTable {
+  border: 1px solid lightgray;
   margin-top: 40px;
+}
+.wrap .divTable h1 {
+  text-align: center;
+}
+.wrap .divTable .weekDay {
   display: flex;
   justify-content: space-around;
-  width: 100%;
   font-weight: bold;
-  border: 1px solid lightgray;
-  padding: 5px;
   box-sizing: border-box;
+  padding: 5px;
 }
 .wrap .divTable .monthDay {
   margin-top: 10px;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: repeat(6, 1fr);
   width: 100%;
   height: 50vh;
 }
-.wrap .divTable .monthDay label {
-  background-color: red;
+.wrap .divTable .monthDay span {
+  background-color: lightgray;
   text-align: center;
   margin: 10px;
   font-size: larger;
+  display: grid;
+  align-items: center;
+}
+.wrap .divTable .monthDay .weekend {
+  background-color: lightblue;
 }
