@@ -17,7 +17,7 @@
             <div class="userSecDet gridCont propBorder">
                 <div class="container">
                     <span>Логин</span>
-                    <span>Пароль</span>
+                    <span>Пароль</span> 
                     <span>Подтверждение</span>
                 </div>
 
