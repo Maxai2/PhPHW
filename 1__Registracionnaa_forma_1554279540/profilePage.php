@@ -26,10 +26,32 @@
             
             <tr>
                 <td><?= $_POST['login']; ?></td>
-                <td><?= $_POST['password']; ?></td>
+                <td>
+                    <?php
+                        $wordCount = strlen($_POST['password']);
+                        $str = '';
+                        for ($i=0; $i < $wordCount; $i++) {
+                            $str .= '*';
+                        }
+                        echo $str;
+                    ?>
+                </td>
                 <td><?= $_POST['FIO']; ?></td>
                 <td><?= $_POST['gender']; ?></td>
-                <td><?= $_POST['login']; ?></td>
+                <td>
+                    <?php
+                        $langs = $_POST['lang'];
+                        $langCount = count($langs);
+
+                        if (empty($langs))
+                            echo ''; 
+                        else {
+                            for ($i=0; $i < $langCount; $i++) {
+                                echo $langs[$i].($i == $langCount - 1 ? "" : ", ");
+                            }
+                        }
+                    ?>
+                </td>
                 <td><?= $_POST['areasOfActivity']; ?></td>
                 <td><?= $_POST['email']; ?></td>
                 <td><?= $_POST['additionalInfo']; ?></td>

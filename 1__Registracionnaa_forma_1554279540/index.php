@@ -64,27 +64,27 @@
 
                 <div class="languageCont">
                     <div>
-                        <input type="checkbox" id="ruLan" name="ruLan">
+                        <input type="checkbox" id="ruLan" name="lang[]" value="Русский">
                         <label for="ruLan">Русский</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="enLan" name="enLan">
-                        <label for="enLan">Английский</label>
+                        <input type="checkbox" id="enLan" name="lang[]" value="Английский">
+                        <label for="enLan" >Английский</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="gerLan" name="gerLan">
+                        <input type="checkbox" id="gerLan" name="lang[]" value="Немецкий">
                         <label for="gerLan">Немецкий</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="frLan" name="frLan">
+                        <input type="checkbox" id="frLan" name="lang[]" value="Французский">
                         <label for="frLan">Французский</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="spLan" name="spLan">
+                        <input type="checkbox" id="spLan" name="lang[]" value="Испанский">
                         <label for="spLan">Испанский</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="itLan" name="itLan">
+                        <input type="checkbox" id="itLan" name="lang[]" value="Итальянский">
                         <label for="itLan">Итальянский</label>
                     </div>
                 </div>
