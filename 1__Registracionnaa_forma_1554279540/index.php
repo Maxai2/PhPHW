@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="style.css">
-    <title>Page Title</title>
+    <title>Registration page</title>
 </head>
 <body>
     <div class="wrap">
@@ -22,9 +22,18 @@
                 </div>
 
                 <div class="container">
-                    <input type="text" name="login" autofocus required>
-                    <input type="password" name="password">
-                    <input type="password" name="confirm">
+                    <input type="text" name="login" id="login" value='' autofocus required>
+                    <input type="password" name="password" id="password" value='' required>
+                    <input type="password" name="confirm" id="confirm" value='' oninput="check(this)" required>
+                    <script>
+                        function check(input) {
+                            if (input.value != document.getElementById('password').value) {
+                                input.setCustomValidity('Пароли должны совпадать.');
+                            } else {
+                                input.setCustomValidity('');
+                            }
+                        }
+                    </script>
                 </div>
             </div>
 
@@ -32,7 +41,7 @@
 
             <div class="gridCont propBorder">
                 <span>Полное имя (ФИО)</span>
-                <input type="text" name="FIO">
+                <input type="text" name="FIO" id="FIO" value='' required>
             </div>
 
             <div class="GenderCl gridCont propBorder">
@@ -40,7 +49,7 @@
 
                 <div>
                     <div>
-                        <input type="radio" value="мужской" name="gender" id="male">
+                        <input type="radio" value="мужской" name="gender" id="male" checked> 
                         <label for="male">мужской</label>
                     </div>
                     <div>
@@ -84,7 +93,7 @@
             <div class="gridCont propBorder">
                 <span>Сфера дефтельности</span>
 
-                <select name="areasOfActivity">
+                <select name="areasOfActivity" id="areasOfActivity">
                     <option value="обучение">обучение</option>
                     <option value="политика">политика</option>
                     <option value="бизнес">бизнес</option>
@@ -93,19 +102,40 @@
             </div>
 
             <div class="gridCont propBorder">
-                <span>e-mail</span>
-                <input type="email" name="email">
+                <span>E-mail</span>
+                <input type="email" name="email" id="email" required>
             </div>
 
             <div class="additionalInfoCl gridCont propBorder">
                 <span>Дополнительная информация</span>
-                <textarea name="additionalInfo"></textarea>
+                <textarea name="additionalInfo" id="additionalInfo"></textarea>
             </div>
-
+            
             <div class="buttons">
                 <input type="submit" value="Готово">
-                <button formaction="index.php">Сброс</button>
+                <button type="button" onclick="resetVal()">Сброс</button>
+                <script>
+                    function resetVal() {
+                        document.getElementById('login').value = '';
+                        document.getElementById('password').value = '';
+                        document.getElementById('confirm').value = '';
+                        document.getElementById('FIO').value = '';
+                        document.getElementById('male').checked = true;
+
+                        document.getElementById('ruLan').checked = false;
+                        document.getElementById('enLan').checked = false;
+                        document.getElementById('gerLan').checked = false;
+                        document.getElementById('frLan').checked = false;
+                        document.getElementById('spLan').checked = false;
+                        document.getElementById('itLan').checked = false;
+
+                        document.getElementById('areasOfActivity').selectedIndex = 0;
+                        document.getElementById('email').value = '';
+                        document.getElementById('additionalInfo').value = '';
+                    }
+                </script>
             </div>
+
         </form>
     </div>
 </body>

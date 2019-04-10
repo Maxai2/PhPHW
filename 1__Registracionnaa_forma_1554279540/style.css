@@ -58,3 +58,7 @@
   justify-content: space-evenly;
   margin-top: 10px;
 }
+.divTable {
+  margin: 100px auto 0;
+  width: min-content;
+}
