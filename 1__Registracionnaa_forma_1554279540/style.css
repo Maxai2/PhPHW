@@ -1,0 +1,60 @@
+.wrap {
+  margin: 100px auto 0;
+  width: 400px;
+  background-color: #ddeeff;
+}
+.wrap .gridCont {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.wrap .propBorder {
+  border: 1px solid lightgray;
+  padding: 5px;
+  margin-top: 5px;
+}
+.wrap .regHeader {
+  background-color: #334466;
+  text-align: center;
+  padding: 2px 0;
+}
+.wrap .regHeader span {
+  color: white;
+  font-weight: bold;
+}
+.wrap .formCl {
+  padding: 5px;
+}
+.wrap .formCl .userSecDet .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.wrap .formCl .userSecDet .container input {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 5px 0;
+}
+.wrap .formCl .userSecDet .container span {
+  margin: 5px 0;
+}
+.wrap .formCl .GenderCl div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.wrap .formCl .foreignLanCl .languageCont {
+  display: flex;
+  flex-direction: column;
+}
+.wrap .formCl .additionalInfoCl textarea {
+  min-height: 53px;
+  min-width: 184px;
+  max-height: 53px;
+  max-width: 184px;
+}
+.wrap .formCl .buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 10px;
+}
