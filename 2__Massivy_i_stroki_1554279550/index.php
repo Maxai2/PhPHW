@@ -21,28 +21,17 @@
 
         $number = $_POST['number'] ?? '';
 
-        // $numberByLetter = array(
-        //     1 => array('', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять', 'одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать', 'восемнадцать', 'девятнадцать'),
-        //     2 => array('', '', 'двадцать', 'тридцать', 'сорок', 'пятьдесять', 'шестьдесять', 'семьдесять', 'восемьдесять', 'девяносто'),
-        //     3 => array('', 'сто', 'двести', 'триста', 'четыреста', 'пятьсот', 'шестьсот', 'семьсот', 'восемьсот', 'девятьсот'),
-        //     4 => array('', 'одна тысяча', 'две тысячи', 'три тысячи', 'четыре тысячи', 'пять тысяч', 'шесть тысяч', 'семь тысяч', 'восемь тысяч', 'девять тысяч')
-        // );
-
         $numberByLetter = array(
-            array('ноль'),
-            array('','один','два','три','четыре','пять','шесть','семь','восемь','девять'),
-            array('десять','одиннадцать','двенадцать','тринадцать','четырнадцать',
-                'пятнадцать','шестнадцать','семнадцать','восемнадцать','девятнадцать'),
-            array('','','двадцать','тридцать','сорок','пятьдесят','шестьдесят','семьдесят','восемьдесят','девяносто'),
-            array('','сто','двести','триста','четыреста','пятьсот','шестьсот','семьсот','восемьсот','девятьсот'),
-            array('','одна','две')
-       );
-
-       $degrees = array(
-           array('тысяч','а','и')
-       );
-
-       // http://blog.kislenko.net/show.php?id=1598
+            1 => array('', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять', 'одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать', 'восемнадцать', 'девятнадцать'),
+            2 => array('', '', 'двадцать', 'тридцать', 'сорок', 'пятьдесять', 'шестьдесять', 'семьдесять', 'восемьдесять', 'девяносто'),
+            3 => array('', 'сто', 'двести', 'триста', 'четыреста', 'пятьсот', 'шестьсот', 'семьсот', 'восемьсот', 'девятьсот')
+            // 4 => array('', 'одна тысяча', 'две тысячи', 'три тысячи', 'четыре тысячи', 'пять тысяч', 'шесть тысяч', 'семь тысяч', 'восемь тысяч', 'девять тысяч')
+        );
+    
+        $degrees = array(
+            array('тысяч','а','и'),
+            array('одна', 'две')
+        );
     ?>
 
     <div class="wrap">
@@ -67,34 +56,47 @@
                 <?php
                     $number = strrev(test_input($number));
                     $res = '';
-                    $numberCount = strlen($number);
+                    $maybeGoto = false;
 
                     $digitGroups = array_reverse(str_split($number, 3));
 
-                    var_dump($digitGroups);
+                    for ($i = 0; $i < count($digitGroups); $i++) {
+                        $numberCount = strlen($digitGroups[$i]);
+                        $tempArr = array_reverse(str_split($digitGroups[$i]));
 
-                    foreach ($digitGroups as $digitsArray) {
-                        foreach ($digitsArray as $num) {
-                            echo $num;
+                        for ($j = 0; $j < count($tempArr); $j++) {
+                            if ($numberCount == 2 && $tempArr[$j] == 1) {
+                                $res .= $numberByLetter[1][$tempArr[$j] * 10 + $tempArr[$j + 1]].' '; 
+                                $maybeGoto = true;
+                                // break;
+                            } else {
+                                if ($tempArr[$j] == 1 && $j == (count($tempArr) - 1))
+                                    $res .= $degrees[1][0].' ';
+                                elseif ($tempArr[$j] == 2 && $j == (count($tempArr) - 1))
+                                    $res .= $degrees[1][1].' ';
+                                else
+                                    $res .= $numberByLetter[$numberCount--][$tempArr[$j]].' ';
+                            }
+
+                            if(count($digitGroups) == 2 && ($j == (count($tempArr) - 1) || $maybeGoto) && $i == 0) {
+                                $res .= $degrees[0][0];
+
+                                if ($tempArr[$j] == 1 && !$maybeGoto)
+                                    $res .= $degrees[0][1].' ';
+                                elseif (($tempArr[$j] == 2 || $tempArr[$j] == 3)  && !$maybeGoto)
+                                    $res .= $degrees[0][2].' ';
+                                else
+                                    $res .= ' ';
+                            }
+
+                            if ($maybeGoto) {
+                                $maybeGoto = false;
+                                break;
+                            }
                         }
                     }
 
-                    // $number = strrev($number);
-                    
-                    // while($numberCount != 0) {
-                    //     $num = $number % 10;
-                        
-                    //     if ($numberCount == 2 && $num == 1) {
-                    //         $res .= $numberByLetter[1][strrev($number)].' ';
-                    //         break;
-                    //     }
-                        
-                    //     $res .= $numberByLetter[$numberCount][$num].' ';
-                    //     $numberCount--;
-                    //     $number = (int)($number / 10);
-                    // }
-
-                    // echo $res;
+                    echo $res;
                 ?>
             </span>
         </div>
