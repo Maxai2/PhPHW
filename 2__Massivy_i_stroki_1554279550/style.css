@@ -12,14 +12,15 @@
 
 .wrap form div
 {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
+    display: flex;
+    flex-direction: row;
 }
 
 .wrap form div input
 {
     width: 100%;
     box-sizing: border-box;
+    height: 22px;
 }
 
 .wrap form input[type=submit]

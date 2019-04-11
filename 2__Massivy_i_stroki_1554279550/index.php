@@ -21,18 +21,35 @@
 
         $number = $_POST['number'] ?? '';
 
+        // $numberByLetter = array(
+        //     1 => array('', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять', 'одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать', 'восемнадцать', 'девятнадцать'),
+        //     2 => array('', '', 'двадцать', 'тридцать', 'сорок', 'пятьдесять', 'шестьдесять', 'семьдесять', 'восемьдесять', 'девяносто'),
+        //     3 => array('', 'сто', 'двести', 'триста', 'четыреста', 'пятьсот', 'шестьсот', 'семьсот', 'восемьсот', 'девятьсот'),
+        //     4 => array('', 'одна тысяча', 'две тысячи', 'три тысячи', 'четыре тысячи', 'пять тысяч', 'шесть тысяч', 'семь тысяч', 'восемь тысяч', 'девять тысяч')
+        // );
+
         $numberByLetter = array(
-            1 => array('ноль', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять'),
-            2 => array('десять', 'одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать', 'восемнадцать', 'девятнадцать', 'двадцать', 'тридцать', 'сорок', 'пятьдесять', 'шестьдесять', 'семьдесять', 'восемьдесять', 'девяносто'),
-            3 => array('сто', 'двести', 'триста', 'четыреста', 'пятьсот', 'шестьсот', 'семьсот', 'восемьсот', 'девятьсот')
-        );
+            array('ноль'),
+            array('','один','два','три','четыре','пять','шесть','семь','восемь','девять'),
+            array('десять','одиннадцать','двенадцать','тринадцать','четырнадцать',
+                'пятнадцать','шестнадцать','семнадцать','восемнадцать','девятнадцать'),
+            array('','','двадцать','тридцать','сорок','пятьдесят','шестьдесят','семьдесят','восемьдесят','девяносто'),
+            array('','сто','двести','триста','четыреста','пятьсот','шестьсот','семьсот','восемьсот','девятьсот'),
+            array('','одна','две')
+       );
+
+       $degrees = array(
+           array('тысяч','а','и')
+       );
+
+       // http://blog.kislenko.net/show.php?id=1598
     ?>
 
     <div class="wrap">
         <form action="index.php" method="POST">
             <div>
-                <span>Number by numeric:</span>
-                <input type="text" name="number">
+                <label>Number:</label>
+                <input type="text" name="number" autofocus>
             </div>
             <input type="submit" value="Convert">
         </form>
@@ -47,28 +64,37 @@
 
             <span><?= $number; ?></span>
             <span>
-                <?php 
+                <?php
                     $number = strrev(test_input($number));
-                    // $numberCount = strlen($number);
-                    // $res = '';
+                    $res = '';
+                    $numberCount = strlen($number);
 
+                    $digitGroups = array_reverse(str_split($number, 3));
+
+                    var_dump($digitGroups);
+
+                    foreach ($digitGroups as $digitsArray) {
+                        foreach ($digitsArray as $num) {
+                            echo $num;
+                        }
+                    }
+
+                    // $number = strrev($number);
+                    
                     // while($numberCount != 0) {
                     //     $num = $number % 10;
-
-                    //     if($num == 1 && )
-                    //     {
-
+                        
+                    //     if ($numberCount == 2 && $num == 1) {
+                    //         $res .= $numberByLetter[1][strrev($number)].' ';
+                    //         break;
                     //     }
-
-                    //     $res .= $numberByLetter[$numberCount][$num];
+                        
+                    //     $res .= $numberByLetter[$numberCount][$num].' ';
                     //     $numberCount--;
-                    //     $number /= 10;
+                    //     $number = (int)($number / 10);
                     // }
 
-                    $f = new NumberFormatter("ru", NumberFormatter::SPELLOUT);
-                    $res = $f->format($number);
-
-                    echo $res;
+                    // echo $res;
                 ?>
             </span>
         </div>
