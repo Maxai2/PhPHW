@@ -1,0 +1,43 @@
+.wrap
+{
+    margin: 50px auto 0;
+    width: 450px;
+}
+
+.wrap form
+{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+.wrap form div
+{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.wrap form div input
+{
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.wrap form input[type=submit]
+{
+    margin-top: 5px;
+}
+
+.wrap .result
+{
+    margin-top: 20px;
+    text-align: center;
+    border: 1px solid lightgray;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.wrap .result span:last-child
+{
+    margin-top: 10px;
+}
