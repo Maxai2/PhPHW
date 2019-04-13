@@ -1,33 +1,44 @@
-Count: 3
---------------
-
-Login: qwerty
-Password: ****
-FIO: qwer qwer
-Gender: мужской
-Languages: Русский, Английский, Французский, Итальянский
-Areas of activity: обучение
-Email: asdf@df
-Additional info: 
-
---------------
-
-Login: zxcv
-Password: ****
-FIO: zxcv @
-Gender: мужской
-Languages: Русский, Испанский
-Areas of activity: обучение
-Email: sd@df
-Additional info: 
-
+Count: 4
 --------------
 
 Login: asd
 Password: ***
-FIO: asd asd
+FIO: qwe asd
 Gender: мужской
-Languages: Русский, Английский
+Languages: Русский, Немецкий
 Areas of activity: обучение
 Email: asdf@df
 Additional info: 
+
+--------------
+
+Login: qwe
+Password: ****
+FIO: asdf asdf
+Gender: женский
+Languages: Английский, Испанский
+Areas of activity: обучение
+Email: xcv@df
+Additional info: 
+
+--------------
+
+Login: zxc
+Password: ***
+FIO: zxc zxc
+Gender: мужской
+Languages: Русский, Английский
+Areas of activity: обучение
+Email: qwe@eer
+Additional info: 
+
+--------------
+
+Login: Maxai
+Password: ****
+FIO: Mahmudov Ali Ilqar
+Gender: мужской
+Languages: Русский, Английский, Немецкий
+Areas of activity: политика
+Email: maxali946@gmail.com
+Additional info: Barak v yubke

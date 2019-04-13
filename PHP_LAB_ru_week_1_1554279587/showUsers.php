@@ -10,12 +10,9 @@
 <body>
     <div class="divTable">
         <form action="index.php">
-            <button><-Back</button>
+            <button>Главное меню</button>
         </form>
         <table>
-            <?php 
-
-            ?>
             <tr>
                 <th>Логин</th>
                 <th>Пароль</th>
@@ -27,16 +24,36 @@
                 <th>Дополнительная информация</th>
             </tr>
             
-            <tr>
-                <td><?= $login; ?></td>
-                <td><?= $password; ?></td>
-                <td><?= $FIO; ?></td>
-                <td><?= $Gender; ?></td>
-                <td><?= $langsName; ?></td>
-                <td><?= $areasOfActivity; ?></td>
-                <td><?= $email; ?></td>
-                <td><?= $additionalInfo; ?></td>
-            </tr>
+            <?php
+                $names = array(
+                    'Login' => 7,
+                    'Password' => 10, 
+                    'FIO' => 5, 
+                    'Gender' => 8, 
+                    'Languages' => 11, 
+                    'Areas of activity' => 19, 
+                    'Email' => 7, 
+                    'Additional info' => 17
+                );
+
+                $users = fopen("users.txt", "r") or die("Unable to open file!");
+
+                while(!feof($users)) {
+                    $line = strstr(fgets($users), '--------------');
+
+                    if ($line) {
+                        fgets($users);
+                        echo '<tr>';
+                        foreach ($names as $name => $offset) {
+                            $val = substr(strstr(fgets($users), $name), $offset);
+                            echo '<td>'.$val.'</td>';
+                        }
+                        echo '</tr>';
+                    }
+                }
+                
+                fclose($users);
+            ?>
         </table>
     </div>
 </body>

@@ -73,6 +73,9 @@
 .divTable table {
   margin-top: 5px;
 }
+.divTable tr:nth-child(even) {
+  background-color: #eee;
+}
 .divTable th,
 .divTable td {
   padding: 15px;

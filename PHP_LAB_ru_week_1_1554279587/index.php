@@ -19,8 +19,8 @@
             
             return $data;
         }
-
-        if ($_POST['login'] != '' && filesize('users.txt') != 0)
+        
+        if (isset($_POST['login']) && $_POST['login'] != '' && filesize('users.txt') != 0)
         {
             $login = test_input($_POST['login']);
             
@@ -130,7 +130,7 @@
         </h5>
         <form>
             <button formaction="addUser.php">Добавить</button>
-            <button formaction="showUsers.php">Показать</button>
+            <button formaction="showUsers.php" <?php if ($str == 0) echo 'disabled'; ?>>Показать</button>
         </form>
     </div>
 </body>
