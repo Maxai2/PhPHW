@@ -14,40 +14,7 @@
         </form>
         <table>
             <?php 
-                function test_input($data) {
-                    $data = trim($data);
-                    $data = stripslashes($data);
-                    $data = htmlspecialchars($data);
-                    $data = strip_tags($data);
-                    // $data = mysqli_real_escape_string($data);
-                    
-                    return $data;
-                }
 
-                $login = test_input($_POST['login']);
-
-                $wordCount = strlen(test_input($_POST['password']));
-                $password = '';
-                for ($i=0; $i < $wordCount; $i++) {
-                    $password .= '*';
-                }
-
-                $FIO = test_input($_POST['FIO']);
-                $Gender = $_POST['gender'];
-
-                $langs = $_POST['lang'];
-                $langCount = count($langs);
-                $langsName = '';
-
-                if (!empty($langs)) {
-                    for ($i=0; $i < $langCount; $i++) {
-                        $langsName .= $langs[$i].($i == $langCount - 1 ? "" : ", ");
-                    }
-                }
-
-                $areasOfActivity = test_input($_POST['areasOfActivity']);
-                $email = test_input($_POST['email']);
-                $additionalInfo = test_input($_POST['additionalInfo']);
             ?>
             <tr>
                 <th>Логин</th>

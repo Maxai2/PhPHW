@@ -1,0 +1,33 @@
+Count: 3
+--------------
+
+Login: qwerty
+Password: ****
+FIO: qwer qwer
+Gender: мужской
+Languages: Русский, Английский, Французский, Итальянский
+Areas of activity: обучение
+Email: asdf@df
+Additional info: 
+
+--------------
+
+Login: zxcv
+Password: ****
+FIO: zxcv @
+Gender: мужской
+Languages: Русский, Испанский
+Areas of activity: обучение
+Email: sd@df
+Additional info: 
+
+--------------
+
+Login: asd
+Password: ***
+FIO: asd asd
+Gender: мужской
+Languages: Русский, Английский
+Areas of activity: обучение
+Email: asdf@df
+Additional info: 

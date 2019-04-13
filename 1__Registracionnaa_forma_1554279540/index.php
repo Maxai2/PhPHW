@@ -112,9 +112,22 @@
             </div>
             
             <div class="buttons">
-                <input type="submit" value="Готово">
+                <input type="submit" value="Готово" onclick="return subBut();">
                 <button type="button" onclick="resetVal()">Сброс</button>
                 <script>
+                    function subBut() {
+                        if (
+                            !document.getElementById('ruLan').checked &&
+                            !document.getElementById('enLan').checked && 
+                            !document.getElementById('geLan').checked && 
+                            !document.getElementById('frLan').checked && 
+                            !document.getElementById('spLan').checked && 
+                            !document.getElementById('itLan').checked) {
+                            alert('Выберите один или несколько языков.')
+                            return false;
+                        }
+                    }
+                    
                     function resetVal() {
                         document.getElementById('login').value = '';
                         document.getElementById('password').value = '';

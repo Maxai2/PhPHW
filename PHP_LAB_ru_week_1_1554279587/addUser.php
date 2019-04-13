@@ -72,8 +72,8 @@
                         <label for="enLan" >Английский</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="gerLan" name="lang[]" value="Немецкий">
-                        <label for="gerLan">Немецкий</label>
+                        <input type="checkbox" id="geLan" name="lang[]" value="Немецкий">
+                        <label for="geLan">Немецкий</label>
                     </div>
                     <div>
                         <input type="checkbox" id="frLan" name="lang[]" value="Французский">
@@ -113,11 +113,15 @@
             
             <div class="buttons">
                 <button formaction="index.php" formnovalidate>Главное меню</button>
-                <input type="submit" onclick="addUser()" value="Готово">
+                <input type="submit" value="Готово" onclick="return subBut();">
                 <button type="button" onclick="resetVal()">Сброс</button>
                 <script>
-                    function addUser() {
-                        
+                    function subBut() {
+                        if (
+                            !document.getElementById('ruLan').checked && !document.getElementById('enLan').checked && !document.getElementById('geLan').checked && !document.getElementById('frLan').checked && !document.getElementById('spLan').checked && !document.getElementById('itLan').checked) {
+                            alert('Выберите один или несколько языков.')
+                            return false;
+                        }
                     }
 
                     function resetVal() {
@@ -129,7 +133,7 @@
 
                         document.getElementById('ruLan').checked = false;
                         document.getElementById('enLan').checked = false;
-                        document.getElementById('gerLan').checked = false;
+                        document.getElementById('geLan').checked = false;
                         document.getElementById('frLan').checked = false;
                         document.getElementById('spLan').checked = false;
                         document.getElementById('itLan').checked = false;
