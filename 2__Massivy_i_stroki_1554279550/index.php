@@ -25,7 +25,6 @@
             1 => array('', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять', 'одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать', 'восемнадцать', 'девятнадцать'),
             2 => array('', '', 'двадцать', 'тридцать', 'сорок', 'пятьдесять', 'шестьдесять', 'семьдесять', 'восемьдесять', 'девяносто'),
             3 => array('', 'сто', 'двести', 'триста', 'четыреста', 'пятьсот', 'шестьсот', 'семьсот', 'восемьсот', 'девятьсот')
-            // 4 => array('', 'одна тысяча', 'две тысячи', 'три тысячи', 'четыре тысячи', 'пять тысяч', 'шесть тысяч', 'семь тысяч', 'восемь тысяч', 'девять тысяч')
         );
     
         $degrees = array(
@@ -55,6 +54,7 @@
             <span>
                 <?php
                     $number = strrev(test_input($number));
+                    $wholeNumCount = strlen($number);
                     $res = '';
                     $maybeGoto = false;
 
@@ -66,24 +66,23 @@
 
                         for ($j = 0; $j < count($tempArr); $j++) {
                             if ($numberCount == 2 && $tempArr[$j] == 1) {
-                                $res .= $numberByLetter[1][$tempArr[$j] * 10 + $tempArr[$j + 1]].' '; 
+                                $res .= $numberByLetter[1][$tempArr[$j] * 10 + $tempArr[$j + 1]].' ';
                                 $maybeGoto = true;
-                                // break;
                             } else {
-                                if ($tempArr[$j] == 1 && $j == (count($tempArr) - 1))
+                                if ($tempArr[$j] == 1 && $j == (count($tempArr) - 1) && $wholeNumCount >= 4 && $i != 1)
                                     $res .= $degrees[1][0].' ';
-                                elseif ($tempArr[$j] == 2 && $j == (count($tempArr) - 1))
+                                elseif ($tempArr[$j] == 2 && $j == (count($tempArr) - 1) && $wholeNumCount >= 4  && $i != 1)
                                     $res .= $degrees[1][1].' ';
                                 else
                                     $res .= $numberByLetter[$numberCount--][$tempArr[$j]].' ';
                             }
-
+                            
                             if(count($digitGroups) == 2 && ($j == (count($tempArr) - 1) || $maybeGoto) && $i == 0) {
                                 $res .= $degrees[0][0];
 
                                 if ($tempArr[$j] == 1 && !$maybeGoto)
                                     $res .= $degrees[0][1].' ';
-                                elseif (($tempArr[$j] == 2 || $tempArr[$j] == 3)  && !$maybeGoto)
+                                elseif ((2 <= $tempArr[$j] && $tempArr[$j] <= 4)  && !$maybeGoto)
                                     $res .= $degrees[0][2].' ';
                                 else
                                     $res .= ' ';
