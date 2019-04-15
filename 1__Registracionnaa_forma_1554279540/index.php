@@ -72,7 +72,7 @@
                         <label for="enLan" >Английский</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="gerLan" name="lang[]" value="Немецкий">
+                        <input type="checkbox" id="geLan" name="lang[]" value="Немецкий">
                         <label for="gerLan">Немецкий</label>
                     </div>
                     <div>
@@ -91,7 +91,7 @@
             </div>
 
             <div class="gridCont propBorder">
-                <span>Сфера дефтельности</span>
+                <span>Сфера деятельности</span>
 
                 <select name="areasOfActivity" id="areasOfActivity">
                     <option value="обучение">обучение</option>
@@ -123,7 +123,7 @@
                             !document.getElementById('frLan').checked && 
                             !document.getElementById('spLan').checked && 
                             !document.getElementById('itLan').checked) {
-                            alert('Выберите один или несколько языков.')
+                                alert('Выберите один или несколько языков.')
                             return false;
                         }
                     }
@@ -137,7 +137,7 @@
 
                         document.getElementById('ruLan').checked = false;
                         document.getElementById('enLan').checked = false;
-                        document.getElementById('gerLan').checked = false;
+                        document.getElementById('geLan').checked = false;
                         document.getElementById('frLan').checked = false;
                         document.getElementById('spLan').checked = false;
                         document.getElementById('itLan').checked = false;

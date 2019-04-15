@@ -13,7 +13,8 @@
 
         if (!$__db->select_db('Hotel')) {   
             $query = "CREATE DATABASE Hotel";
-            var_dump(mysqli_query($__db, $query));
+            mysqli_query($__db, $query);
+            $__db->select_db('Hotel');
         }
 
         $tableQuery = 'CREATE TABLE IF NOT EXISTS `Guest`(
