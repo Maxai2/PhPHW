@@ -10,15 +10,15 @@
         private $puttime;
         private $hide;
 
-        public function __construct(string $name, string $city, string $email, string $url, string $msg, string $answer, string $puttime, bool $hide) {
+        public function __construct(string $name, string $city, string $email, string $url, string $msg) {
             $this->name = $name;
             $this->city = $city;
             $this->email = $email;
             $this->url = $url;
             $this->msg = $msg;
-            $this->answer = $answer;
-            $this->puttime = $puttime;
-            $this->hide = $hide;            
+            $this->answer = '';
+            $this->hide = false;            
+            $this->puttime = date("d/m/Y H:i:s");
         }
 
         public function __get($name) {

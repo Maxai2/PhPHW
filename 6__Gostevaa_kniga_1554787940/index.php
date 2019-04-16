@@ -10,16 +10,23 @@
 </head>
 <body>
     <?php 
+        // ALTER TABLE table_name AUTO_INCREMENT = 1;
+
         require_once './HotelRep.php';
         require_once './Comment.php';
 
         $hotel = new HotelRep();
 
         if (isset($_POST['name'])) {
-            
-            $com = new Comment()
+            $name = $_POST['name'];
+            $city = $_POST['city'];
+            $email = $_POST['email'];
+            $url = $_POST['url'];
+            $msg = $_POST['msg'];
 
-            $hotel->insert()    
+            $com = new Comment($name, $city, $email, $url, $msg);
+
+            $hotel->insert($com);
         }
     ?>
 
@@ -32,7 +39,7 @@
         <div class="msgClass">
             <?php
                 $msgs = $hotel->get();
-
+                
                 foreach ($msgs as $msg) {
                     if (!$msg->hide) {
                         echo "
@@ -75,6 +82,11 @@
             <div class="gridCont propBorder">
                 <span>E-mail: </span>
                 <input type="email" name="email" value=''>
+            </div>
+
+            <div class="gridCont propBorder">
+                <span>Url: </span>
+                <input type="text" name="url" value=''>
             </div>
 
             <div class="gridCont propBorder">

@@ -47,7 +47,6 @@
         public function get(): array {
             $getQuery = 'SELECT * FROM `guest`';
             $res = mysqli_query($this->__db, $getQuery);
-
             $msgs = [];
 
             while($row = mysqli_fetch_array($res)) {
@@ -56,10 +55,7 @@
                     $row['city'],
                     $row['email'],
                     $row['url'],
-                    $row['msg'],
-                    $row['asnwer'],
-                    $row['puttime'],
-                    $row['hide']
+                    $row['msg']
                 );
             }
 
@@ -79,10 +75,7 @@
                         $row['city'],
                         $row['email'],
                         $row['url'],
-                        $row['msg'],
-                        $row['asnwer'],
-                        $row['puttime'],
-                        $row['hide']
+                        $row['msg']
                     );
                 }
             }
@@ -128,8 +121,7 @@
 
             $updQuery = ""
                 ."UPDATE `guest` SET
-                `name` = '$name', `city` = '$city', `email` = '$email', `url` = '$url', 
-                `msg` = '$msg', `answer` = '$answer', `puttime` = '$puttime', `hide` = '$hide'
+                `name` = '$name', `city` = '$city', `email` = '$email', `url` = '$url', `msg` = '$msg', `answer` = '$answer', `puttime` = '$puttime', `hide` = '$hide'
                 WHERE `id_msg` = '$id' 
             ";
 
