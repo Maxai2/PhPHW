@@ -1,6 +1,10 @@
 <?php 
+    require_once './Comment.php';
+    require_once './CommentForUser.php';
+
     interface IRepository {
         function get(): array;
+        function getForUser(): array;
         function find(int $id): Comment;
         function insert(Comment $comment): bool;
         function delete(int $id): bool;
@@ -55,7 +59,27 @@
                     $row['city'],
                     $row['email'],
                     $row['url'],
-                    $row['msg']
+                    $row['msg'],
+                    $row['answer'],
+                    $row['hide'],
+                    $row['puttime']
+                );
+            }
+
+            return $msgs;
+        }
+
+        public function getforUser(): array {
+            $getQuery = 'SELECT `name`, `puttime`, `msg`, `hide` FROM `guest`';
+            $res = mysqli_query($this->__db, $getQuery);
+            $msgs = [];
+
+            while($row = mysqli_fetch_array($res)) {
+                $msgs[] = new CommentForUser(
+                    $row['name'],
+                    $row['msg'],
+                    $row['hide'],
+                    $row['puttime']
                 );
             }
 

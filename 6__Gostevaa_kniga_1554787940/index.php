@@ -10,24 +10,28 @@
 </head>
 <body>
     <?php 
-        // ALTER TABLE table_name AUTO_INCREMENT = 1;
+        // ALTER TABLE guest AUTO_INCREMENT = 1;
 
         require_once './HotelRep.php';
         require_once './Comment.php';
 
         $hotel = new HotelRep();
 
-        if (isset($_POST['name'])) {
-            $name = $_POST['name'];
-            $city = $_POST['city'];
-            $email = $_POST['email'];
-            $url = $_POST['url'];
-            $msg = $_POST['msg'];
+        // unset($_POST['name']);
 
-            $com = new Comment($name, $city, $email, $url, $msg);
+        var_dump($_SERVER);
 
-            $hotel->insert($com);
-        }
+        // if (isset($_POST['name'])) {
+        //     $name = $_POST['name'];
+        //     $city = $_POST['city'];
+        //     $email = $_POST['email'];
+        //     $url = $_POST['url'];
+        //     $msg = $_POST['msg'];
+
+        //     $com = new Comment($name, $city, $email, $url, $msg);
+
+        //     $hotel->insert($com);
+        // }
     ?>
 
     <div class="wrap">
@@ -35,18 +39,18 @@
         <h3>Напишите свое предложение или жалобу, администратор ответит вам в скором времени.</h3>
         <hr>
         <br>
-
-        <div class="msgClass">
+        
+        <div class="msgContainer">
             <?php
-                $msgs = $hotel->get();
+                $msgs = $hotel->getForUser();
                 
                 foreach ($msgs as $msg) {
                     if (!$msg->hide) {
                         echo "
-                            <div>
-                                <labe><strong>'$msg->name'</strong>, <i>'$msg->puttime'</i></labe>
-                                <p>'$msg->msg'</p>
-                            </div>
+                        <div>
+                        <label><strong>$msg->name</strong>, <i>$msg->puttime</i></label>
+                        <p>$msg->msg</p>
+                        </div>
                         ";
                     }
                 }
@@ -59,7 +63,7 @@
                 function hideShow(butEl) {
                     if (butEl.innerHTML == "Добавить") {
                         butEl.innerHTML = "Скрыть";
-                        document.getElementById('msgDiv').style.display = 'inline-flex';
+                        document.getElementById('msgDiv').style.display = 'flex';
                     } else {
                         butEl.innerHTML = "Добавить";
                         document.getElementById('msgDiv').style.display = 'none';
@@ -71,27 +75,27 @@
         <form class="msgClass" id="msgDiv" style="display: none" method="POST" action="index.php">
             <div class="gridCont propBorder">
                 <span>Имя: </span>
-                <input type="text" name="name" value='' required>
+                <input type="text" name="name" required>
             </div>
 
             <div class="gridCont propBorder">
                 <span>Город: </span>
-                <input type="text" name="city" value=''>
+                <input type="text" name="city">
             </div>
 
             <div class="gridCont propBorder">
                 <span>E-mail: </span>
-                <input type="email" name="email" value=''>
+                <input type="email" name="email">
             </div>
 
             <div class="gridCont propBorder">
                 <span>Url: </span>
-                <input type="text" name="url" value=''>
+                <input type="text" name="url">
             </div>
 
             <div class="gridCont propBorder">
                 <span>Сообщение: </span>
-                <textarea type="text" name="msg" value='' required></textarea>
+                <textarea type="text" name="msg" required></textarea>
             </div>
 
             <input type="submit" value="Отправить">
