@@ -6,6 +6,7 @@
 .wrap .msgContainer {
   display: flex;
   flex-direction: column;
+  margin-top: 10px;
 }
 .wrap .msgContainer div {
   border: 1px solid lightgray;

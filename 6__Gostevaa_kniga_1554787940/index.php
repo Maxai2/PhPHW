@@ -9,29 +9,54 @@
     <title>Document</title>
 </head>
 <body>
+    <script>
+        if (localStorage.getItem('sub')) {
+            var sub = localStorage.getItem('sub');
+
+            if (sub) {
+                console.log('hi');
+                <?php 
+                    // ALTER TABLE guest AUTO_INCREMENT = 1;
+                    
+                    require_once './HotelRep.php';
+                    require_once './Comment.php';
+                    
+                    $hotel = new HotelRep();
+                    
+                    if (isset($_POST['name'])) {
+                        $name = $_POST['name'];
+                        $city = $_POST['city'];
+                        $email = $_POST['email'];
+                        $url = $_POST['url'];
+                        $msg = $_POST['msg'];
+                        
+                        $com = new Comment($name, $city, $email, $url, $msg);
+                        
+                        $hotel->insert($com);
+                    }
+                ?>
+
+                localStorage.setItem("sub", "");
+                console.log('bye');
+            }
+        }
+    </script>
+
     <?php 
-        // ALTER TABLE guest AUTO_INCREMENT = 1;
+        // if (isset($_POST['name'])) {
+        //     echo 'name';
+        //     $_POST = array();
+        //     var_dump($_POST);
+        // }
 
-        require_once './HotelRep.php';
-        require_once './Comment.php';
+        // session_start();
 
-        $hotel = new HotelRep();
+        // if (isset($_SESSION['sub']) && $_SESSION['sub']) {
+        //     var_dump($_SESSION['sub']);
+        //     unset($_SESSION['sub']);
+        // }
 
         // unset($_POST['name']);
-
-        var_dump($_SERVER);
-
-        // if (isset($_POST['name'])) {
-        //     $name = $_POST['name'];
-        //     $city = $_POST['city'];
-        //     $email = $_POST['email'];
-        //     $url = $_POST['url'];
-        //     $msg = $_POST['msg'];
-
-        //     $com = new Comment($name, $city, $email, $url, $msg);
-
-        //     $hotel->insert($com);
-        // }
     ?>
 
     <div class="wrap">
@@ -39,23 +64,6 @@
         <h3>Напишите свое предложение или жалобу, администратор ответит вам в скором времени.</h3>
         <hr>
         <br>
-        
-        <div class="msgContainer">
-            <?php
-                $msgs = $hotel->getForUser();
-                
-                foreach ($msgs as $msg) {
-                    if (!$msg->hide) {
-                        echo "
-                        <div>
-                        <label><strong>$msg->name</strong>, <i>$msg->puttime</i></label>
-                        <p>$msg->msg</p>
-                        </div>
-                        ";
-                    }
-                }
-            ?>
-        </div>
         
         <div class="clButton">
             <button onclick="hideShow(this)">Добавить</button>
@@ -98,8 +106,34 @@
                 <textarea type="text" name="msg" required></textarea>
             </div>
 
-            <input type="submit" value="Отправить">
+            <input type="submit" value="Отправить" onclick='session()'>
+            <script>
+                function session() {
+                    <?php 
+                        // $_SESSION['sub'] = 1;    
+                    ?>
+
+                    localStorage.setItem('sub', 1);
+                }
+            </script>
         </form>
+        
+        <div class="msgContainer">
+            <?php
+                $msgs = $hotel->getForUser();
+                
+                foreach ($msgs as $msg) {
+                    if (!$msg->hide) {
+                        echo "
+                        <div>
+                        <label><strong>$msg->name</strong>, <i>$msg->puttime</i></label>
+                        <p>$msg->msg</p>
+                        </div>
+                        ";
+                    }
+                }
+            ?>
+        </div>
     </div>
 
 </body>
