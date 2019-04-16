@@ -1,5 +1,45 @@
 .wrap {
   margin: 50px auto 0;
-  width: 1080px;
+  width: 600px;
   text-align: center;
+}
+.wrap .msgClass {
+  display: flex;
+  flex-direction: column;
+}
+.wrap .msgClass div {
+  border: 1px solid lightgray;
+  padding: 5px;
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.wrap .msgClass div p {
+  text-align: justify;
+  text-indent: 15px;
+}
+.wrap .clButton {
+  float: right;
+}
+.wrap .clButton button {
+  width: 80px;
+}
+.wrap .msgClass {
+  display: inline-flex;
+}
+.wrap .msgClass .gridCont {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.wrap .msgClass .propBorder {
+  border: 1px solid lightgray;
+  padding: 5px;
+  margin-top: 5px;
+}
+.wrap .msgClass textarea {
+  min-height: 53px;
+  min-width: 251px;
+  max-height: 53px;
+  max-width: 251px;
 }
