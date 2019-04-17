@@ -61,6 +61,8 @@
 .wrap .adminMsg form {
   border: 1px solid lightgrey;
   text-align: left;
+  padding: 5px;
+  margin-bottom: 10px;
 }
 .wrap .adminMsg form p {
   text-align: justify;

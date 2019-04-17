@@ -10,9 +10,10 @@
         private $puttime;
         private $hide;
 
-        static function makeCommentForAdmin(string $name, string $city, string $email, string $url, string $msg, string $answer = '', bool $hide = false, string $puttime = '') {
+        static function makeCommentForAdmin(int $id_msg, string $name, string $city, string $email, string $url, string $msg, string $answer = '', bool $hide = false, string $puttime = '') {
             $comment = new Comment;
 
+            $comment->id_msg = $id_msg;
             $comment->name = $name;
             $comment->city = $city;
             $comment->email = $email;

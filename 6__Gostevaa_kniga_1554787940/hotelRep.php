@@ -1,14 +1,13 @@
 <?php 
     require_once './Comment.php';
-    require_once './CommentForUser.php';
 
     interface IRepository {
-        function get(): array;
+        function getForAdmin(): array;
         function getForUser(): array;
-        function find(int $id): Comment;
+        // function find(int $id): Comment;
         function insert(Comment $comment): bool;
         function delete(int $id): bool;
-        function update(int $id, Comment $comment): bool;
+        function update(int $id, string $answer, bool $hide): bool;
     }
 
     class HotelRep implements IRepository {
@@ -48,15 +47,14 @@
             return $data;
         }
 
-        public function get(): array {
+        public function getforAdmin(): array {
             $getQuery = 'SELECT * FROM `guest`';
             $res = mysqli_query($this->__db, $getQuery);
             $msgs = [];
 
             while($row = mysqli_fetch_array($res)) {
-                $com = new CommentForAdmin();
-
-                $msgs[] = $com->makeCommentForAdmin(
+                $msgs[] = Comment::makeCommentForAdmin(
+                    $row['id_msg'],
                     $row['name'],
                     $row['city'],
                     $row['email'],
@@ -77,9 +75,7 @@
             $msgs = [];
 
             while($row = mysqli_fetch_array($res)) {
-                $com = new CommentForUser();
-
-                $msgs[] = $com->makeCommentForUser(
+                $msgs[] = Comment::makeCommentForUser(
                     $row['name'],
                     $row['msg'],
                     $row['hide'],
@@ -90,28 +86,28 @@
             return $msgs;
         }
 
-        public function find(int $id): Comment {
-            $findQuery = "SELECT * FROM `guest` WHERE `id_msg` = '$id'";
-            $res = mysqli_query($this->__db, $findQuery);
+        // public function find(int $id): Comment {
+        //     $findQuery = "SELECT * FROM `guest` WHERE `id_msg` = '$id'";
+        //     $res = mysqli_query($this->__db, $findQuery);
 
-            $com = '';
+        //     $com = '';
 
-            if (mysqli_num_rows($res) > 0) {
-                // while ($row = mysqli_fetch_assoc($res)) {
-                //     $com = new Comment(
-                //         $row['name'],
-                //         $row['city'],
-                //         $row['email'],
-                //         $row['url'],
-                //         $row['msg']
-                //     );
-                // }
-            }
+        //     if (mysqli_num_rows($res) > 0) {
+        //         while ($row = mysqli_fetch_assoc($res)) {
+        //             $com = new Comment(
+        //                 $row['name'],
+        //                 $row['city'],
+        //                 $row['email'],
+        //                 $row['url'],
+        //                 $row['msg']
+        //             );
+        //         }
+        //     }
 
-            return $com;
-        }
+        //     return $com;
+        // }
 
-        function insert(Comment $comment): bool {
+        public function insert(Comment $comment): bool {
             $name = $this->clean_input($comment->name);
             $city = $this->clean_input($comment->city);
             $email = $this->clean_input($comment->email);
@@ -137,19 +133,12 @@
             return mysqli_errno($this->__db) == 0;
         }
 
-        function update(int $id, Comment $comment): bool {
-            $name = $this->clean_input($comment->name);
-            $city = $this->clean_input($comment->city);
-            $email = $this->clean_input($comment->email);
-            $url = $this->clean_input($comment->url);
-            $msg = $this->clean_input($comment->msg);
-            $answer = $this->clean_input($comment->answer);
-            $puttime = $this->clean_input($comment->puttime);
-            $hide = $comment->hide;
+        public function update(int $id, string $answer, bool $hide): bool {
+            $answer = $this->clean_input($answer);
 
             $updQuery = ""
                 ."UPDATE `guest` SET
-                `name` = '$name', `city` = '$city', `email` = '$email', `url` = '$url', `msg` = '$msg', `answer` = '$answer', `puttime` = '$puttime', `hide` = '$hide'
+                `answer` = '$answer', `hide` = '$hide'
                 WHERE `id_msg` = '$id' 
             ";
 

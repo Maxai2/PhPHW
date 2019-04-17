@@ -71,10 +71,10 @@
                 foreach ($msgs as $msg) {
                     if (!$msg->hide) {
                         echo "
-                        <div>
-                        <label><strong>$msg->name</strong>, <i>$msg->puttime</i></label>
-                        <p>$msg->msg</p>
-                        </div>
+                            <div>
+                            <label><strong>$msg->name</strong>, <i>$msg->puttime</i></label>
+                            <p>$msg->msg</p>
+                            </div>
                         ";
                     }
                 }

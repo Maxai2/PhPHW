@@ -8,13 +8,18 @@
     <title>Document</title>
 </head>
 <body>
+    <?php
+        require_once './HotelRep.php';
+        
+        $hotel = new HotelRep();
+    ?>
     <div class="wrap">
         <h1>Добро пожаловать Admin!</h1>
-
+        
         <form class="msgClass" id="adminDiv" onsubmit="adminGo()">
             <div class="gridCont propBorder">
                 <span>Login: </span>
-                <input type="text" id="login" required>
+                <input type="text" id="login" autofocus required>
             </div>
             <div class="gridCont propBorder">
                 <span>Password: </span>
@@ -48,22 +53,57 @@
 
         <div id="forAdminMsg" class="adminMsg" style="display: none">
             <?php 
+                $msgs = $hotel->getForAdmin();
 
-                // <form method="POST" action="postWait.php">
-                //         <label><strong>name</strong>, <i>puttime</i>, city, url, email</label>
-                //         <p>msg</p>
-                //         <div class="gridCont propBorder answerDiv">
-                //                 <label>Answer: </label>
-                //                 <textarea name="answer" type="text"></textarea>
-                //             </div>
-                //             <div class="hideSubDiv">
-                //                     <div>
-                //                             <label>Hide: </label>
-                //                             <input type="checkbox" name="hide">
-                //                         </div>
-                //                         <input type="submit" value="Submit">
-                //                     </div>
-                //                 </form>
+                foreach ($msgs as $msg) {
+                    $cityUrlEmail = '';
+                    $answerArea = '';
+                    $hide = '';
+                    $id_msg = $msg->id_msg;
+
+                    if ($msg->hide) {
+                        $hide = 'checked';
+                    }
+
+                    if ($msg->answer == '') {
+                        $answerArea = "<textarea name='answer' type='text' required></textarea>";
+                    } else {
+                        $answerArea = "<label>$msg->answer</label>";
+                    }
+
+                    if ($msg->city != '') {
+                        $cityUrlEmail .= ', '.$msg->city;
+                    }
+
+                    if ($msg->url != '')  {
+                        $cityUrlEmail .= ', '.$msg->url;
+                    }
+
+                    if ($msg->email != '')  {
+                        $cityUrlEmail .= ', '.$msg->email;
+                    }
+
+                    echo "
+                        <form method='POST' action='postWait.php'>
+                            <label><strong>$msg->name</strong>, <i>$msg->puttime</i>$cityUrlEmail</label>
+                            <p>$msg->msg</p>
+                            <div class='gridCont propBorder answerDiv'>
+                                <label>Answer: </label>
+                                $answerArea
+                            </div>
+                            <div class='hideSubDiv'>
+                                <div>
+                                    <label>Hide: </label>
+                                    <input type='checkbox' name='hide' value='hide' $hide>
+                                </div>
+
+                                <input type='submit' value='Submit'>
+                                <input type='hidden' name='id_msg' value=$id_msg>
+                                <input type='hidden' name='mode' value='update'>
+                            </div>
+                        </form>
+                    ";
+                }
             ?>
         </div>
     </div>

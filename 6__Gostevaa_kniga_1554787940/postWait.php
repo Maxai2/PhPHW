@@ -6,17 +6,39 @@
     
     $hotel = new HotelRep();
     
-    if (isset($_POST['name'])) {
-        $name = $_POST['name'];
-        $city = $_POST['city'];
-        $email = $_POST['email'];
-        $url = $_POST['url'];
-        $msg = $_POST['msg'];
+    if (!isset($_POST['mode']))
+        exit;
 
-        $comAdmin = Comment::makeCommentForAdmin($name, $city, $email, $url, $msg);
+    $mode = $_POST['mode'];
 
-        $hotel->insert($comAdmin);
+    switch($mode) {
+        case 'insert': {
+            $name = $_POST['name'];
+            $city = $_POST['city'];
+            $email = $_POST['email'];
+            $url = $_POST['url'];
+            $msg = $_POST['msg'];
+            
+            $comAdmin = Comment::makeCommentForAdmin($name, $city, $email, $url, $msg);
+            
+            $hotel->insert($comAdmin);
+            
+            header("Location: index.php");
+            break;
+        }
+        case 'update': {
+            $id = $_POST['id_msg'];
+            $answer = $_POST['answer'];
+            $hide = 0;
+
+            if (isset($_POST['hide'])) {
+                $hide = $_POST['hide'];
+            }
+    
+            $hotel->update($id, $answer, $hide);
+    
+            header("Location: admin.php");
+            break;
+        }
     }
-
-    header("Location: index.php");
 ?>
