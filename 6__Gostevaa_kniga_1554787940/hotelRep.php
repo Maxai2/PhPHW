@@ -54,7 +54,9 @@
             $msgs = [];
 
             while($row = mysqli_fetch_array($res)) {
-                $msgs[] = new Comment(
+                $com = new CommentForAdmin();
+
+                $msgs[] = $com->makeCommentForAdmin(
                     $row['name'],
                     $row['city'],
                     $row['email'],
@@ -75,7 +77,9 @@
             $msgs = [];
 
             while($row = mysqli_fetch_array($res)) {
-                $msgs[] = new CommentForUser(
+                $com = new CommentForUser();
+
+                $msgs[] = $com->makeCommentForUser(
                     $row['name'],
                     $row['msg'],
                     $row['hide'],
@@ -93,15 +97,15 @@
             $com = '';
 
             if (mysqli_num_rows($res) > 0) {
-                while ($row = mysqli_fetch_assoc($res)) {
-                    $com = new Comment(
-                        $row['name'],
-                        $row['city'],
-                        $row['email'],
-                        $row['url'],
-                        $row['msg']
-                    );
-                }
+                // while ($row = mysqli_fetch_assoc($res)) {
+                //     $com = new Comment(
+                //         $row['name'],
+                //         $row['city'],
+                //         $row['email'],
+                //         $row['url'],
+                //         $row['msg']
+                //     );
+                // }
             }
 
             return $com;

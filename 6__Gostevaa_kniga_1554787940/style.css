@@ -3,6 +3,15 @@
   width: 600px;
   text-align: center;
 }
+.wrap .gridCont {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.wrap .propBorder {
+  border: 1px solid lightgray;
+  padding: 5px;
+  margin-top: 5px;
+}
 .wrap .msgContainer {
   display: flex;
   flex-direction: column;
@@ -34,21 +43,44 @@
 .wrap .msgClass span {
   text-align: left;
 }
-.wrap .msgClass .gridCont {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-.wrap .msgClass .propBorder {
-  border: 1px solid lightgray;
-  padding: 5px;
-  margin-top: 5px;
-}
 .wrap .msgClass textarea {
   min-height: 53px;
   min-width: 288px;
   max-height: 53px;
   max-width: 288px;
 }
+.wrap .msgClass button,
 .wrap .msgClass input[type=submit] {
   margin-top: 5px;
+}
+.wrap .adminMsg {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.wrap .adminMsg form {
+  border: 1px solid lightgrey;
+  text-align: left;
+}
+.wrap .adminMsg form p {
+  text-align: justify;
+  text-indent: 15px;
+}
+.wrap .adminMsg form .answerDiv {
+  margin: 5px;
+}
+.wrap .adminMsg form .answerDiv textarea {
+  min-height: 53px;
+  min-width: 290px;
+  max-height: 53px;
+  max-width: 290px;
+}
+.wrap .adminMsg form .hideSubDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 5px;
+}
+.wrap .adminMsg form .hideSubDiv div {
+  display: inherit;
 }
