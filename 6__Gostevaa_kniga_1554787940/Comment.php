@@ -10,10 +10,9 @@
         private $puttime;
         private $hide;
 
-        static function makeCommentForAdmin(int $id_msg, string $name, string $city, string $email, string $url, string $msg, string $answer = '', bool $hide = false, string $puttime = '') {
+        static function makeCommentForAdmin(string $name, string $city, string $email, string $url, string $msg, string $answer = '', bool $hide = false, string $puttime = '', string $id_msg = null) {
             $comment = new Comment;
 
-            $comment->id_msg = $id_msg;
             $comment->name = $name;
             $comment->city = $city;
             $comment->email = $email;
@@ -22,17 +21,19 @@
             $comment->answer = $answer;
             $comment->hide = $hide;            
             $comment->puttime = $puttime == '' ? date("d/m/Y H:i:s") : $puttime;
+            $comment->id_msg = $id_msg;
 
             return $comment;
         }
 
-        static function makeCommentForUser(string $name, string $msg, bool $hide, string $puttime) {
+        static function makeCommentForUser(string $name, string $msg, bool $hide, string $puttime, string $answer = '') {
             $comment = new Comment;
 
             $comment->name = $name;
             $comment->msg = $msg;
             $comment->hide = $hide;            
             $comment->puttime = $puttime;
+            $comment->answer = $answer;
 
             return $comment;
         }

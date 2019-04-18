@@ -54,7 +54,6 @@
 
             while($row = mysqli_fetch_array($res)) {
                 $msgs[] = Comment::makeCommentForAdmin(
-                    $row['id_msg'],
                     $row['name'],
                     $row['city'],
                     $row['email'],
@@ -62,7 +61,8 @@
                     $row['msg'],
                     $row['answer'],
                     $row['hide'],
-                    $row['puttime']
+                    $row['puttime'],
+                    $row['id_msg']
                 );
             }
 
@@ -70,7 +70,7 @@
         }
 
         public function getforUser(): array {
-            $getQuery = 'SELECT `name`, `puttime`, `msg`, `hide` FROM `guest`';
+            $getQuery = 'SELECT `name`, `puttime`, `msg`, `hide`, `answer` FROM `guest`';
             $res = mysqli_query($this->__db, $getQuery);
             $msgs = [];
 
@@ -79,7 +79,8 @@
                     $row['name'],
                     $row['msg'],
                     $row['hide'],
-                    $row['puttime']
+                    $row['puttime'],
+                    $row['answer']
                 );
             }
 
@@ -115,7 +116,7 @@
             $msg = $this->clean_input($comment->msg);
             $answer = $this->clean_input($comment->answer);
             $puttime = $this->clean_input($comment->puttime);
-            $hide = $comment->hide;
+            $hide = $this->clean_input($comment->hide);
 
             $insQuery = ""
                 ."INSERT INTO `guest`(`name`, `city`, `email`, `url`, `msg`, `answer`, `puttime`, `hide`)

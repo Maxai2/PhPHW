@@ -12,46 +12,57 @@
         require_once './HotelRep.php';
         
         $hotel = new HotelRep();
+
+        $mode = '';
+        if (isset($_COOKIE['mode']))
+            $mode = $_COOKIE['mode'];
     ?>
     <div class="wrap">
         <h1>Добро пожаловать Admin!</h1>
         
-        <form class="msgClass" id="adminDiv" onsubmit="adminGo()">
-            <div class="gridCont propBorder">
-                <span>Login: </span>
-                <input type="text" id="login" autofocus required>
-            </div>
-            <div class="gridCont propBorder">
-                <span>Password: </span>
-                <input type="password" id="password" required>
-            </div>
-            <input value="Okay" type="submit">
-            <script>
-                function adminGo() {
-                    let data = new FormData();
-                    data.append('login', document.getElementById('login').value);
-                    data.append('password', document.getElementById('password').value);
-
-                    fetch("adminCheck.php", {
-                        body: data,
-                        method: "post"
-                    }).then(function (response) {
-                        return response.json();
-                    }).then(json => {
-                        if (json) {
-                            document.getElementById('adminDiv').style.display = 'none';
-                            document.getElementById('forAdminMsg').style.display = 'flex';
-                        } else {
-                            alert("Login or password is wrong!");
+        <?php 
+            if ($mode != 'ad') {
+                echo '
+                    <form class="msgClass" id="adminDiv" onsubmit="adminGo()">
+                    <div class="gridCont propBorder">
+                    <span>Login: </span>
+                    <input type="text" id="login" autofocus required>
+                    </div>
+                    <div class="gridCont propBorder">
+                    <span>Password: </span>
+                        <input type="password" id="password" required>
+                        </div>
+                        <input value="Okay" type="submit">
+                        <script>
+                        function adminGo() {
+                            let data = new FormData();
+                            data.append("login", document.getElementById("login").value);
+                            data.append("password", document.getElementById("password").value);
+                            
+                            fetch("adminCheck.php", {
+                                body: data,
+                                method: "post"
+                            }).then(function (response) {
+                                return response.json();
+                            }).then(json => {
+                                if (json) {
+                                    document.getElementById("adminDiv").style.display = "none";
+                                    document.getElementById("forAdminMsg").style.display = "flex";
+                                } else {
+                                    alert("Login or password is wrong!");
+                                }
+                            });
+                            
+                            event.preventDefault();
                         }
-                    });
-
-                    event.preventDefault();
+                        </script>
+                    </form>';
                 }
-            </script>
-        </form>
+        ?>
 
-        <div id="forAdminMsg" class="adminMsg" style="display: none">
+        <div id="forAdminMsg" class="adminMsg" style="display: <?php 
+            echo $mode == 'ad' ? 'flex' : 'none';
+        ?>">
             <?php 
                 $msgs = $hotel->getForAdmin();
 
@@ -66,9 +77,10 @@
                     }
 
                     if ($msg->answer == '') {
-                        $answerArea = "<textarea name='answer' type='text' required></textarea>";
+                        $answerArea = "<textarea name='answer' type='text'></textarea>";
                     } else {
-                        $answerArea = "<label>$msg->answer</label>";
+                        $answerArea = "<label>$msg->answer</label>
+                        <input type='hidden' name='answer' value=$msg->answer>";
                     }
 
                     if ($msg->city != '') {
@@ -94,10 +106,13 @@
                             <div class='hideSubDiv'>
                                 <div>
                                     <label>Hide: </label>
-                                    <input type='checkbox' name='hide' value='hide' $hide>
+                                    <input type='checkbox' name='hide' $hide>
                                 </div>
 
-                                <input type='submit' value='Submit'>
+                                <div>
+                                    <input type='submit' name='delete' value='Delete' onclick='return deleteMsg();'>
+                                    <input type='submit' name='update' value='Submit'>  
+                                </div>
                                 <input type='hidden' name='id_msg' value=$id_msg>
                                 <input type='hidden' name='mode' value='update'>
                             </div>
@@ -106,6 +121,15 @@
                 }
             ?>
         </div>
+        <script>
+            function deleteMsg() {
+                if (confirm('Are you sure you want to delete message?')) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        </script>
     </div>
 </body>
 </html>

@@ -29,6 +29,9 @@
   text-align: justify;
   text-indent: 15px;
 }
+.wrap .msgContainer div label:last-child {
+  text-align: right;
+}
 .wrap .clButton {
   margin-bottom: 10px;
   text-align: right;

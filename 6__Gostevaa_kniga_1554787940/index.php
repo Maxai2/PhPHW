@@ -12,6 +12,10 @@
         require_once './HotelRep.php';
         
         $hotel = new HotelRep();
+
+        if (isset($_COOKIE['mode'])) {
+            setcookie('mode', '', time() - 1);
+        }
     ?>
 
     <div class="wrap">
@@ -62,6 +66,7 @@
             </div>
 
             <input type="submit" value="Отправить">
+            <input type="hidden" value="insert" name="mode">
         </form>
         
         <div class="msgContainer">
@@ -72,8 +77,9 @@
                     if (!$msg->hide) {
                         echo "
                             <div>
-                            <label><strong>$msg->name</strong>, <i>$msg->puttime</i></label>
-                            <p>$msg->msg</p>
+                                <label><strong>$msg->name</strong>, <i>$msg->puttime</i></label>
+                                <p>$msg->msg</p>
+                                <label>$msg->answer</label>
                             </div>
                         ";
                     }

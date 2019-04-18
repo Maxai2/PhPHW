@@ -19,7 +19,7 @@
             $url = $_POST['url'];
             $msg = $_POST['msg'];
             
-            $comAdmin = Comment::makeCommentForAdmin($name, $city, $email, $url, $msg);
+            $comAdmin = Comment::makeCommentForAdmin($name, $city, $email, $url, $msg); 
             
             $hotel->insert($comAdmin);
             
@@ -27,16 +27,24 @@
             break;
         }
         case 'update': {
-            $id = $_POST['id_msg'];
-            $answer = $_POST['answer'];
-            $hide = 0;
+            if (isset($_POST['update'])) {   
+                $id = $_POST['id_msg'];
+                $answer = $_POST['answer'];
+                $hide = 0;
+                
+                if (isset($_POST['hide'])) {
+                    $hide = $_POST['hide'];
+                }
 
-            if (isset($_POST['hide'])) {
-                $hide = $_POST['hide'];
+                $hotel->update($id, $answer, $hide);
+
+            } elseif (isset($_POST['delete'])) {
+                $id = $_POST['id_msg'];
+
+                $hotel->delete($id);
             }
-    
-            $hotel->update($id, $answer, $hide);
-    
+
+            setcookie('mode', 'ad', time() + 1800);
             header("Location: admin.php");
             break;
         }
