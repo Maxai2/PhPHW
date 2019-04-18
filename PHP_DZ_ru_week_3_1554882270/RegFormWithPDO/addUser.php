@@ -13,7 +13,7 @@
             <span>Регистрация пользователя:</span>
         </div>
 
-        <form method="POST" class="formCl" action="index.php">
+        <form method="POST" class="formCl" action="userWait.php">
             <div class="userSecDet gridCont propBorder">
                 <div class="container">
                     <span>Логин</span>
@@ -108,7 +108,7 @@
 
             <div class="additionalInfoCl gridCont propBorder">
                 <span>Дополнительная информация</span>
-                <textarea name="additionalInfo" id="additionalInfo"></textarea>
+                <textarea name="additionalInfo" id="additionalInfo" required></textarea>
             </div>
             
             <div class="buttons">
@@ -119,7 +119,7 @@
                     function subBut() {
                         if (
                             !document.getElementById('ruLan').checked && !document.getElementById('enLan').checked && !document.getElementById('geLan').checked && !document.getElementById('frLan').checked && !document.getElementById('spLan').checked && !document.getElementById('itLan').checked) {
-                            alert('Выберите один или несколько языков.')
+                            alert('Выберите один или несколько языков.');
                             return false;
                         }
                     }
