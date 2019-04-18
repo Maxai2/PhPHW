@@ -12,6 +12,10 @@
         require_once "./UserRep.php";
 
         $db = new UserRep();
+
+        if (isset($_COOKIE['error'])) {
+            echo $_COOKIE['error'];
+        }
     ?>
 
     <div class="wrapIndex">
@@ -19,6 +23,11 @@
         <h5>Нас: 
             <?php
                 $str = 0;
+
+                $count = $db->rowCount();
+                if ($count)
+                    $str = $count;
+
                 echo $str;
             ?>
         </h5>

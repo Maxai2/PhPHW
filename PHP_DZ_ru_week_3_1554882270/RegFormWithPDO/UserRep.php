@@ -38,14 +38,14 @@
         }
 
         function insert(User $user) {
-            $login = clean_input($user->login);
-            $password = clean_input($user->password);
-            $FIO = clean_input($user->FIO);
-            $gender = clean_input($user->gender);
-            $langsName = clean_input($user->langsName);
-            $areasOfActivity = clean_input($user->areasOfActivity);
-            $email = clean_input($user->email);
-            $additionalInfo = clean_input($user->additionalInfo);
+            $login = $this->clean_input($user->login);
+            $password = $this->clean_input($user->password);
+            $FIO = $this->clean_input($user->FIO);
+            $gender = $this->clean_input($user->gender);
+            $langsName = $this->clean_input($user->langsName);
+            $areasOfActivity = $this->clean_input($user->areasOfActivity);
+            $email = $this->clean_input($user->email);
+            $additionalInfo = $this->clean_input($user->additionalInfo);
 
             $check = $this->db->exec(
                 "INSERT INTO `userList`(`login`, `password`, `FIO`, `gender`, `langsName`, `areasOfActivity`, `email`, `additionalInfo`)
@@ -56,8 +56,8 @@
         }
 
         function checkLoginEmail(string $login, string $email) {
-            $result = $this->db->query("
-                SELECT `id` 
+            $result = $this->db->query(
+                "SELECT `id` 
                 FROM `userList`
                 WHERE `login` = '$login';
             ");
@@ -66,8 +66,8 @@
                 return 'Пользователь с таким логином уже существует!';
             }
 
-            $result = $this->db->query("
-                SELECT `id` 
+            $result = $this->db->query(
+                "SELECT `id` 
                 FROM `userList`
                 WHERE `email` = '$email';
             ");
@@ -77,6 +77,11 @@
             }
 
             return '';
+        }
+
+        function rowCount() {
+            return $this->db->prepare(
+            "SELECT COUNT(*) FROM `userList`;")->fetch();
         }
     }
 
