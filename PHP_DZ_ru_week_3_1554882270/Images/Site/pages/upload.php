@@ -8,8 +8,12 @@
     <title>Document</title>
 </head>
 <body>
+    <form>
+
+    </form>
+    
     <?php 
-        
+
     ?>
 </body>
 </html>
