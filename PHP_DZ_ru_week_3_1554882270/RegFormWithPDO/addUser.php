@@ -91,13 +91,13 @@
             </div>
 
             <div class="gridCont propBorder">
-                <span>Сфера дефтельности</span>
+                <span>Сфера деятельности</span>
 
                 <select name="areasOfActivity" id="areasOfActivity">
                     <option value="обучение">обучение</option>
                     <option value="политика">политика</option>
                     <option value="бизнес">бизнес</option>
-                    <option value="искуство и творчество">искусство и творчество</option>
+                    <option value="искусство и творчество">искусство и творчество</option>
                 </select>
             </div>
 

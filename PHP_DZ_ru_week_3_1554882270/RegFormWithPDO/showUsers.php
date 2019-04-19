@@ -25,34 +25,58 @@
             </tr>
             
             <?php
-                $names = array(
-                    'Login' => 7,
-                    'Password' => 10, 
-                    'FIO' => 5, 
-                    'Gender' => 8, 
-                    'Languages' => 11, 
-                    'Areas of activity' => 19, 
-                    'Email' => 7, 
-                    'Additional info' => 17
-                );
+                require_once './UserRep.php';
 
-                $users = fopen("users.txt", "r") or die("Unable to open file!");
+                $db = new UserRep();
 
-                while(!feof($users)) {
-                    $line = strstr(fgets($users), '--------------');
+                $users = $db->getUsers();
 
-                    if ($line) {
-                        fgets($users);
-                        echo '<tr>';
-                        foreach ($names as $name => $offset) {
-                            $val = substr(strstr(fgets($users), $name), $offset);
-                            echo '<td>'.$val.'</td>';
-                        }
-                        echo '</tr>';
-                    }
+                foreach ($users as $user) {
+                    echo '<tr>';
+
+                    // var_dump($user->login);
+
+                    echo '<td>'.$user->login.'</td>';
+                    echo '<td>'.$user->password.'</td>';
+                    echo '<td>'.$user->FIO.'</td>';
+                    echo '<td>'.$user->gender.'</td>';
+                    echo '<td>'.$user->langsName.'</td>';
+                    echo '<td>'.$user->areasOfActivity.'</td>';
+                    echo '<td>'.$user->email.'</td>';
+                    echo '<td>'.$user->additionalInfo.'</td>';
+
+                    echo '</tr>';
                 }
+
+
+                // $names = array(
+                //     'Login' => 7,
+                //     'Password' => 10, 
+                //     'FIO' => 5, 
+                //     'Gender' => 8, 
+                //     'Languages' => 11, 
+                //     'Areas of activity' => 19, 
+                //     'Email' => 7, 
+                //     'Additional info' => 17
+                // );
+
+                // $users = fopen("users.txt", "r") or die("Unable to open file!");
+
+                // while(!feof($users)) {
+                //     $line = strstr(fgets($users), '--------------');
+
+                //     if ($line) {
+                //         fgets($users);
+                //         echo '<tr>';
+                //         foreach ($names as $name => $offset) {
+                //             $val = substr(strstr(fgets($users), $name), $offset);
+                //             echo '<td>'.$val.'</td>';
+                //         }
+                //         echo '</tr>';
+                //     }
+                // }
                 
-                fclose($users);
+                // fclose($users);
             ?>
         </table>
     </div>

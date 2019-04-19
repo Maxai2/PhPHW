@@ -32,7 +32,7 @@
             $data = stripslashes($data);
             $data = htmlspecialchars($data);
             $data = strip_tags($data);
-            $data = mysqli_real_escape_string($this->db, $data);
+            // $data = mysqli_real_escape_string($this->db, $data);
             
             return $data;
         }
@@ -80,8 +80,33 @@
         }
 
         function rowCount() {
-            return $this->db->prepare(
-            "SELECT COUNT(*) FROM `userList`;")->fetch();
+            return $this->db->query(
+                "SELECT COUNT(*) FROM `userList`"
+            )->fetchColumn(0);
+        }
+
+        function getUsers() {
+            $res = $this->db->query(
+                "SELECT * FROM `userList`"
+            )->fetchAll();
+
+            $users = [];
+            foreach ($res as $user) {
+                $tempUser = new User(
+                    $user['login'],
+                    $user['password'],
+                    $user['FIO'],
+                    $user['gender'],
+                    $user['langsName'],
+                    $user['areasOfActivity'],
+                    $user['email'],
+                    $user['additionalInfo']
+                );
+
+                $users[] = $tempUser;
+            }
+
+            return $users;
         }
     }
 

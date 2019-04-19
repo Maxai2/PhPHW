@@ -15,6 +15,7 @@
 
         if (isset($_COOKIE['error'])) {
             echo $_COOKIE['error'];
+            setcookie('error', '', time() - 1);
         }
     ?>
 
