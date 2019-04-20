@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrapUpload">
+        <h1>Выберите файл(ы) для загрузки.</h1>
+        <form method="POST" action="picWait.php" enctype="multipart/form-data">
+            <input type="file" name="picPath[]" multiple accept=".png,.jpg,.jpeg" id="picPath" onchange="hideShow(this)">
+            <input type="submit" value="Submit" id='sub' disabled>
+            <script>
+                function hideShow(pic) {
+                    if (pic.value != '') {
+                        document.getElementById('sub').disabled = false;
+                    }
+                }
+            </script>
+        </form>
+    </div>
+</body>
+</html>

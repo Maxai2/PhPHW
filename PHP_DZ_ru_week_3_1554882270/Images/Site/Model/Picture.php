@@ -1,13 +1,10 @@
 <?php 
-
     class Picture {
-        private $id;
         private $name;
         private $size;
         private $imagePath;
 
-        function __construct(int $id, string $name, int $size, string $imagePath) {
-            $this->id = $id;
+        function __construct(string $name, int $size, string $imagePath) {
             $this->name = $name;
             $this->size = $size;
             $this->imagePath = $imagePath;

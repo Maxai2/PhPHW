@@ -1,0 +1,15 @@
+body {
+  margin: 30px auto 0;
+  width: min-content;
+  text-align: center;
+}
+h1 {
+  width: 400px;
+}
+.wrapUpload form {
+  display: flex;
+  flex-direction: column;
+}
+.wrapUpload input[type=submit] {
+  margin-top: 10px;
+}
