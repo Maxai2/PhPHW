@@ -9,7 +9,7 @@
 </head>
 <body>
     <?php 
-        require_once './Repository/PicureRep.php';
+        require_once './Repository/PictureRep.php';
 
         $db = new PictureRep();
     ?>

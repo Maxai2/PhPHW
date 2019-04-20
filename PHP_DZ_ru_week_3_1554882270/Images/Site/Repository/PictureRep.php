@@ -32,10 +32,10 @@
             return $data;
         }
 
-        function insert(Picture $pic) {
-            $name = $this->clean_input($pic->name);
-            $size = $this->clean_input($pic->size);
-            $imagePath = $this->clean_input($pic->imagePath);
+        function insert(string $name, int $size, string $imagePath) {
+            $name = $this->clean_input($name);
+            $size = $this->clean_input($size);
+            $imagePath = $this->clean_input($imagePath);
 
             $check = $this->db->exec(
                 "INSERT INTO `pictureList`(`name`, `size`, `imagePath`)
@@ -51,6 +51,12 @@
             )->fetchColumn(0);
         }
 
+        function getPicsByName() {
+            return $this->db->query(
+                "SELECT `id`, `name` FROM `pictureList`;"
+                )->fetchAll();
+        }
+
         function getPictures() {
             $res = $this->db->query(
                 "SELECT * FROM `pictureList`"
@@ -58,7 +64,7 @@
 
             $pics = [];
             foreach ($res as $pic) {
-                $tempPic = new User(
+                $tempPic = new Picture(
                     $pic['name'],
                     $pic['size'],
                     $pic['imagePath']
