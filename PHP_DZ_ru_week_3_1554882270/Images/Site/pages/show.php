@@ -10,16 +10,28 @@
 <body>
     <div class="showWrap">
         <h2>Выберите файл для отображения.</h2>
-        <!-- <select> -->
-            <?php 
+        <form method="POST" action="show.php">
+            <select name='picName'>
+                <?php 
                 require_once __DIR__.'/../Repository/PictureRep.php';
                 $db = new PictureRep();
-
+                
                 $picsName = $db->getPicsByName();
+                
+                foreach ($picsName as $pic) {
+                    echo '<option value='.$pic['id'].'|'.$pic['name'].'>'.$pic['name'].'</option>';
+                }
+                ?>
+            </select>
+            <input type="submit" value="Open?">
+        </form>
 
-                var_dump($picsName);
-            ?>
-        <!-- </select> -->
+        <div class='picContainer'>
+            <img src='<?php 
+                $picId = substr($_POST['picName'], 0, 1);
+                echo $db->getPic((int)$picId);
+            ?>'>
+        </div>
     </div>
 </body>
 </html>

@@ -13,3 +13,12 @@ h1 {
 .wrapUpload input[type=submit] {
   margin-top: 10px;
 }
+.showWrap form input[type=submit] {
+  margin-top: 10px;
+}
+.showWrap .picContainer {
+  margin-top: 30px;
+  border: 1px solid lightgray;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}

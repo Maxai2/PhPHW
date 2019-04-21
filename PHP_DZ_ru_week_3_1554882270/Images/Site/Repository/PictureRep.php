@@ -57,6 +57,13 @@
                 )->fetchAll();
         }
 
+        function getPic(int $id) {
+            return $this->db->query(
+                "SELECT `imagePath` FROM `pictureList`
+                WHERE `id` = '$id';"
+            )->fetchColumn(0);
+        }
+
         function getPictures() {
             $res = $this->db->query(
                 "SELECT * FROM `pictureList`"
