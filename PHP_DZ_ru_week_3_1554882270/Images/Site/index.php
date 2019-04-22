@@ -34,6 +34,11 @@
                     echo $count == 0 ? 'disabled' : '';
                 ?>>
             </form>
+            <form action='Pages/gallery.php'>
+                <input type='submit' value='Gallery' <?php 
+                    echo $count == 0 ? 'disabled' : '';
+                ?>>
+            </form>
         </div>
     </div>
 </body>

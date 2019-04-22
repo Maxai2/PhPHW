@@ -58,31 +58,47 @@
                 )->fetchAll();
         }
 
-        function getPic(int $id) {
+        function getPicsByPath() {
             return $this->db->query(
-                "SELECT `imagePath` FROM `pictureList`
+                "SELECT `id`, `imagePath` FROM `pictureList`;"
+                )->fetchAll();
+        }
+
+        function getPic(int $id) {
+            $temp = $this->db->query(
+                "SELECT * FROM `pictureList`
                 WHERE `id` = '$id';"
-            )->fetchColumn(0);
+            )->fetch();
+
+            $pic = new Picture(
+                $temp['name'],
+                $temp['size'],
+                $temp['imagePath']
+            );
+
+            return $pic;
         }
 
-        function getPictures() {
-            $res = $this->db->query(
-                "SELECT * FROM `pictureList`"
-            )->fetchAll();
 
-            $pics = [];
-            foreach ($res as $pic) {
-                $tempPic = new Picture(
-                    $pic['name'],
-                    $pic['size'],
-                    $pic['imagePath']
-                );
 
-                $pics[] = $tempPic;
-            }
+        // function getPictures() {
+        //     $res = $this->db->query(
+        //         "SELECT * FROM `pictureList`"
+        //     )->fetchAll();
 
-            return $pics;
-        }
+        //     $pics = [];
+        //     foreach ($res as $pic) {
+        //         $tempPic = new Picture(
+        //             $pic['name'],
+        //             $pic['size'],
+        //             $pic['imagePath']
+        //         );
+
+        //         $pics[] = $tempPic;
+        //     }
+
+        //     return $pics;
+        // }
     }
 
 ?>

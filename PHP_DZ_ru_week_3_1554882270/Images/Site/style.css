@@ -28,3 +28,32 @@ h1 {
   grid-template-columns: 2fr 1fr;
   padding: 10px;
 }
+.showWrap .picContainer img {
+  width: 250px;
+  margin-right: 10px;
+}
+.galleryWrap .picsCont {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  border: 1px solid lightgray;
+}
+.galleryWrap .picsCont img {
+  width: 200px;
+  max-height: 150px;
+  padding: 2px;
+}
+.galleryWrap table {
+  margin-top: 5px;
+  width: 100%;
+  border: 1px solid lightgray;
+  border-collapse: collapse;
+}
+.galleryWrap table th,
+.galleryWrap table td {
+  padding: 15px;
+  text-align: center;
+  border: 1px solid lightgray;
+  border-collapse: collapse;
+}

@@ -10,6 +10,9 @@
 <body>
     <div class="showWrap">
         <h1>Выберите файл для отображения.</h1>
+        <form action='../index.php'>
+            <button>Main menu</button>
+        </form>
         <form method="POST" action="show.php">
             <select name='picName'>
                 <?php 
@@ -17,9 +20,28 @@
                     $db = new PictureRep();
                     
                     $picsName = $db->getPicsByName();
+
+                    $postCome = isset($_POST['picName']);
+                    $name = '';
+
+                    if ($postCome) {
+                        $picId = explode('|', $_POST['picName']);
+                        if(isset($picId[1])) {
+                            $pic = $db->getPic((int)$picId[0]);
+                            $imagePath = $pic->imagePath;
+                            $name = $pic->name;
+                            $size = $pic->size;
+                        } else {
+                            $postCome = false;
+                        }
+                    }
                     
                     foreach ($picsName as $pic) {
-                        echo '<option value='.$pic['id'].'|'.$pic['name'].'>'.$pic['name'].'</option>';
+                        $sel = '';
+                        if ($pic['name'] == $name) {
+                            $sel = "selected='selected'";
+                        }
+                        echo "<option $sel value=".$pic['id'].'|'.$pic['name'].'>'.$pic['name'].'</option>';
                     }
                 ?>
             </select>
@@ -27,14 +49,24 @@
         </form>
 
         <div class='picContainer' style='display: <?php 
-            echo isset($_POST['picName']) ? 'grid' : 'none';
+            echo $postCome ? 'grid' : 'none';
         ?>'>
-            <img src='
-                <?php 
-                    $picId = substr($_POST['picName'], 0, 1);
-                    echo $db->getPic((int)$picId);
-                ?>
-            '>
+            <?php 
+                echo "
+                    <img src='$imagePath'>
+                    <div class='propCont'>
+                        <div>
+                            <strong>Name:</strong>
+                            <label>$name</label>
+                        </div>
+                        <hr>
+                        <div>
+                            <strong>Size:</strong>
+                            <label>$size</label>
+                        </div>
+                    </div>
+                ";
+            ?>
         </div>
     </div>
 </body>
