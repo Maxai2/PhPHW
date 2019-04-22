@@ -22,7 +22,8 @@
 
                 foreach ($picsPath as $pic) {
                     $str = $pic['imagePath'];
-                    echo "<img src=$str onclick='picDetail(this)'>";
+                    $id = $pic['id'];
+                    echo "<img src=$str onclick='picDetail(this, $id)'>";
                 }
             ?>
         </div>
@@ -36,13 +37,17 @@
             </tr>
 
             <tr>
-
+                <td id='id'></td>
+                <td id='name'></td>
+                <td id='size'></td>
+                <td id='imagePath'></td>
             </tr>
         </table>
     </div>
     <script>
         function picDetail(img) {
             document.getElementById('detTable').style.display = 'table';
+
         }
     </script>
 </body>

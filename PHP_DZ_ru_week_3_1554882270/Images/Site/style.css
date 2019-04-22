@@ -32,17 +32,22 @@ h1 {
   width: 250px;
   margin-right: 10px;
 }
+.galleryWrap h1 {
+  width: auto;
+}
 .galleryWrap .picsCont {
   margin-top: 5px;
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   padding: 5px;
   border: 1px solid lightgray;
+  width: 600px;
 }
 .galleryWrap .picsCont img {
   width: 200px;
-  max-height: 150px;
+  max-height: 250px;
   padding: 2px;
+  margin: auto;
 }
 .galleryWrap table {
   margin-top: 5px;

@@ -64,19 +64,26 @@ h1
 
 .galleryWrap
 {
+    h1
+    {
+        width: auto;
+    }
+
     .picsCont
     {
         margin-top: 5px;
-        display: flex;
-        flex-direction: row;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         padding: 5px;
         border: 1px solid lightgray;
+        width: 600px;
 
         img
         {
             width: 200px;
-            max-height: 150px;
+            max-height: 250px;
             padding: 2px;
+            margin: auto;
         }
     }
 
