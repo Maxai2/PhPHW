@@ -5,7 +5,7 @@
         private $db;
 
         function __construct() {
-            $this->db = new PDO("mysql:host=localhost", 'root', '', );
+            $this->db = new PDO("mysql:host=localhost", 'root', '');
 
             if (!$this->db->exec("use pictureDb;")) {
                 $this->db->exec(
@@ -18,8 +18,9 @@
                     `id` INT PRIMARY KEY AUTO_INCREMENT,
                     `name` VARCHAR(255) NOT NULL,
                     `size` INTEGER NOT NULL,
-                    `imagePath` VARCHAR(500) NOT NULL);"
-                );
+                    `imagePath` VARCHAR(500) NOT NULL
+                );"
+            );
         }
 
         function clean_input($data) {

@@ -24,11 +24,17 @@
             }
 
             echo $count;
-
         ?></h4>
-        <form action='Pages/upload.html'>
-            <input type='submit' value='Upload?'>
-        </form>
+        <div class='formCont'>
+            <form action='Pages/upload.html'>
+                <input type='submit' value='Upload?'>
+            </form>
+            <form action='Pages/show.php'>
+                <input type='submit' value='Show?' <?php 
+                    echo $count == 0 ? 'disabled' : '';
+                ?>>
+            </form>
+        </div>
     </div>
 </body>
 </html>

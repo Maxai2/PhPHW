@@ -9,28 +9,32 @@
 </head>
 <body>
     <div class="showWrap">
-        <h2>Выберите файл для отображения.</h2>
+        <h1>Выберите файл для отображения.</h1>
         <form method="POST" action="show.php">
             <select name='picName'>
                 <?php 
-                require_once __DIR__.'/../Repository/PictureRep.php';
-                $db = new PictureRep();
-                
-                $picsName = $db->getPicsByName();
-                
-                foreach ($picsName as $pic) {
-                    echo '<option value='.$pic['id'].'|'.$pic['name'].'>'.$pic['name'].'</option>';
-                }
+                    require_once __DIR__.'/../Repository/PictureRep.php';
+                    $db = new PictureRep();
+                    
+                    $picsName = $db->getPicsByName();
+                    
+                    foreach ($picsName as $pic) {
+                        echo '<option value='.$pic['id'].'|'.$pic['name'].'>'.$pic['name'].'</option>';
+                    }
                 ?>
             </select>
             <input type="submit" value="Open?">
         </form>
 
-        <div class='picContainer'>
-            <img src='<?php 
-                $picId = substr($_POST['picName'], 0, 1);
-                echo $db->getPic((int)$picId);
-            ?>'>
+        <div class='picContainer' style='display: <?php 
+            echo isset($_POST['picName']) ? 'grid' : 'none';
+        ?>'>
+            <img src='
+                <?php 
+                    $picId = substr($_POST['picName'], 0, 1);
+                    echo $db->getPic((int)$picId);
+                ?>
+            '>
         </div>
     </div>
 </body>

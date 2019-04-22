@@ -6,6 +6,11 @@ body {
 h1 {
   width: 400px;
 }
+.wrap .formCont {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
 .wrapUpload form {
   display: flex;
   flex-direction: column;
@@ -21,4 +26,5 @@ h1 {
   border: 1px solid lightgray;
   display: grid;
   grid-template-columns: 2fr 1fr;
+  padding: 10px;
 }
