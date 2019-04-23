@@ -13,7 +13,7 @@
         <form action='../index.php'>
             <button>Main menu</button>
         </form>
-        <form method="POST" action="show.php">
+        <form method="POST" action="show.php" class="picNameSub">
             <select name='picName'>
                 <?php 
                     require_once __DIR__.'/../Repository/PictureRep.php';
@@ -25,9 +25,13 @@
                     $name = '';
 
                     if ($postCome) {
-                        $picId = explode('|', $_POST['picName']);
-                        if(isset($picId[1])) {
-                            $pic = $db->getPic((int)$picId[0]);
+                        // $picId = explode('|', $_POST['picName']);
+                        $picId = $_POST['picName'];
+
+                        // if(isset($picId[1])) {
+                        //     $pic = $db->getPic((int)$picId[0]);
+                        if($picId != '') {
+                            $pic = $db->getPic((int)$picId);
                             $imagePath = $pic->imagePath;
                             $name = $pic->name;
                             $size = $pic->size;
@@ -41,7 +45,8 @@
                         if ($pic['name'] == $name) {
                             $sel = "selected='selected'";
                         }
-                        echo "<option $sel value=".$pic['id'].'|'.$pic['name'].'>'.$pic['name'].'</option>';
+                        // echo "<option $sel value=".$pic['id'].'|'.$pic['name'].'>'.$pic['name'].'</option>';
+                        echo "<option $sel value=".$pic['id'].'>'.$pic['name'].'</option>';
                     }
                 ?>
             </select>

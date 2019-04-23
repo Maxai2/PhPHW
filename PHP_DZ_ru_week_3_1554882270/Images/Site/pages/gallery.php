@@ -38,7 +38,7 @@
 
             <tr>
                 <td id='id'></td>
-                <td id='name'></td>
+                <td><a id='name' target="_blank"></a></td>
                 <td id='size'></td>
                 <td id='imagePath'></td>
             </tr>
@@ -47,15 +47,20 @@
     <script>
         function picDetail(img, id) {
             document.getElementById('detTable').style.display = 'table';
+            let data = new FormData();
+            data.append("id", id);
 
-            let data = data.append("id", id);
             fetch("picWait.php", {
                 body: data,
                 method: 'post'
             }).then(function (responce) {
                 return responce.json();
             }).then(json => {
-                
+                document.getElementById('id').innerHTML = id;
+                document.getElementById('name').href = json['imagePath'];
+                document.getElementById('name').innerHTML = json['name'];
+                document.getElementById('size').innerHTML = json['size'];
+                document.getElementById('imagePath').innerHTML = json['imagePath'];
             })
         }
     </script>

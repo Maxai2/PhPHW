@@ -23,7 +23,7 @@
             );
         }
 
-        function clean_input($data) {
+        private function clean_input($data) {
             $data = trim($data);
             $data = stripslashes($data);
             $data = htmlspecialchars($data);
@@ -67,7 +67,7 @@
         function getPic(int $id) {
             $temp = $this->db->query(
                 "SELECT * FROM `pictureList`
-                WHERE `id` = '$id';"
+                WHERE `id` = $id;"
             )->fetch();
 
             $pic = new Picture(

@@ -22,6 +22,15 @@ h1
 
 .wrapUpload
 {
+    .mainBut
+    {
+        align-items: center;        
+
+        button
+        {
+            width: 90px;
+        }
+    }
 
     form
     {
@@ -37,13 +46,24 @@ h1
 
 .showWrap
 {
-    
+    h1
+    {
+        width: auto;
+    }
+
     form
     {
-        input[type=submit]
+        button
         {
-            margin-top: 10px;
+            margin-bottom: 10px;
         }
+    }
+
+    .picNameSub
+    {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
     }
 
     .picContainer
@@ -76,7 +96,7 @@ h1
         grid-template-columns: 1fr 1fr;
         padding: 5px;
         border: 1px solid lightgray;
-        width: 600px;
+        width: 1200px;
 
         img
         {

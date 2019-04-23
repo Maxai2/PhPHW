@@ -10,6 +10,9 @@
 <body>
     <div class="wrapUpload">
         <h1>Выберите файл(ы) для загрузки.</h1>
+        <form action='../index.php' class='mainBut'>
+            <button>Main menu</button>
+        </form>
         <form method="POST" action="picWait.php" enctype="multipart/form-data">
             <input type="file" name="picPath[]" multiple accept=".png,.jpg,.jpeg" id="picPath" onchange="hideShow(this)">
             <input type="submit" value="Submit" id='sub' disabled>

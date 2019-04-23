@@ -11,6 +11,12 @@ h1 {
   flex-direction: row;
   justify-content: space-evenly;
 }
+.wrapUpload .mainBut {
+  align-items: center;
+}
+.wrapUpload .mainBut button {
+  width: 90px;
+}
 .wrapUpload form {
   display: flex;
   flex-direction: column;
@@ -18,8 +24,16 @@ h1 {
 .wrapUpload input[type=submit] {
   margin-top: 10px;
 }
-.showWrap form input[type=submit] {
-  margin-top: 10px;
+.showWrap h1 {
+  width: auto;
+}
+.showWrap form button {
+  margin-bottom: 10px;
+}
+.showWrap .picNameSub {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 .showWrap .picContainer {
   margin-top: 30px;
@@ -41,7 +55,7 @@ h1 {
   grid-template-columns: 1fr 1fr;
   padding: 5px;
   border: 1px solid lightgray;
-  width: 600px;
+  width: 1200px;
 }
 .galleryWrap .picsCont img {
   width: 200px;

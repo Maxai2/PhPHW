@@ -1,8 +1,8 @@
 <?php 
     class Picture {
-        private $name;
-        private $size;
-        private $imagePath;
+        public $name;
+        public $size;
+        public $imagePath;
 
         function __construct(string $name, int $size, string $imagePath) {
             $this->name = $name;
@@ -10,13 +10,13 @@
             $this->imagePath = $imagePath;
         }
 
-        public function __get($name) {
-            return $this->$name;
-        }
+        // public function __get($name) {
+        //     return $this->$name;
+        // }
 
-        public function __set($name, $value) {
-            $this->$name = $value;
-        }
+        // public function __set($name, $value) {
+        //     $this->$name = $value;
+        // }
     }
 
 ?>
