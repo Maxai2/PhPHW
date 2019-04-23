@@ -45,9 +45,18 @@
         </table>
     </div>
     <script>
-        function picDetail(img) {
+        function picDetail(img, id) {
             document.getElementById('detTable').style.display = 'table';
 
+            let data = data.append("id", id);
+            fetch("picWait.php", {
+                body: data,
+                method: 'post'
+            }).then(function (responce) {
+                return responce.json();
+            }).then(json => {
+                
+            })
         }
     </script>
 </body>
