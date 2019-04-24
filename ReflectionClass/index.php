@@ -10,9 +10,12 @@
 <body>
     <?php
         require_once 'Repository/ReplicationRep.php';
+        require_once 'Models/User.php';
         $db = new ReplicationRep('localhost', 'userdb', 'root', '');
 
-        var_dump ($db->get('user'));
+        $obj = new User('admin', 123, '');
+        var_dump($db->insert($obj));
+        // var_dump ($db->find('user', 3));
     ?>
 </body>
 </html>

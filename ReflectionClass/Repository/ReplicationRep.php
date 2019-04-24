@@ -31,7 +31,7 @@
                 $param = [];
                 
                 for ($i = 0; $i < count($paramNames); $i++) {
-                    $param[] = $obj[$paramNames[$i]->name];
+                    $param[] = $obj[$paramNames[$i]->getName()];
                 }
 
                 $objects[] = $class->newInstanceArgs($param);
@@ -41,19 +41,51 @@
         }
             
         function find($entityType, int $id) {
+            $dbName = $entityType.'Table';
             
+            $res = $this->db->query(
+                "SELECT * FROM $dbName
+                WHERE `id` = $id;"
+            )->fetchAll();
+
+            $objects = null;
+
+            $class = new ReflectionClass($entityType);
+            $paramNames = $class->getMethod("__construct")->getParameters();
+            
+            $param = [];
+            
+            for ($i = 0; $i < count($paramNames); $i++) {
+                $param[] = $res[0][$paramNames[$i]->getName()];
+            }
+
+            $objects[] = $class->newInstanceArgs($param);
+
+            return $objects;
         }
             
         function insert($object) {
-            // $this->db->exec(
-            //     "CREATE TABLE IF NOT EXISTS $dbName(
-            //         `id` INT PRIMARY KEY AUTO_INCREMENT,
-            //         `name` VARCHAR(255) NOT NULL,
-            //         `size` INTEGER NOT NULL,
-            //         `imagePath` VARCHAR(500) NOT NULL
-            //     );"
-            // );
+            $className = strtolower(get_class($object));
+            $dbName = $className.'Table';
 
+            $class = new ReflectionClass($className);
+            $paramNames = $class->getMethod("__construct")->getParameters();
+
+            $paramForExec = "";
+            for ($i = 0; $i < count($paramNames); $i++) {
+                $paramForExec .= $paramNames[$i]->getName().' '.mysqlParamName($paramNames[$i]->getType()->getName()).' '.'NOT NULL,';
+            }
+
+            $this->db->exec(
+                "CREATE TABLE IF NOT EXISTS $dbName(
+                    `id` INT PRIMARY KEY AUTO_INCREMENT,
+                    $paramForExec
+                );"
+            );
+
+            $this->db->exec(
+                "INSERT INTO $dbName(
+            );
         }
 
         function update($object) {
@@ -64,6 +96,19 @@
 
         }
 
+        private function mysqlParamName(string $oldName) {
+            $newName = '';
+            switch($oldName) {
+                case 'int':
+                    $newName = 'INTEGER';
+                    break;
+                case 'string':
+                    $newName = 'VARCHAR(255)';
+                    break;
+            }
+
+            return $newName;
+        }
     }
 
 ?>
