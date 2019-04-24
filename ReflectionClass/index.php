@@ -11,8 +11,7 @@
     <?php
         require_once 'Repository/ReplicationRep.php';
 
-        $class = new ReplicationRep('User');
-        var_dump($class);
+        
     ?>
 </body>
 </html>
