@@ -10,8 +10,9 @@
 <body>
     <?php
         require_once 'Repository/ReplicationRep.php';
+        $db = new ReplicationRep('localhost', 'userdb', 'root', '');
 
-        
+        var_dump ($db->get('user'));
     ?>
 </body>
 </html>
