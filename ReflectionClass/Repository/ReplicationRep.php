@@ -18,9 +18,13 @@
         function get($entityType) {
             $dbName = $entityType.'Table';
             
-            $res = $this->db->query(
+            try {
+                $res = $this->db->query(
                 "SELECT * FROM $dbName;"
-            )->fetchAll(PDO::FETCH_CLASS, $entityType);
+                )->fetchAll(PDO::FETCH_CLASS, $entityType);
+            } catch (\Throwable $th) {
+                $res = [];
+            }
 
             return $res;
         }
@@ -28,10 +32,18 @@
         function find($entityType, int $id) {
             $dbName = $entityType.'Table';
             
-            $res = $this->db->query(
-                "SELECT * FROM $dbName
-                WHERE `id` = $id;"
-            )->fetchObject($entityType);
+            try {
+                $res = $this->db->query(
+                    "SELECT * FROM $dbName
+                    WHERE `id` = $id;"
+                )->fetchObject($entityType);
+            } catch (\Throwable $th) {
+                $res = null;
+            }
+
+            if (!$res) {
+                $res = null;
+            }
 
             return $res;
         }
@@ -77,6 +89,7 @@
             $this->db->query($insQuery);
             $id = $this->db->lastInsertId();
             $object->id = $id;
+
             return $object;
         }
 
@@ -97,9 +110,9 @@
             $updatedQue
             WHERE `id` = '$id'";
 
-            $res = $this->db->exec($que) or die(print_r($this->db->errorInfo(), true));;
+            $res = $this->db->exec($que);
 
-            return $res;
+            return (bool)$res;
         }
 
         function delete($entityType, int $id) {
@@ -109,7 +122,7 @@
 
             $res = $this->db->exec($delQuery);
 
-            return $res;
+            return (bool)$res;
         }
 
         private function mysqlParamName(string $oldName) {

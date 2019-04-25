@@ -16,17 +16,17 @@
         
         // var_dump($db->delete('user', 3));
 
-        $obj = new User();
-        $obj->id = 10;
-        $obj->login = 'log';
-        $obj->password = 7894;
-        $obj->email = 'emails1';
+        $obj = new User;
+        $obj->id = 2;
+        $obj->login = 'login';
+        $obj->password = 789789789454;
+        $obj->email = 'em123654';
         
         // for ($i = 1; $i < count((array)$obj); $i++) {
         //     var_dump($obj[$i]);
         // }
 
-        var_dump($db->update($obj));
+        var_dump($db->find('user', 10));
         // var_dump ($db->find('user', 1));
     ?>
 </body>
