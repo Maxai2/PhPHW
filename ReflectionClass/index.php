@@ -13,7 +13,7 @@
         require_once 'Models/User.php';
 
         $db = new ReplicationRep('localhost', 'reflecdb', 'root', '');
-        
+
         // var_dump($db->delete('user', 3));
 
         $obj = new User;
@@ -26,8 +26,8 @@
         //     var_dump($obj[$i]);
         // }
 
-        var_dump($db->find('user', 10));
-        // var_dump ($db->find('user', 1));
+        // var_dump($db->find('user', 10));
+        var_dump ($db->find('user', 1));
     ?>
 </body>
 </html>

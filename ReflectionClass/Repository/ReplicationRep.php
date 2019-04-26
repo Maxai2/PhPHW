@@ -6,12 +6,16 @@
         private $db;
 
         function __construct(string $host, string $database, string $user, string $password) {
-            $this->db = new PDO("mysql:host=$host", $user, $password);
-
-            if (!$this->db->exec("use $database;")) {
-                $this->db->exec(
-                "CREATE DATABASE $database;" 
-                ."use $database;");
+            try {
+                $this->db = new PDO("mysql:host=$host", $user, $password);
+    
+                if (!$this->db->exec("use $database;")) {
+                    $this->db->exec(
+                    "CREATE DATABASE $database;" 
+                    ."use $database;");
+                }
+            } catch (QueryException $th) {
+                throw new QueryException($th->msg.'my');
             }
         }
 
