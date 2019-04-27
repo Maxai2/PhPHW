@@ -11,4 +11,6 @@
 |
 */
 
-Route::get('tasks', '');
+Route::get('/', function () {
+    return view('welcome');
+});
