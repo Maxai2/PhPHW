@@ -1,8 +1,8 @@
 @extends('index')
 
 @section('insertContent')
-    <div class='insertWrap' id="modalDivId" onClick='closeMod(this)'>
-        <form class='insertContainer' method="POST" action="tasks/writeToDb">
+    <div class='insertWrap' onClick='closeMod(this)'>
+        <form class='insertContainer' id="modalDivId" method="POST" action="tasks/writeToDb">
             <h3>Add new task</h3>
 
             <input type='text' placeholder="Task name" required>
@@ -30,35 +30,41 @@
 
 @section('scripts')
     <script>
-        var fileElem = document.getElementById('fileInput');
-        var textElem = document.getElementById('textInput');
-
+        var fileElem = "";
+        var textElem = "";
         var radBtns = new Array();
-        window.onload=function() {
+
+        window.onload = function() {
             radBtns = document.getElementsByName('taskContent');
+            fileElem = document.getElementById('fileInput');
+            textElem = document.getElementById('textInput');
 
             fileElem.style.display = 'inline';
+            fileElem.setAttribute("required", "");
             textElem.style.display = 'none';
+            textElem.removeAttribute("required", "");
         }
 
         function changeInput() {
             for(var i=0; i < radBtns.length; i++) {
                 if(radBtns[i].checked) {
                     fileElem.style.display = 'none';
-                    fileElem.required = false;
+                    fileElem.removeAttribute("required");
                     textElem.style.display = 'inline';
-                    textElem.required = true;
+                    textElem.setAttribute("required", "");
                 } else {
                     fileElem.style.display = 'inline';
-                    fileElem.required = true;
+                    fileElem.setAttribute("required", "");
                     textElem.style.display = 'none';
-                    textElem.required = false;
+                    textElem.removeAttribute("required", "");
                 }
             }
         }
 
-        function closeMod(event) {
-            console.log(event.id);
+        function closeMod(obj) {
+            // if (obj.id == 'insertDiv')
+                console.log(obj.id);
+            // location.replace('tasks');
         }
 
     </script>
