@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Routing\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,5 +16,7 @@
 //     return view('welcome');
 // });
 
-Route::get('task', 'TaskController@index');
-Route::get('task/insert', 'TaskController@insert');
+Route::get('tasks', 'TasksController@index');
+Route::view('tasks/insert', 'insert');
+Route::post('tasks/writeToDb', 'TasksController@insert');
+// Route::get('tasks/insert', 'TasksController@insert');

@@ -1,7 +1,7 @@
 <?php
     namespace App\Abstractions;
 
-    interface ITaskService {
+    interface ITasksService {
         public function get();
         public function insert($task);
     }

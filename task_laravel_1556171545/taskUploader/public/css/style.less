@@ -1,0 +1,108 @@
+.indexWrap
+{
+    margin: 50px auto 0;
+    width: min-content;
+    text-align: center;
+
+    .tasksContainer
+    {
+        border: 1px solid lightgray;
+        border-radius: 10px;
+
+        table, th, td
+        {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        tr:nth-child(odd)
+        {
+            background-color: #dddddd;
+        }
+
+        th, td
+        {
+            padding: 15px;
+        }
+
+        table
+        {
+            margin: 10px;
+            border-spacing: 5px;
+        }
+
+        div
+        {
+            display: flex;
+            justify-content: center;
+
+            a
+            {
+                margin: 5px;
+                border-radius: 50%;
+                height: 50px;
+                width: 50px;
+                text-decoration: none;
+                border: 1px solid black;
+                font-size: 50px;
+                color: green;
+                line-height: 1;
+                outline: none;
+            }
+        }
+    }
+}
+
+.insertWrap
+{
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.4);
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    .insertContainer
+    {
+        margin: 250px auto 0;
+        width: 500px;
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+
+        input[type='text']
+        {
+            width: 100%;
+        }
+
+        .radioBut
+        {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            margin-top: 10px;
+        }
+
+        .taskContentContainer
+        {
+            input[type='file']
+            {
+                width: min-content;
+            }
+
+            textarea
+            {
+                width: 100%;
+                min-height: 100px;
+                max-height: 300px;
+            }
+        }
+
+        input[type='submit']
+        {
+            width: 100%;
+            margin-top: 10px;
+        }
+    }
+}

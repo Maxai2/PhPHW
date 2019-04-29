@@ -1,0 +1,79 @@
+.indexWrap {
+  margin: 50px auto 0;
+  width: min-content;
+  text-align: center;
+}
+.indexWrap .tasksContainer {
+  border: 1px solid lightgray;
+  border-radius: 10px;
+}
+.indexWrap .tasksContainer table,
+.indexWrap .tasksContainer th,
+.indexWrap .tasksContainer td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+.indexWrap .tasksContainer tr:nth-child(odd) {
+  background-color: #dddddd;
+}
+.indexWrap .tasksContainer th,
+.indexWrap .tasksContainer td {
+  padding: 15px;
+}
+.indexWrap .tasksContainer table {
+  margin: 10px;
+  border-spacing: 5px;
+}
+.indexWrap .tasksContainer div {
+  display: flex;
+  justify-content: center;
+}
+.indexWrap .tasksContainer div a {
+  margin: 5px;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  text-decoration: none;
+  border: 1px solid black;
+  font-size: 50px;
+  color: green;
+  line-height: 1;
+  outline: none;
+}
+.insertWrap {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.insertWrap .insertContainer {
+  margin: 250px auto 0;
+  width: 500px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+.insertWrap .insertContainer input[type='text'] {
+  width: 100%;
+}
+.insertWrap .insertContainer .radioBut {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 10px;
+}
+.insertWrap .insertContainer .taskContentContainer input[type='file'] {
+  width: min-content;
+}
+.insertWrap .insertContainer .taskContentContainer textarea {
+  width: 100%;
+  min-height: 100px;
+  max-height: 300px;
+}
+.insertWrap .insertContainer input[type='submit'] {
+  width: 100%;
+  margin-top: 10px;
+}
