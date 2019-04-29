@@ -24,7 +24,7 @@
             @endif
 
             <div>
-                <a href='tasks/insert'>+</a>
+                <a href='/tasks/insert'>+</a>
             </div>
         </div>
     </div>

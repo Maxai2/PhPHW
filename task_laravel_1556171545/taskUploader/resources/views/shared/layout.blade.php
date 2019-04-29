@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <title>Document</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 <body>
     @yield('content')

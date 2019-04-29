@@ -1,8 +1,8 @@
 @extends('index')
 
 @section('insertContent')
-    <div class='insertWrap' onClick='closeMod(this)'>
-        <form class='insertContainer' id="modalDivId" method="POST" action="tasks/writeToDb">
+    <div class='insertWrap' id="modalDivId" onClick='closeMod(event)'>
+        <form class='insertContainer' method="POST" action="tasks/insert">
             <h3>Add new task</h3>
 
             <input type='text' placeholder="Task name" required>
@@ -42,7 +42,7 @@
             fileElem.style.display = 'inline';
             fileElem.setAttribute("required", "");
             textElem.style.display = 'none';
-            textElem.removeAttribute("required", "");
+            textElem.removeAttribute("required");
         }
 
         function changeInput() {
@@ -56,15 +56,14 @@
                     fileElem.style.display = 'inline';
                     fileElem.setAttribute("required", "");
                     textElem.style.display = 'none';
-                    textElem.removeAttribute("required", "");
+                    textElem.removeAttribute("required");
                 }
             }
         }
 
-        function closeMod(obj) {
-            // if (obj.id == 'insertDiv')
-                console.log(obj.id);
-            // location.replace('tasks');
+        function closeMod(event) {
+            if (event.target.id == 'modalDivId')
+                location.replace('../tasks');
         }
 
     </script>
