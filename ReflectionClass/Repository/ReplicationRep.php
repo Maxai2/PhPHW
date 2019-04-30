@@ -2,20 +2,23 @@
     require_once 'Models/User.php';
     require_once 'Models/Book.php';
 
+    require_once 'CustomException/QueryException.php';
+    
     class ReplicationRep {
         private $db;
 
         function __construct(string $host, string $database, string $user, string $password) {
             try {
                 $this->db = new PDO("mysql:host=$host", $user, $password);
+                $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
                 if (!$this->db->exec("use $database;")) {
                     $this->db->exec(
                     "CREATE DATABASE $database;" 
                     ."use $database;");
                 }
-            } catch (QueryException $th) {
-                throw new QueryException($th->msg.'my');
+            } catch (PDOException $th) {
+                throw new QueryException($th->errorInfo[0]);
             }
         }
 
@@ -26,8 +29,8 @@
                 $res = $this->db->query(
                 "SELECT * FROM $dbName;"
                 )->fetchAll(PDO::FETCH_CLASS, $entityType);
-            } catch (\Throwable $th) {
-                $res = [];
+            } catch (PDOException $th) {
+                throw new QueryException($th->errorInfo[0]);
             }
 
             return $res;
@@ -41,8 +44,8 @@
                     "SELECT * FROM $dbName
                     WHERE `id` = $id;"
                 )->fetchObject($entityType);
-            } catch (\Throwable $th) {
-                $res = null;
+            } catch (PDOException $th) {
+                throw new QueryException($th->errorInfo[0]);
             }
 
             if (!$res) {
@@ -85,13 +88,18 @@
                 `id` INTEGER PRIMARY KEY AUTO_INCREMENT,
                 $paramForExec);";
 
-            $this->db->exec($creExec);
-
             $insQuery = "INSERT INTO $dbName($tableColumn)
                     VALUES ($tableVal);";
+
+            try {
+                $this->db->exec($creExec);
+                
+                $this->db->query($insQuery);
+                $id = $this->db->lastInsertId();
+            } catch (PDOException $th) {
+                throw new QueryException($th->errorInfo[0]);
+            }
             
-            $this->db->query($insQuery);
-            $id = $this->db->lastInsertId();
             $object->id = $id;
 
             return $object;
@@ -114,7 +122,11 @@
             $updatedQue
             WHERE `id` = '$id'";
 
-            $res = $this->db->exec($que);
+            try {
+                $res = $this->db->exec($que);
+            } catch (PDOException $th) {
+                throw new QueryException($th->errorInfo[0]);
+            }
 
             return (bool)$res;
         }
@@ -124,7 +136,11 @@
             
             $delQuery = "DELETE FROM $dbName WHERE `id` = '$id'";
 
-            $res = $this->db->exec($delQuery);
+            try {
+                $res = $this->db->exec($delQuery);
+            } catch (PDOException $th) {
+                throw new QueryException($th->errorInfo[0]);
+            }
 
             return (bool)$res;
         }

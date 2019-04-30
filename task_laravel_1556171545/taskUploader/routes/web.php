@@ -19,6 +19,6 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('tasks', 'TasksController@index');
-Route::view('tasks/insert', 'insert');
-Route::post('tasks/writeToDb', 'TasksController@insert');
+Route::get('tasks/create', 'TasksController@create');
+Route::post('tasks', 'TasksController@insert');
 // Route::get('tasks/insert', 'TasksController@insert');

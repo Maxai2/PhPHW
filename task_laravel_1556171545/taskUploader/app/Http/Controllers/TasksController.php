@@ -18,9 +18,13 @@ class TasksController extends Controller
         return view('index')->with('tasks', $tasks);
     }
 
-    public function insert($task) {
+    public function create() {
+        return view('create');
+    }
 
-        return view('index');
+    public function insert(Request $req) {
+        $input = $req->all();
+        return redirect('tasks');
     }
 }
 

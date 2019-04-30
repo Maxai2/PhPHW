@@ -5,7 +5,7 @@
 
     class TasksService implements ITasksService {
         public function get() {
-            return Task::all();
+            return Task::all(['title', 'createDateTime']);
         }
 
         public function insert($task) {

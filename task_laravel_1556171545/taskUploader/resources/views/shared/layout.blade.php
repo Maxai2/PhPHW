@@ -7,10 +7,13 @@
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <title>Document</title>
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-1.10.2.js"></script> --}}
 </head>
 <body>
+
     @yield('content')
-    @yield('scripts')
+    {{-- @yield('scripts') --}}
+
+    <script src="{{asset('js/app.js')}}"></script>
 </body>
 </html>

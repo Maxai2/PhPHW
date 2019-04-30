@@ -2,7 +2,7 @@
 
 @section('insertContent')
     <div class='insertWrap' id="modalDivId" onClick='closeMod(event)'>
-        <form class='insertContainer' method="POST" action="tasks/insert">
+        <form class='insertContainer' method="POST" action="/tasks">
             <h3>Add new task</h3>
 
             <input type='text' placeholder="Task name" required>
@@ -46,7 +46,7 @@
         }
 
         function changeInput() {
-            for(var i=0; i < radBtns.length; i++) {
+            for(var i = 0; i < radBtns.length; i++) {
                 if(radBtns[i].checked) {
                     fileElem.style.display = 'none';
                     fileElem.removeAttribute("required");

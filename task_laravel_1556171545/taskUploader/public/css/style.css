@@ -24,21 +24,14 @@
   margin: 10px;
   border-spacing: 5px;
 }
-.indexWrap .tasksContainer div {
-  display: flex;
-  justify-content: center;
-}
-.indexWrap .tasksContainer div a {
-  margin: 5px;
-  border-radius: 50%;
-  height: 50px;
+.indexWrap .tasksContainer .btn-xl {
   width: 50px;
-  text-decoration: none;
-  border: 1px solid black;
-  font-size: 50px;
-  color: green;
-  line-height: 1;
-  outline: none;
+  height: 50px;
+  padding: 10px 16px;
+  border-radius: 35px;
+  font-size: 24px;
+  line-height: 1.33;
+  margin: 5px;
 }
 .insertWrap {
   height: 100%;
