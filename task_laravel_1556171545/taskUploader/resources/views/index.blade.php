@@ -36,18 +36,19 @@
 
             <div class="modal insertWrap" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                 <form class='insertContainer' method="POST" action="/tasks">
+                    @csrf
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
 
                             <div class="modal-header">
                                 <h3 class="modal-title">Add new task</h3>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
                             </div>
 
                             <div class="modal-body">
-                                <input type='text' placeholder="Task name" required>
+                                <input type='text' class="form-control" placeholder="Task name" required>
+                                <div class="invalid-feedback">
+                                    Task name is required.
+                                </div>
 
                                 <div class="radioBut">
                                     <div>

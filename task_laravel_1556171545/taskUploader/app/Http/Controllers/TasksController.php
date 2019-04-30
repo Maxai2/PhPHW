@@ -1,31 +1,31 @@
 <?php
 
-namespace App\Http\Controllers;
+    namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Abstractions\ITasksService;
+    use Illuminate\Http\Request;
+    use App\Abstractions\ITasksService;
 
-class TasksController extends Controller
-{
-    private $tasksService;
+    class TasksController extends Controller
+    {
+        private $tasksService;
 
-    function __construct(ITasksService $service) {
-        $this->tasksService = $service;
+        function __construct(ITasksService $service) {
+            $this->tasksService = $service;
+        }
+
+        public function index() {
+            $tasks = $this->tasksService->get();
+            return view('index')->with('tasks', $tasks);
+        }
+
+        public function create() {
+            return view('create');
+        }
+
+        public function insert(Request $req) {
+            $input = $req->all();
+            // return redirect('tasks');
+        }
     }
-
-    public function index() {
-        $tasks = $this->tasksService->get();
-        return view('index')->with('tasks', $tasks);
-    }
-
-    public function create() {
-        return view('create');
-    }
-
-    public function insert(Request $req) {
-        $input = $req->all();
-        return redirect('tasks');
-    }
-}
 
 ?>
