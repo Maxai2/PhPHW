@@ -8,13 +8,13 @@
             <input type='text' placeholder="Task name" required>
 
             <div class="radioBut">
-                <div>
-                    <input type="radio" value="file" name="taskContent" id="file" checked onClick="changeInput()">
-                    <label for="file">File</label>
+                <div class="custom-control custom-radio">
+                    <input type="radio" value="file" class='custom-control-input' name="taskContent" id="file" checked onClick="changeInput()">
+                    <label for="file" class="custom-control-label">File</label>
                 </div>
-                <div>
-                    <input type="radio" value="text" name="taskContent" id="text" onClick="changeInput()">
-                    <label for="text">Text</label>
+                <div class="custom-control custom-radio">
+                    <input type="radio" value="text" class='custom-control-input' name="taskContent" id="text" onClick="changeInput()">
+                    <label for="text" class="custom-control-label">Text</label>
                 </div>
             </div>
 

@@ -23,7 +23,11 @@
         }
 
         public function insert(Request $req) {
-            $input = $req->all();
+            $name = $req->input('taskName');
+
+            $this->tasksService->insert();
+
+
             // return redirect('tasks');
         }
     }

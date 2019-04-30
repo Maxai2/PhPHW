@@ -1,9 +1,6 @@
 @extends('shared.layout')
 
 @section('content')
-
-
-
     <div class='indexWrap'>
         <h1>Tasks!</h1>
         <div class='tasksContainer'>
@@ -45,25 +42,29 @@
                             </div>
 
                             <div class="modal-body">
-                                <input type='text' class="form-control" placeholder="Task name" required>
-                                <div class="invalid-feedback">
+                                <input type='text' class="form-control" placeholder="Task name" name='taskName' required>
+                                <!-- <div class="invalid-feedback">
                                     Task name is required.
-                                </div>
+                                </div> -->
 
                                 <div class="radioBut">
-                                    <div>
-                                        <input type="radio" value="file" name="taskContent" id="file" checked onClick="changeInput()">
-                                        <label for="file">File</label>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" value="file"  class='custom-control-input' name="taskContent" id="file" checked onClick="changeInput()">
+                                        <label for="file" class="custom-control-label">File</label>
                                     </div>
-                                    <div>
-                                        <input type="radio" value="text" name="taskContent" id="text" onClick="changeInput()">
-                                        <label for="text">Text</label>
+                                    <div class="custom-control custom-radio">
+                                        <input type="radio" value="text"  class='custom-control-input' name="taskContent" id="text" onClick="changeInput()">
+                                        <label for="text" class="custom-control-label">Text</label>
                                     </div>
                                 </div>
 
                                 <div class='taskContentContainer'>
                                     <input id='fileInput' type='file'>
-                                    <textarea id='textInput'></textarea>
+
+                                    <div class="md-form">
+                                        <label for="textInput">Material textarea</label>
+                                        <textarea id="textInput" class="md-textarea form-control" rows="3"></textarea>
+                                    </div>
                                 </div>
                             </div>
 
