@@ -7,22 +7,14 @@
   border: 1px solid lightgray;
   border-radius: 10px;
 }
-.indexWrap .tasksContainer table,
-.indexWrap .tasksContainer th,
-.indexWrap .tasksContainer td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-.indexWrap .tasksContainer tr:nth-child(odd) {
-  background-color: #dddddd;
-}
 .indexWrap .tasksContainer th,
 .indexWrap .tasksContainer td {
   padding: 15px;
+  vertical-align: middle;
+  text-align: center;
 }
-.indexWrap .tasksContainer table {
-  margin: 10px;
-  border-spacing: 5px;
+.indexWrap .tasksContainer .table {
+  width: 500px;
 }
 .indexWrap .tasksContainer .btn-xl {
   width: 50px;

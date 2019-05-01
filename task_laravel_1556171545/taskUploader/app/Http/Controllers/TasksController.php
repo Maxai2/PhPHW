@@ -39,14 +39,14 @@
             if ($validatedData['taskType'] == 'file') {
                 if (isset($_FILES['taskContent'])) {
                     $destPath = '/storage/tasks'.$_FILES['taskContent']['name'];
-                    $storage_path = 'public/tasks'.$_FILES['taskContent']['name'];
+                    $storage_path = '/public/tasks'.$_FILES['taskContent']['name'];
                     Storage::copy($_FILES['taskContent']['tmp_name'], $storage_path);
 
                     $link = $destPath;
                 }
             } else {
                 $link = '/storage/tasks/'.$taskName.'.txt';
-                $destPath = 'public/tasks/'.$taskName.'.txt';
+                $destPath = '/public/tasks/'.$taskName.'.txt';
                 Storage::put($destPath, $validatedData['taskContent']);
             }
 
@@ -56,7 +56,7 @@
             ];
 
             $this->tasksService->insert($task);
-            //return redirect('tasks');
+            return redirect('tasks');
         }
     }
 

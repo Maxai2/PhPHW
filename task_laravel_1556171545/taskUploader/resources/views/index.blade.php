@@ -5,11 +5,11 @@
         <h1>Tasks!</h1>
         <div class='tasksContainer'>
             @if(isset($tasks) && count($tasks) != 0)
-                <table>
+                <table class="table table-striped">
                     <tr>
-                        <th>Name</th>
-                        <th>Date</th>
-                        <th>Link</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Link</th>
                     </tr>
 
                     @foreach ($tasks as $task)
@@ -61,7 +61,7 @@
                                 <div class='taskContentContainer'>
                                     <div class="custom-file" id='fileDiv'>
                                         <input name='taskContent' type="file" class="custom-file-input" id="fileInput">
-                                        <label class="custom-file-label">Choose file...</label>
+                                        <label class="custom-file-label" for='fileInput'>Choose file...</label>
                                     </div>
 
                                     <div class="form-group" id='textDiv'>
