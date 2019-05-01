@@ -14,9 +14,9 @@
 
                     @foreach ($tasks as $task)
                         <tr>
-                            <td>$task->title</td>
-                            <td>$task->createDateTime</td>
-                            <td>$task->link</td>
+                            <td>{{$task->title}}</td>
+                            <td>{{$task->created_at}}</td>
+                            <td><a href="{{$task->link}}" download>{{$task->link}}</a></td>
                         </tr>
                     @endforeach
 
@@ -32,7 +32,7 @@
             </button>
 
             <div class="modal insertWrap" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                <form class='insertContainer' method="POST" action="/tasks">
+                <form class='insertContainer' method="POST" action="/tasks/insert">
                     @csrf
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -49,21 +49,24 @@
 
                                 <div class="radioBut">
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" value="file"  class='custom-control-input' name="taskContent" id="file" checked onClick="changeInput()">
+                                        <input type="radio" value="file"  class='custom-control-input' name="taskType" id="file" checked onClick="changeInput()">
                                         <label for="file" class="custom-control-label">File</label>
                                     </div>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" value="text"  class='custom-control-input' name="taskContent" id="text" onClick="changeInput()">
+                                        <input type="radio" value="text"  class='custom-control-input' name="taskType" id="text" onClick="changeInput()">
                                         <label for="text" class="custom-control-label">Text</label>
                                     </div>
                                 </div>
 
                                 <div class='taskContentContainer'>
-                                    <input id='fileInput' type='file'>
+                                    <div class="custom-file" id='fileDiv'>
+                                        <input name='taskContent' type="file" class="custom-file-input" id="fileInput">
+                                        <label class="custom-file-label">Choose file...</label>
+                                    </div>
 
-                                    <div class="md-form">
-                                        <label for="textInput">Material textarea</label>
-                                        <textarea id="textInput" class="md-textarea form-control" rows="3"></textarea>
+                                    <div class="form-group" id='textDiv'>
+                                        <label for="textInput">Code:</label>
+                                        <textarea name='taskContent' class="form-control" id="textInput" rows="3"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -88,30 +91,34 @@
     <script>
         var fileElem = "";
         var textElem = "";
+        var fileDiv = "";
+        var textDiv = "";
         var radBtns = new Array();
 
         window.onload = function() {
-            radBtns = document.getElementsByName('taskContent');
+            radBtns = document.getElementsByName('taskType');
             fileElem = document.getElementById('fileInput');
             textElem = document.getElementById('textInput');
+            fileDiv = document.getElementById('fileDiv');
+            textDiv = document.getElementById('textDiv');
 
-            fileElem.style.display = 'inline';
+            fileDiv.style.display = 'inline';
             fileElem.setAttribute("required", "");
-            textElem.style.display = 'none';
+            textDiv.style.display = 'none';
             textElem.removeAttribute("required");
         }
 
         function changeInput() {
-            for(var i = 0; i < radBtns.length; i++) {
-                if(radBtns[i].checked) {
-                    fileElem.style.display = 'none';
+            for (var i = 0; i < radBtns.length; i++) {
+                if (radBtns[i].checked) {
+                    fileDiv.style.display = 'none';
                     fileElem.removeAttribute("required");
-                    textElem.style.display = 'inline';
+                    textDiv.style.display = 'inline';
                     textElem.setAttribute("required", "");
                 } else {
-                    fileElem.style.display = 'inline';
+                    fileDiv.style.display = 'inline';
                     fileElem.setAttribute("required", "");
-                    textElem.style.display = 'none';
+                    textDiv.style.display = 'none';
                     textElem.removeAttribute("required");
                 }
             }

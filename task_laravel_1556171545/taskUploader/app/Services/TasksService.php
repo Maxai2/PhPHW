@@ -5,11 +5,11 @@
 
     class TasksService implements ITasksService {
         public function get() {
-            return Task::all(['title', 'createDateTime']);
+            return Task::all(['title', 'created_at', 'link']);
         }
 
         public function insert($task) {
-            return null;
+            return Task::create($task);
         }
 
         // public function all()

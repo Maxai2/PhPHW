@@ -1,9 +1,10 @@
 <?php
-
     namespace App\Http\Controllers;
 
     use Illuminate\Http\Request;
     use App\Abstractions\ITasksService;
+    use Illuminate\Support\Facades\Storage;
+    use App\Models\Task;
 
     class TasksController extends Controller
     {
@@ -23,12 +24,39 @@
         }
 
         public function insert(Request $req) {
-            $name = $req->input('taskName');
+            $validatedData = $req->validate([
+                'taskName' => 'required|max:100',
+                'taskType' => 'required',
+                'taskContent' => 'required'
+            ]);
 
-            $this->tasksService->insert();
+            var_dump($validatedData);
 
+            $taskName = $validatedData['taskName'];
+            $link = "";
+            @mkdir('storage/tasks');
 
-            // return redirect('tasks');
+            if ($validatedData['taskType'] == 'file') {
+                if (isset($_FILES['taskContent'])) {
+                    $destPath = '/storage/tasks'.$_FILES['taskContent']['name'];
+                    $storage_path = 'public/tasks'.$_FILES['taskContent']['name'];
+                    Storage::copy($_FILES['taskContent']['tmp_name'], $storage_path);
+
+                    $link = $destPath;
+                }
+            } else {
+                $link = '/storage/tasks/'.$taskName.'.txt';
+                $destPath = 'public/tasks/'.$taskName.'.txt';
+                Storage::put($destPath, $validatedData['taskContent']);
+            }
+
+            $task = [
+                'title' => $taskName,
+                'link' => $link
+            ];
+
+            $this->tasksService->insert($task);
+            //return redirect('tasks');
         }
     }
 

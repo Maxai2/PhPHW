@@ -64,8 +64,15 @@
 .insertWrap .insertContainer .taskContentContainer {
   margin-top: 5px;
 }
-.insertWrap .insertContainer .taskContentContainer input[type='file'] {
-  width: min-content;
+.insertWrap .insertContainer .taskContentContainer .custom-file {
+  text-align: start;
+}
+.insertWrap .insertContainer .taskContentContainer .form-group label {
+  float: left;
+}
+.insertWrap .insertContainer .taskContentContainer .form-group textarea {
+  min-height: 100px;
+  max-height: 100px;
 }
 .insertWrap .insertContainer input[type='submit'] {
   width: 100%;

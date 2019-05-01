@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
-    public $link;
+    protected $fillable= [
+        'title',
+        'link'
+    ];
 }
