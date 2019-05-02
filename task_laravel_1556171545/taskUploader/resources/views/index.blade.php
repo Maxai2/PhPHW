@@ -60,8 +60,8 @@
 
                                 <div class='taskContentContainer'>
                                     <div class="custom-file" id='fileDiv'>
-                                        <input name='taskContent' type="file" class="custom-file-input" id="fileInput">
-                                        <label class="custom-file-label" for='fileInput'>Choose file...</label>
+                                        <input name='taskContent' type="file" class="custom-file-input" id='fileInput'>
+                                        <label class="custom-file-label" for='fileInput'></label>
                                     </div>
 
                                     <div class="form-group" id='textDiv'>
