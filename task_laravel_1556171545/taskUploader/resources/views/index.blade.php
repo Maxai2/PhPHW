@@ -2,6 +2,9 @@
 
 @section('content')
     <div class='indexWrap'>
+        @if(isset($info))
+            <h5>{{$info}}</h5>
+        @endif
         <h1>Tasks!</h1>
         <div class='tasksContainer'>
             @if(isset($tasks) && count($tasks) != 0)
@@ -49,24 +52,24 @@
 
                                 <div class="radioBut">
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" value="file"  class='custom-control-input' name="taskType" id="file" checked onClick="changeInput()">
+                                        <input type="radio" value="file" class='custom-control-input' name="taskType" id="file" checked onClick="changeInput()">
                                         <label for="file" class="custom-control-label">File</label>
                                     </div>
                                     <div class="custom-control custom-radio">
-                                        <input type="radio" value="text"  class='custom-control-input' name="taskType" id="text" onClick="changeInput()">
+                                        <input type="radio" value="text" class='custom-control-input' name="taskType" id="text" onClick="changeInput()">
                                         <label for="text" class="custom-control-label">Text</label>
                                     </div>
                                 </div>
 
                                 <div class='taskContentContainer'>
                                     <div class="custom-file" id='fileDiv'>
-                                        <input name='taskContent' type="file" class="custom-file-input" id='fileInput'>
+                                        <input name='taskContentImage' type="file" class="custom-file-input" id='fileInput'>
                                         <label class="custom-file-label" for='fileInput'></label>
                                     </div>
 
                                     <div class="form-group" id='textDiv'>
                                         <label for="textInput">Code:</label>
-                                        <textarea name='taskContent' class="form-control" id="textInput" rows="3"></textarea>
+                                        <textarea name='taskContentText' class="form-control" id="textInput"></textarea>
                                     </div>
                                 </div>
                             </div>

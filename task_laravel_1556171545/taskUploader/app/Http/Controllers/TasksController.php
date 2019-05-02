@@ -9,6 +9,7 @@
     class TasksController extends Controller
     {
         private $tasksService;
+        private $info = '';
 
         function __construct(ITasksService $service) {
             $this->tasksService = $service;
@@ -16,7 +17,7 @@
 
         public function index() {
             $tasks = $this->tasksService->get();
-            return view('index')->with('tasks', $tasks);
+            return view('index')->with('tasks', $tasks)->with('info', $this->info);
         }
 
         public function create() {
@@ -27,8 +28,11 @@
             $validatedData = $req->validate([
                 'taskName' => 'required|max:100',
                 'taskType' => 'required',
-                'taskContent' => 'required'
+                'taskContentImage' => 'required',
+                'taskContentText' => 'required'
             ]);
+
+            // $validatedData = $req->all();
 
             var_dump($validatedData);
 
@@ -37,17 +41,18 @@
             @mkdir('storage/tasks');
 
             if ($validatedData['taskType'] == 'file') {
-                if (isset($_FILES['taskContent'])) {
-                    $destPath = '/storage/tasks'.$_FILES['taskContent']['name'];
-                    $storage_path = '/public/tasks'.$_FILES['taskContent']['name'];
-                    Storage::copy($_FILES['taskContent']['tmp_name'], $storage_path);
+                $this->info = $_FILES['taskContentImage'];
+                if (isset($_FILES['taskContentImage'])) {
+                    $destPath = '/storage/tasks'.$_FILES['taskContentImage']['name'];
+                    $storage_path = '/public/tasks'.$_FILES['taskContentImage']['name'];
+                    Storage::copy($_FILES['taskContentImage']['tmp_name'], $storage_path);
 
                     $link = $destPath;
                 }
             } else {
                 $link = '/storage/tasks/'.$taskName.'.txt';
                 $destPath = '/public/tasks/'.$taskName.'.txt';
-                Storage::put($destPath, $validatedData['taskContent']);
+                Storage::put($destPath, $validatedData['taskContentText']);
             }
 
             $task = [
