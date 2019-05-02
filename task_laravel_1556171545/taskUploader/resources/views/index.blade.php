@@ -35,7 +35,7 @@
             </button>
 
             <div class="modal insertWrap" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-                <form class='insertContainer' method="POST" action="/tasks/insert">
+                <form class='insertContainer' method="POST" action="/tasks/insert" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -45,7 +45,7 @@
                             </div>
 
                             <div class="modal-body">
-                                <input type='text' class="form-control" placeholder="Task name" name='taskName' required>
+                                <input type='text' class="form-control" placeholder="Task name" name='taskName' files=true required>
                                 <!-- <div class="invalid-feedback">
                                     Task name is required.
                                 </div> -->
@@ -64,12 +64,12 @@
                                 <div class='taskContentContainer'>
                                     <div class="custom-file" id='fileDiv'>
                                         <input name='taskContentImage' type="file" class="custom-file-input" id='fileInput'>
-                                        <label class="custom-file-label" for='fileInput'></label>
+                                        <label class="custom-file-label" for='fileInput'>Choose file...</label>
                                     </div>
 
                                     <div class="form-group" id='textDiv'>
                                         <label for="textInput">Code:</label>
-                                        <textarea name='taskContentText' class="form-control" id="textInput"></textarea>
+                                        <textarea name='taskContentText' class="form-control" id="textInput" value=''></textarea>
                                     </div>
                                 </div>
                             </div>
