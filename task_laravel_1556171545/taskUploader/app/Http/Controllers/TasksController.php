@@ -36,16 +36,17 @@
             ]);
 
             if ($type["taskType"] == 'file') {
-                $imageCont = $req->validate([
-                    'taskContentImage' => 'required'
-                ]);
+                // $imageCont = $req->file($req->input('taskContentImage'));
+                $imageCont = $_FILES["taskContentImage"];
 
-                Form:
-                dd($req->file($imageCont['taskContentImage']));
+                // dd($imageCont['taskContentImage']);
+                dd($imageCont);
 
-                $destPath = '/storage/tasks/'.$imageCont['taskContentImage'];
-                $storage_path = '/public/tasks/'.$imageCont['taskContentImage'];
-                Storage::copy($imageCont['taskContentImage'], $storage_path);
+                $destPath = '/storage/tasks/'.$imageCont['name'];
+                $storage_path = '/public/tasks/'.$imageCont['name'];
+
+                dd($imageCont);
+                Storage::copy($imageCont['tmp_name'], $storage_path);
 
                 $link = $destPath;
             } else {
