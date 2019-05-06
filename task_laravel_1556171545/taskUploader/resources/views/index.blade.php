@@ -63,8 +63,8 @@
 
                                 <div class='taskContentContainer'>
                                     <div class="custom-file" id='fileDiv'>
-                                        <input name='taskContentImage[]' type="file" class="custom-file-input" id='fileInput'>
-                                        <label class="custom-file-label" for='fileInput'>Choose file...</label>
+                                        <input name='taskContentImage[]' type="file" class="custom-file-input" id='fileInput' onchange='changeLbl(this)'>
+                                        <label class="custom-file-label" id='fileInputLbl'>Choose file...</label>
                                     </div>
 
                                     <div class="form-group" id='textDiv'>
@@ -109,6 +109,8 @@
             fileElem.setAttribute("required", "");
             textDiv.style.display = 'none';
             textElem.removeAttribute("required");
+
+            changeLbl(document.getElementById('fileInput'));
         }
 
         function changeInput() {
@@ -125,6 +127,10 @@
                     textElem.removeAttribute("required");
                 }
             }
+        }
+
+        function changeLbl(obj) {
+            document.getElementById('fileInputLbl').innerText = obj.value.substr(obj.value.lastIndexOf('\\') + 1);
         }
 
     </script>

@@ -39,13 +39,15 @@
                 // $imageCont = $req->file($req->input('taskContentImage'));
                 $imageCont = $_FILES["taskContentImage"];
 
-                $destPath = '/storage/tasks/'.$imageCont['name'][0];
-                $storage_path = '/public/tasks/'.$imageCont['name'][0];
-                dd($req->file($req->input('taskContentImage')->store()));
+                $link = '/storage/tasks/'.$imageCont['name'][0];
+                $storage_path = '../public/tasks/'.$imageCont['name'][0];
 
-                Storage::disk('local')->copy($imageCont['tmp_name'][0], $storage_path);
+                dd($storage_path);
 
-                $link = $destPath;
+                copy($imageCont['tmp_name'][0], $storage_path);
+                // dd($req->file($req->input('taskContentImage')->store()));
+
+                // Storage::disk('local')->copy($imageCont['tmp_name'][0], $storage_path);
             } else {
                 $textCont = $req->validate([
                     'taskContentText' => 'required'
@@ -53,6 +55,7 @@
 
                 $link = '/storage/tasks/'.$taskName['taskName'][0].'.txt';
                 $destPath = '/public/tasks/'.$taskName['taskName'][0].'.txt';
+
                 Storage::put($destPath, $textCont['taskContentText'][0]);
             }
 
