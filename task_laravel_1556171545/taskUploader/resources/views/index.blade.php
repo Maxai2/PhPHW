@@ -110,7 +110,9 @@
             textDiv.style.display = 'none';
             textElem.removeAttribute("required");
 
-            changeLbl(document.getElementById('fileInput'));
+            obj = document.getElementById('fileInput');
+            if (obj.value != '')
+                changeLbl(obj);
         }
 
         function changeInput() {
