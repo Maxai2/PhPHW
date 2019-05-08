@@ -15,6 +15,11 @@ class CreateGiftTable extends Migration
     {
         Schema::create('gift', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('name');
+            $table->smallInteger('price');
+            $table->string('imagePath')->default('img/image.jpeg');
+            $table->text('description');
+            $table->integer('count');
             $table->timestamps();
         });
     }

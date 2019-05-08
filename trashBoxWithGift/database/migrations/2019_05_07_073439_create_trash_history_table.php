@@ -17,7 +17,10 @@ class CreateTrashHistoryTable extends Migration
             $table->bigIncrements('id');
             $table->smallInteger('priceByCoin');
             $table->point('geoLocation');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');
         });
     }
 
