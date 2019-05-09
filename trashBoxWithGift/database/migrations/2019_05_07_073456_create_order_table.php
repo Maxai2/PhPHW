@@ -13,14 +13,12 @@
          */
         public function up()
         {
-            Schema::create('order', function (Blueprint $table) {
+            Schema::create('orders', function (Blueprint $table) {
+                $table->bigIncrements('id');
                 $table->unsignedBigInteger('user_id');
-                $table->unsignedBigInteger('gift_id');
-                $table->integer('quantity');
                 $table->timestamps();
 
-                $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');
-                $table->foreign('gift_id')->references('id')->on('gift')->onDelete('cascade');
+                $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             });
         }
 
@@ -31,6 +29,6 @@
          */
         public function down()
         {
-            Schema::dropIfExists('order');
+            Schema::dropIfExists('orders');
         }
     }

@@ -13,14 +13,14 @@ class CreateTrashHistoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('trash_history', function (Blueprint $table) {
+        Schema::create('trash_historys', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->smallInteger('priceByCoin');
             $table->point('geoLocation');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -31,6 +31,6 @@ class CreateTrashHistoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('trash_history');
+        Schema::dropIfExists('trash_historys');
     }
 }

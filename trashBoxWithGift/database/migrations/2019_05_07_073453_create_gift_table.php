@@ -13,7 +13,7 @@ class CreateGiftTable extends Migration
      */
     public function up()
     {
-        Schema::create('gift', function (Blueprint $table) {
+        Schema::create('gifts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
             $table->smallInteger('price');
@@ -31,6 +31,6 @@ class CreateGiftTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gift');
+        Schema::dropIfExists('gifts');
     }
 }

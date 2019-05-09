@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -10,13 +10,26 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    public function orders() {
+        return $this->hasMany(\App\Models\Order::class);
+    }
+
+    public function trashHistories() {
+        return $this->hasMany(\App\Models\TrashHistory::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
+        'phone',
+        'avatarPath',
+        'role'
     ];
 
     /**
