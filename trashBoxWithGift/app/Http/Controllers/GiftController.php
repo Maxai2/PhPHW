@@ -8,6 +8,9 @@ use App\Http\Requests\CreateGiftRequest;
 
 class GiftController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+    }
     public function get() {
         $gifts = Gift::all();
         return view('gifts')->with('gifts', $gifts);
