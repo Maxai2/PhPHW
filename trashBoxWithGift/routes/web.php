@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,6 +12,9 @@
 |
 */
 
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('/', ['as' => 'index', 'uses' => 'AdminController@index'])->middleware('auth');
+});
+
+
 Auth::routes();
-
-
