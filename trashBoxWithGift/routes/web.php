@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix' => 'admin'], function () {
-    Route::get('/', ['as' => 'index', 'uses' => 'AdminController@index'])->middleware('auth');
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
+    Route::get('/', 'AdminController@index');
+    Route::get('/users', 'AdminController@users');
 });
-
 
 Auth::routes();

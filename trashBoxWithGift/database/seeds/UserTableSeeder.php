@@ -13,7 +13,6 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-
         $admin = User::create([
             'email' => 'admin@gmail.com',
             'name' => 'admin',
@@ -22,8 +21,21 @@ class UserTableSeeder extends Seeder
         ]);
 
         $adminRole = Role::create(['name' => 'admin']);
-        Role::create(['name' => 'client']);
-
+        
         $admin->assignRole($adminRole);
+        
+        $faker = \Faker\Factory::create();
+        $clientRole = Role::create(['name' => 'client']);
+
+        for ($i = 0; $i < 10; $i++) {
+            $user = User::create([
+                'name' => substr($faker->sentence, 0, 20),
+                'email' => $faker->email,
+                'password' => Hash::make($faker->password),
+                'phone' => $faker->phoneNumber
+            ]);
+
+            $user->assignRole($clientRole);
+        }
     }
 }

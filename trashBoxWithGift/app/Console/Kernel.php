@@ -13,7 +13,9 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        \App\Console\Commands\CreateDropMigrateSeedDb::class,
+        \App\Console\Commands\DropDb::class,
+        \App\Console\Commands\CreateDb::class,
     ];
 
     /**

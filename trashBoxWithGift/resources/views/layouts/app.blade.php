@@ -18,11 +18,12 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
     @yield('content')
+    <script src="{{asset('js/app.js')}}"></script>
     @yield('scripts')
 
-    <script src="{{asset('js/app.js')}}"></script>
 </body>
 </html>
