@@ -36,7 +36,7 @@
         <div id="wrapper">
             <div id="sidebar-wrapper">
                 <ul class="sidebar-nav">
-                    <li><img src="{{Auth::user()->avatarPath}}"> </li> 
+                    <li><img src="{{ asset(Auth::user()->avatarPath) }}"> </li> 
                     <li class="sidebar-brand"> <span> {{Auth::user()->name}} </span> </li>
                     <li> <a href="/admin/users">Users</a> </li>
                     <li> <a href="#">Gifts</a> </li>

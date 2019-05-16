@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
     Route::get('/', 'AdminController@index');
     Route::get('/users', 'AdminController@users');
+    Route::post('/users/block', 'AdminController@block');
+    Route::post('/users/delete', 'AdminController@delete');
 });
 
 Auth::routes();
