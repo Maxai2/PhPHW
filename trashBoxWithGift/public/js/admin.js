@@ -97,14 +97,13 @@ $(function () {
   $("#menu-toggle").click(function (e) {
     e.preventDefault();
     $("#wrapper").toggleClass("toggled");
-  });
-  $(window).resize(function (e) {
-    if ($(window).width() <= 768) {
-      $("#wrapper").removeClass("toggled");
-    } else {
-      $("#wrapper").addClass("toggled");
-    }
-  });
+  }); // $(window).resize(function(e) {
+  //     if($(window).width()<=768) {
+  //         $("#wrapper").removeClass("toggled");
+  //     } else {
+  //         $("#wrapper").addClass("toggled");
+  //     }
+  // });
 });
 
 /***/ }),
@@ -116,7 +115,7 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Mahm_iz81\Documents\PhPHW\trashBoxWithGift\resources\js\admin.js */"./resources/js/admin.js");
+module.exports = __webpack_require__(/*! D:\VSProj\PhPHW\trashBoxWithGift\resources\js\admin.js */"./resources/js/admin.js");
 
 
 /***/ })

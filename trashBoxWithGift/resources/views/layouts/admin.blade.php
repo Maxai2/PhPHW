@@ -24,19 +24,19 @@
 
     <div id="#page-content-wrapper" class="wrap">
 
-        <nav class="navbar navbar-expand navbar-dark bg-primary"> 
+        <nav class="navbar navbar-expand navbar-dark bg-primary">
             <a id="menu-toggle" class="navbar-brand">
                 <span class="navbar-toggler-icon"></span>
-            </a> 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation"> 
-                <span class="navbar-toggler-icon"></span> 
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
         </nav>
-    
+
         <div id="wrapper">
             <div id="sidebar-wrapper">
                 <ul class="sidebar-nav">
-                    <li><img src="{{ asset(Auth::user()->avatarPath) }}"> </li> 
+                    <li><img src="{{ asset(Auth::user()->avatarPath) }}"> </li>
                     <li class="sidebar-brand"> <span> {{Auth::user()->name}} </span> </li>
                     <li> <a href="/admin/users">Users</a> </li>
                     <li> <a href="#">Gifts</a> </li>

@@ -18,13 +18,12 @@ class AdminController extends Controller
     }
 
     public function block(Request $req) {
-        // dd($req);
         $val = $req->validate([
             'id' => 'required',
             'state' => 'required'
         ]);
-        
-        User::findOrFail($val['id'])->update(['block' => $val['state'] ? 1 : 0]);
+
+        User::findOrFail($val['id'])->update(['block' => $val['state'] == 'true' ? 1 : 0]);
 
         return response()->json(null, 200);
     }

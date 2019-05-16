@@ -19,11 +19,11 @@
                             <label>{{ $user->phone }}</label>
                         </div>
                         <div class="cont">
-                            <button type="button" class="btn btn-danger" onclick="deleteUser($user->id)">Delete</button>
+                            <button type="button" class="btn btn-danger" onclick="deleteUser($user->id, $user->name)">Delete</button>
                             <label class="switch">
                                 {{-- {{(bool)$user->block}}
                                 {!! Form::checkbox('text', $user->block , (bool)$user->block, ['onchange' => "blockUser(this, $user->id)"]) !!} --}}
-                            <input type="checkbox" onchange="blockUser(this, {{$user->id}})" {{$user->block == 1 ? 'checked=checked' : ''}}>  
+                                <input type="checkbox" onchange="blockUser(this, {{$user->id}})" {{$user->block == 1 ? 'checked=checked' : ''}}>
                                 <span class="slider round"></span>
                             </label>
                         </div>
@@ -36,6 +36,10 @@
 
 @section('scripts')
     <script>
+        function deleteUser(id, name) {
+            confirm("Do you want to delete user " + name + '?');
+        }
+
         function blockUser(inp, id) {
             $data = new FormData();
             $data.append("id", id);
