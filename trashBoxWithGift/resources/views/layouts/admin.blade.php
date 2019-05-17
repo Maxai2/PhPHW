@@ -39,7 +39,7 @@
                     <li><img src="{{ asset(Auth::user()->avatarPath) }}"> </li>
                     <li class="sidebar-brand"> <span> {{Auth::user()->name}} </span> </li>
                     <li> <a href="/admin/users">Users</a> </li>
-                    <li> <a href="#">Gifts</a> </li>
+                    <li> <a href="/admin/gifts">Gifts</a> </li>
                     <li> <a href="#">News</a> </li>
                     <li> <a href="#">Reports</a> </li>
                 </ul>

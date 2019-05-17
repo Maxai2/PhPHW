@@ -19,7 +19,7 @@
                             <label>{{ $user->phone }}</label>
                         </div>
                         <div class="cont">
-                            <button type="button" class="btn btn-danger" onclick="deleteUser($user->id, $user->name)">Delete</button>
+                            <button type="button" class="btn btn-danger" onclick="deleteUser('{{$user->id}}', '{{$user->name}}')">Delete</button>
                             <label class="switch">
                                 {{-- {{(bool)$user->block}}
                                 {!! Form::checkbox('text', $user->block , (bool)$user->block, ['onchange' => "blockUser(this, $user->id)"]) !!} --}}
@@ -37,16 +37,38 @@
 @section('scripts')
     <script>
         function deleteUser(id, name) {
-            confirm("Do you want to delete user " + name + '?');
+            if (name == "admin") {
+                alert("Hey are you admin, right? And.. Wake up)");
+                return;
+            }
+
+            let res = confirm("Do you want to delete user " + name + '?');
+
+            if (res) {
+                let data = new FormData();
+                data.append("id", id);
+
+                fetch("/admin/users/delete", {
+                    body: data,
+                    method: 'post',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                }).then(function (response) {
+                    if (response.status == 200) {
+                        location.reload();
+                    }
+                });
+            }
         }
 
         function blockUser(inp, id) {
-            $data = new FormData();
-            $data.append("id", id);
-            $data.append("state", inp.checked);
+            let data = new FormData();
+            data.append("id", id);
+            data.append("state", inp.checked);
 
             fetch("/admin/users/block", {
-                body: $data,
+                body: data,
                 method: 'post',
                 headers: {
                     'Accept': 'application/json'

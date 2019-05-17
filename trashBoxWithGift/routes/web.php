@@ -17,6 +17,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::get('/users', 'AdminController@users');
     Route::post('/users/block', 'AdminController@block');
     Route::post('/users/delete', 'AdminController@delete');
+
+    Route::get('/gifts', 'AdminController@gifts');
 });
 
 Auth::routes();

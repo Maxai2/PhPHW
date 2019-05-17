@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Gift;
 
 class AdminController extends Controller
 {
@@ -26,6 +27,25 @@ class AdminController extends Controller
         User::findOrFail($val['id'])->update(['block' => $val['state'] == 'true' ? 1 : 0]);
 
         return response()->json(null, 200);
+    }
+
+    public function delete(Request $req) {
+        $val = $req->validate([
+            'id' => 'required'
+        ]);
+
+        // $user = User::findOrFail($val['id']);
+
+        // $user->delete();
+
+        User::destroy($val['id']);
+
+        return response()->json(null, 200);
+    }
+
+    public function gifts() {
+        $gifts = Gift::all();
+        return view('adminpanel.crudforgifts')->with('gifts', $gifts);
     }
 
     /*
