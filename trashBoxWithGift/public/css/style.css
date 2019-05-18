@@ -138,6 +138,23 @@
   display: inline-flex;
   align-items: center;
 }
+.giftsPanel {
+  margin: 15px;
+}
+.giftsPanel .giftItem {
+  border-radius: 15px;
+  background-color: white;
+  border: 1px solid lightgray;
+  padding: 10px;
+  margin: 5px;
+  box-sizing: border-box;
+}
+.giftsPanel .giftItem .imgCont {
+  display: flex;
+}
+.giftsPanel .giftItem p {
+  text-indent: 10px;
+}
 .switch {
   position: relative;
   width: 50px;

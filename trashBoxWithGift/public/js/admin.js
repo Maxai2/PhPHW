@@ -115,7 +115,7 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\VSProj\PhPHW\trashBoxWithGift\resources\js\admin.js */"./resources/js/admin.js");
+module.exports = __webpack_require__(/*! D:\VsProj\PhPHW\trashBoxWithGift\resources\js\admin.js */"./resources/js/admin.js");
 
 
 /***/ })

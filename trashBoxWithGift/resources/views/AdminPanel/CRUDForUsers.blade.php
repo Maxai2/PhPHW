@@ -48,7 +48,7 @@
                 let data = new FormData();
                 data.append("id", id);
 
-                fetch("/admin/users/delete", {
+                fetch("/admin/users/deleteUser", {
                     body: data,
                     method: 'post',
                     headers: {
@@ -67,7 +67,7 @@
             data.append("id", id);
             data.append("state", inp.checked);
 
-            fetch("/admin/users/block", {
+            fetch("/admin/users/blockUser", {
                 body: data,
                 method: 'post',
                 headers: {

@@ -18,7 +18,7 @@ class AdminController extends Controller
         return view('adminpanel.crudforusers')->with('users', $users);
     }
 
-    public function block(Request $req) {
+    public function blockUser(Request $req) {
         $val = $req->validate([
             'id' => 'required',
             'state' => 'required'
@@ -29,7 +29,7 @@ class AdminController extends Controller
         return response()->json(null, 200);
     }
 
-    public function delete(Request $req) {
+    public function deleteUser(Request $req) {
         $val = $req->validate([
             'id' => 'required'
         ]);
@@ -46,6 +46,20 @@ class AdminController extends Controller
     public function gifts() {
         $gifts = Gift::all();
         return view('adminpanel.crudforgifts')->with('gifts', $gifts);
+    }
+
+    public function updateGift() {
+
+    }
+
+    public function deleteGift(Request $req) {
+        $val = $req->validate([
+            'id' => 'required'
+        ]);
+
+        Gift::destroy($val['id']);
+
+        return response()->json(null, 200);
     }
 
     /*

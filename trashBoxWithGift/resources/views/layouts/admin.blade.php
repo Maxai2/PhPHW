@@ -24,7 +24,7 @@
 
     <div id="#page-content-wrapper" class="wrap">
 
-        <nav class="navbar navbar-expand navbar-dark bg-primary">
+        <nav class="navbar navbar-expand navbar-dark bg-primary fixed-top">
             <a id="menu-toggle" class="navbar-brand">
                 <span class="navbar-toggler-icon"></span>
             </a>

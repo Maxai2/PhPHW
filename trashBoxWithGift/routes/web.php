@@ -15,10 +15,12 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
     Route::get('/', 'AdminController@index');
     Route::get('/users', 'AdminController@users');
-    Route::post('/users/block', 'AdminController@block');
-    Route::post('/users/delete', 'AdminController@delete');
+    Route::post('/users/blockUser', 'AdminController@blockUser');
+    Route::post('/users/deleteUser', 'AdminController@deleteUser');
 
     Route::get('/gifts', 'AdminController@gifts');
+    Route::post('/gifts/updateGift', 'AdminController@updateGift');
+    Route::post('/gifts/deleteGift', 'AdminController@deleteGift');
 });
 
 Auth::routes();
