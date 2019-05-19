@@ -17,7 +17,7 @@ class CreateGiftTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->smallInteger('price');
-            $table->string('imagePath')->default('img/image.jpeg');
+            $table->string('imagePath')->default('img/default-gift-image.jpeg');
             $table->text('description');
             $table->integer('count');
             $table->timestamps();

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Gift;
+use App\Http\Requests\GiftRequest;
 
 class AdminController extends Controller
 {
@@ -48,8 +49,9 @@ class AdminController extends Controller
         return view('adminpanel.crudforgifts')->with('gifts', $gifts);
     }
 
-    public function updateGift() {
-
+    public function updateGift(GiftRequest $req) {
+        $value = $req.validated();
+        dd($value);
     }
 
     public function deleteGift(Request $req) {

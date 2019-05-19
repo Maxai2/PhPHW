@@ -118,6 +118,10 @@
 .wrap .navbar-expand {
   justify-content: flex-end;
 }
+textarea {
+  max-height: 100px;
+  min-height: 100px;
+}
 .usersPanel {
   margin: 15px;
 }
@@ -147,6 +151,23 @@
 .giftsPanel {
   margin: 15px;
 }
+.giftsPanel .btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+.giftsPanel .btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+}
 .giftsPanel .giftItem {
   border-radius: 15px;
   background-color: white;
@@ -160,6 +181,9 @@
 }
 .giftsPanel .giftItem p {
   text-indent: 10px;
+}
+.close {
+  text-decoration: none;
 }
 .switch {
   position: relative;

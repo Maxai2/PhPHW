@@ -47,7 +47,9 @@
         </div>
     </div>
 
-    @yield('content')
+    <div class="contentClass">
+        @yield('content')
+    </div>
     <script src="{{asset('js/app.js')}}"></script>
     <script src="{{asset('js/admin.js')}}"></script>
     @yield('scripts')
