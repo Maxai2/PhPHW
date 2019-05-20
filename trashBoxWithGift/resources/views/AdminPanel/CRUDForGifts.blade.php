@@ -134,6 +134,7 @@
         });
 
         function updateModelFunc(gift) {
+            document.getElementById('fileInputLbl').innerText = gift.imagePath;
             document.getElementById('giftName').value = gift.name;
             document.getElementById('giftDescription').value = gift.description;
             document.getElementById('giftPrice').value = gift.price;
