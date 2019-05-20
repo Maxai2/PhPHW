@@ -118,6 +118,9 @@
 .wrap .navbar-expand {
   justify-content: flex-end;
 }
+.contentClass {
+  margin-top: 50px;
+}
 textarea {
   max-height: 100px;
   min-height: 100px;
@@ -148,8 +151,22 @@ textarea {
   display: inline-flex;
   align-items: center;
 }
+.contMod {
+  direction: rtl;
+}
+.titMod {
+  direction: ltr;
+}
 .giftsPanel {
   margin: 15px;
+}
+.giftsPanel .insBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  outline: none;
+  padding: 15px;
 }
 .giftsPanel .btn-circle {
   width: 30px;
@@ -181,9 +198,7 @@ textarea {
 }
 .giftsPanel .giftItem p {
   text-indent: 10px;
-}
-.close {
-  text-decoration: none;
+  height: 50px;
 }
 .switch {
   position: relative;
