@@ -59,7 +59,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    {!! Form::open(array('url' => '/admin/gifts/updateGift', 'method' => 'post')) !!}
+                    {!! Form::open(array('url' => '/admin/gifts/updateGift', 'method' => 'post', 'enctype' => 'form-data')) !!}
                         <div class="modal-body">
                             <div class="custom-file">
                                 {!! Form::label('image', 'Choose file...', ['class' => 'custom-file-label', 'id' => 'fileInputLbl']) !!}

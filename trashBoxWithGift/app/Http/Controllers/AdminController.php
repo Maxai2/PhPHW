@@ -49,9 +49,9 @@ class AdminController extends Controller
         return view('adminpanel.crudforgifts')->with('gifts', $gifts);
     }
 
-    public function updateGift(Request $req) {
-       // $value = $req.validated();
-        dd($req);
+    public function updateGift(GiftRequest $req) {
+       $value = $req.validated();
+       dd($value);
     }
 
     public function deleteGift(Request $req) {
