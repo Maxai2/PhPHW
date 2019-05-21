@@ -10,23 +10,23 @@
                 <div class="col-lg-3 col-sm-4 col-xl-2 col-md-3" style="padding: 5px">
                     <div class="giftItem">
                         <div class="imgCont">
-                            <img src="{{asset($gift->imagePath)}}">
+                            <img src="{{$gift["imagePath"]}}">
                         </div>
-                        <h3>{{$gift->name}}</h3>
-                        <p>{{$gift->description}}</p>
+                        <h3>{{$gift["name"]}}</h3>
+                        <p>{{$gift["description"]}}</p>
                         <div>
                             <div>
                                 <label><b>Price: </b></label>
-                                <label>{{$gift->price}}</label>
+                                <label>{{$gift["price"]}}</label>
                             </div>
                             <div>
                                 <label><b>Count: </b></label>
-                                <label>{{$gift->count}}</label>
+                                <label>{{$gift["count"]}}</label>
                             </div>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-primary" id="updBt" onclick="updateModelFunc({{$gift}})" data-toggle="modal" data-target="#updateModal">Update</button>
-                            <button type="button" class="btn btn-danger btn-confirm" data-id="{{$gift->id}}" data-name="{{$gift->name}}">Delete</button>
+                        <button type="button" class="btn btn-primary" id="updBt" onclick="updateModelFunc('{{$gift['id']}}', '{{$gift['name']}}', '{{$gift['description']}}', '{{$gift['imagePath']}}', '{{$gift['price']}}', '{{$gift['count']}}')" data-toggle="modal" data-target="#updateModal">Update</button>
+                            <button type="button" class="btn btn-danger btn-confirm" data-id="{{$gift["id"]}}" data-name="{{$gift["name"]}}">Delete</button>
                         </div>
                     </div>
                 </div>
@@ -59,12 +59,16 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    {!! Form::open(array('url' => '/admin/gifts/updateGift', 'method' => 'post', 'enctype' => 'form-data')) !!}
+                    {!! Form::open(array('url' => '/admin/gifts/updateGift', 'method' => 'post', 'enctype' => 'multipart/form-data')) !!}
                         <div class="modal-body">
+                            <div class="imgCont">
+                                <img id='image'>
+                            </div>
                             <div class="custom-file">
                                 {!! Form::label('image', 'Choose file...', ['class' => 'custom-file-label', 'id' => 'fileInputLbl']) !!}
-                                {!! Form::file('image', ['class' => 'custom-file-input', 'id' => 'imagePath', 'onchange' => 'changeLbl(this)'], 'asset({{$gift->imagePath}})') !!}
+                                {!! Form::file('imagePath', ['class' => 'custom-file-input', 'id' => 'imagePath', 'onchange' => 'changeLbl(this)']) !!}
                             </div>
+                            <hr>
                             <div class="form-group">
                                 {!! Form::label('name', 'Name: ') !!}
                                 {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'giftName']) !!}
@@ -83,6 +87,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
+                            {!! Form::hidden('id', null, ['id' => 'giftId']) !!}
                             {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
                         </div>
                     {!! Form::close() !!}
@@ -133,16 +138,38 @@
             }
         });
 
-        function updateModelFunc(gift) {
-            document.getElementById('fileInputLbl').innerText = gift.imagePath;
-            document.getElementById('giftName').value = gift.name;
-            document.getElementById('giftDescription').value = gift.description;
-            document.getElementById('giftPrice').value = gift.price;
-            document.getElementById('giftCount').value = gift.count;
+        function updateModelFunc(id, name, description, imagePath, price, count) {
+            document.getElementById('giftId').value = id;
+            document.getElementById('image').src = imagePath;
+            document.getElementById('fileInputLbl').innerText = imagePath.substr(imagePath.lastIndexOf('/') + 1);
+            document.getElementById('giftName').value = name;
+            document.getElementById('giftDescription').value = description;
+            document.getElementById('giftPrice').value = price;
+            document.getElementById('giftCount').value = count;
         }
 
         function changeLbl(obj) {
             document.getElementById('fileInputLbl').innerText = obj.value.substr(obj.value.lastIndexOf('\\') + 1);
+
+            let data = new FormData(document.forms[0]);
+            //data.append("picPath", obj.value);
+
+            fetch("/admin/gifts/changePic", {
+                body: data,
+                method: 'post',
+                headers: {
+                    'Accept': 'application/json'
+                },
+                contentType: false,
+                mimeType: "multipart/form-data",
+                processData: false
+            }).then(function (response) {
+                if (response.status == 200) {
+                    return response.json();
+                }
+            }).then(json => {
+                document.getElementById('image').src = json;
+            });
         }
 
         // $('#divId').on('contextmenu', function(e) {

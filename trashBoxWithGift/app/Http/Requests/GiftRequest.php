@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Collective\Html\FormFacade;
 
 class GiftRequest extends FormRequest
 {
@@ -14,6 +15,7 @@ class GiftRequest extends FormRequest
     public function rules()
     {
         return [
+            'id' => 'required',
             'name' => 'required',
             'price' => 'required',
             'imagePath' => 'required',

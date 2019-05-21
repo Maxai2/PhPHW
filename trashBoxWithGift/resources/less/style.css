@@ -151,8 +151,18 @@ textarea {
   display: inline-flex;
   align-items: center;
 }
+.modal .imgCont {
+  text-align: center;
+  margin-bottom: 10px;
+}
 .modal .close {
   outline: none;
+}
+.modal .custom-file-label {
+  word-break: break-all;
+}
+.modal .custom-file-input {
+  height: auto;
 }
 .contMod {
   direction: rtl;

@@ -23,5 +23,6 @@ class VerifyCsrfToken extends Middleware
         'admin/users/deleteUser',
         'admin/gifts/updateGift',
         'admin/gifts/deleteGift',
+        'admin/gifts/changePic',
     ];
 }

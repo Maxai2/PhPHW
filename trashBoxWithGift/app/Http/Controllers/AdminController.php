@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Gift;
 use App\Http\Requests\GiftRequest;
+use App\Http\Resources\GiftResource;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class AdminController extends Controller
 {
@@ -45,13 +48,16 @@ class AdminController extends Controller
     }
 
     public function gifts() {
-        $gifts = Gift::all();
-        return view('adminpanel.crudforgifts')->with('gifts', $gifts);
+        $gifts = GiftResource::collection(Gift::all());
+        return view('adminpanel.crudforgifts')->with('gifts', $gifts->toArray(null));
     }
 
     public function updateGift(GiftRequest $req) {
-       $value = $req.validated();
-       dd($value);
+       $value = $req->validated();
+
+       Gift::find($value["id"])->update($value);
+
+       return redirect('admin/gifts');
     }
 
     public function deleteGift(Request $req) {
@@ -62,6 +68,28 @@ class AdminController extends Controller
         Gift::destroy($val['id']);
 
         return response()->json(null, 200);
+    }
+
+    public function changePic(Request $req) {
+       // $tempPath = $req->validate([
+            //'picPath' => 'required'
+        //]);
+        $image = $_FILES["imagePath"];
+        $newPath = 'storage\\'.$image["name"];
+        copy($image["tmp_name"], $newPath);
+
+        // $a = $req->file('picPath');
+        // dd($req);
+       // dd($tempPath);
+            //$req->file('picPath')->storeAs('storage', )
+        //$newName = substr($tempPath['picPath'], strrpos($tempPath['picPath'], '\\') + 1);
+
+        //$newPath = 'storage/'.$newName;
+
+        // File::copy($newPath, $tempPath['picPath']);
+        //File::copy($tempPath['picPath'], $newPath);
+
+        return response()->json(asset($newPath), 200);
     }
 
     /*
