@@ -53,9 +53,9 @@ class AdminController extends Controller
     }
 
     public function updateGift(GiftRequest $req) {
+        dd($req);
        $value = $req->validated();
 
-        dd($value);
 
     //    Gift::find($value["id"])->update($value);
 
