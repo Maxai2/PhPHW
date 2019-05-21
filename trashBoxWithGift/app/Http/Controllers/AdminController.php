@@ -55,9 +55,11 @@ class AdminController extends Controller
     public function updateGift(GiftRequest $req) {
        $value = $req->validated();
 
-       Gift::find($value["id"])->update($value);
+        dd($value);
 
-       return redirect('admin/gifts');
+    //    Gift::find($value["id"])->update($value);
+
+    //    return redirect('admin/gifts');
     }
 
     public function deleteGift(Request $req) {
@@ -70,24 +72,11 @@ class AdminController extends Controller
         return response()->json(null, 200);
     }
 
-    public function changePic(Request $req) {
-       // $tempPath = $req->validate([
-            //'picPath' => 'required'
-        //]);
+    public function changePic() {
         $image = $_FILES["imagePath"];
-        $newPath = 'storage\\'.$image["name"];
+
+        $newPath = 'storage\\temp\\'.$image["name"];
         copy($image["tmp_name"], $newPath);
-
-        // $a = $req->file('picPath');
-        // dd($req);
-       // dd($tempPath);
-            //$req->file('picPath')->storeAs('storage', )
-        //$newName = substr($tempPath['picPath'], strrpos($tempPath['picPath'], '\\') + 1);
-
-        //$newPath = 'storage/'.$newName;
-
-        // File::copy($newPath, $tempPath['picPath']);
-        //File::copy($tempPath['picPath'], $newPath);
 
         return response()->json(asset($newPath), 200);
     }
