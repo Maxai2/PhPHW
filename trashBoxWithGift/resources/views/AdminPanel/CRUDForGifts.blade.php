@@ -141,6 +141,7 @@
         function updateModelFunc(id, name, description, imagePath, price, count) {
             document.getElementById('giftId').value = id;
             document.getElementById('image').src = imagePath;
+            document.getElementById('imagePath').src = imagePath;
             document.getElementById('fileInputLbl').innerText = imagePath.substr(imagePath.lastIndexOf('/') + 1);
             document.getElementById('giftName').value = name;
             document.getElementById('giftDescription').value = description;

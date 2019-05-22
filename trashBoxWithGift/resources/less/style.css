@@ -102,7 +102,7 @@
   cursor: pointer;
 }
 .wrap ul {
-  margin-top: 5px;
+  margin-top: 10px;
   direction: rtl;
 }
 .wrap li span {
@@ -162,7 +162,7 @@ textarea {
   word-break: break-all;
 }
 .modal .custom-file-input {
-  height: auto;
+  height: inherit;
 }
 .contMod {
   direction: rtl;

@@ -8,8 +8,6 @@ use App\Models\User;
 use App\Models\Gift;
 use App\Http\Requests\GiftRequest;
 use App\Http\Resources\GiftResource;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File;
 
 class AdminController extends Controller
 {
@@ -52,9 +50,9 @@ class AdminController extends Controller
         return view('adminpanel.crudforgifts')->with('gifts', $gifts->toArray(null));
     }
 
-    public function updateGift(GiftRequest $req) {
+    public function updateGift(Request $req) {
         dd($req);
-       $value = $req->validated();
+    //    $value = $req->validated();
 
 
     //    Gift::find($value["id"])->update($value);
