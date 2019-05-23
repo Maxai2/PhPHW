@@ -61,12 +61,12 @@
                     </div>
                     {!! Form::open(array('url' => '/admin/gifts/updateGift', 'method' => 'post', 'enctype' => 'multipart/form-data')) !!}
                         <div class="modal-body">
-                            <div class="imgCont">
+                            <div class="imgContChangePic">
                                 <img id='image'>
                             </div>
                             <div class="custom-file">
                                 {!! Form::label('image', 'Choose file...', ['class' => 'custom-file-label', 'id' => 'fileInputLbl']) !!}
-                                {!! Form::file('imagePath', ['class' => 'custom-file-input', 'id' => 'imagePath', 'onchange' => 'changeLbl(this)']) !!}
+                                {!! Form::file('imagePath', ['class' => 'custom-file-input', 'id' => 'imagePathId', 'onchange' => 'changeLbl(this)']) !!}
                             </div>
                             <hr>
                             <div class="form-group">
@@ -141,7 +141,8 @@
         function updateModelFunc(id, name, description, imagePath, price, count) {
             document.getElementById('giftId').value = id;
             document.getElementById('image').src = imagePath;
-            document.getElementById('imagePath').src = imagePath;
+            document.getElementById('imagePathId').src = imagePath;
+            document.getElementById('imagePathId').value = '';
             document.getElementById('fileInputLbl').innerText = imagePath.substr(imagePath.lastIndexOf('/') + 1);
             document.getElementById('giftName').value = name;
             document.getElementById('giftDescription').value = description;

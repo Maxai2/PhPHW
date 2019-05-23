@@ -50,10 +50,9 @@ class AdminController extends Controller
         return view('adminpanel.crudforgifts')->with('gifts', $gifts->toArray(null));
     }
 
-    public function updateGift(Request $req) {
-        dd($req);
+    public function updateGift(GiftRequest $giftReq) {
+        dd($giftReq);
     //    $value = $req->validated();
-
 
     //    Gift::find($value["id"])->update($value);
 
@@ -73,7 +72,7 @@ class AdminController extends Controller
     public function changePic() {
         $image = $_FILES["imagePath"];
 
-        $newPath = 'storage\\temp\\'.$image["name"];
+        $newPath = 'storage\\'.$image["name"];
         copy($image["tmp_name"], $newPath);
 
         return response()->json(asset($newPath), 200);
