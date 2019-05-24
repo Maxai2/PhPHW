@@ -209,6 +209,7 @@ textarea {
 }
 .giftsPanel .giftItem .imgCont img {
   width: 210px;
+  height: 120px;
   margin-bottom: 10px;
 }
 .switch {

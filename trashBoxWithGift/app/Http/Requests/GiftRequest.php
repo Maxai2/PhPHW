@@ -18,7 +18,7 @@ class GiftRequest extends FormRequest
             'id' => 'required',
             'name' => 'required',
             'price' => 'required',
-            'imagePath' => 'required',
+            // 'imagePath' => 'required',
             'description' => 'required',
             'count' => 'required'
         ];

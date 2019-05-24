@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="giftsPanel">
-        <button type="button" class="btn btn-success btn-circle btn-lg insBtn">
+        <button type="button" class="btn btn-success btn-circle btn-lg insBtn" data-toggle="modal" data-target="#updateModal" onclick="newGift()">
             +
         </button>
         <div class="row">
@@ -59,7 +59,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    {!! Form::open(array('url' => '/admin/gifts/updateGift', 'method' => 'post', 'enctype' => 'multipart/form-data')) !!}
+                    {!! Form::open(array('url' => '/admin/gifts/updateGift', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'form')) !!}
                         <div class="modal-body">
                             <div class="imgContChangePic">
                                 <img id='image'>
@@ -88,7 +88,8 @@
                         </div>
                         <div class="modal-footer">
                             {!! Form::hidden('id', null, ['id' => 'giftId']) !!}
-                            {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+                            {!! Form::submit('Update', ['class' => 'btn btn-primary', 'name' => 'submitButton', 'value' => 'update']) !!}
+                            {!! Form::submit('Add', ['class' => 'btn btn-primary', 'name' => 'submitButton', 'value' => 'update']) !!}
                         </div>
                     {!! Form::close() !!}
                 </div>
@@ -100,6 +101,11 @@
 
 @section('scripts')
     <script>
+        function newGift() {
+            document.getElementById('image').src = '';
+            document.getElementById('fileInputLbl').innerText = 'Choose file...';
+        }
+
         var modalConfirm = function(callback){
             let id = 0;
             $(".btn-confirm").on("click", function(){

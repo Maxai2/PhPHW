@@ -51,12 +51,21 @@ class AdminController extends Controller
     }
 
     public function updateGift(GiftRequest $giftReq) {
-        dd($giftReq);
-    //    $value = $req->validated();
+        // dd($giftReq);
+        $value = $giftReq->validated();
 
-    //    Gift::find($value["id"])->update($value);
+        $newImg = $_FILES["imagePath"];
 
-    //    return redirect('admin/gifts');
+        if ($newImg["tmp_name"] != "") {
+            $destPath = 'storage/'.$newImg["name"];
+
+            copy($newImg["tmp_name"], $destPath);
+            $value["imagePath"] = $destPath;
+        }
+
+       Gift::find($value["id"])->update($value);
+
+       return redirect('admin/gifts');
     }
 
     public function deleteGift(Request $req) {
@@ -72,7 +81,7 @@ class AdminController extends Controller
     public function changePic() {
         $image = $_FILES["imagePath"];
 
-        $newPath = 'storage\\'.$image["name"];
+        $newPath = 'storage\\temp\\'.$image["name"];
         copy($image["tmp_name"], $newPath);
 
         return response()->json(asset($newPath), 200);
