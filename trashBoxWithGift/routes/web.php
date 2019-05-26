@@ -19,9 +19,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::post('/users/deleteUser', 'AdminController@deleteUser');
 
     Route::get('/gifts', 'AdminController@gifts');
-    Route::post('/gifts/updateGift', 'AdminController@updateGift');
+    Route::post('/gifts/updateAddGift', 'AdminController@updateAddGift');
     Route::post('/gifts/deleteGift', 'AdminController@deleteGift');
     Route::post('/gifts/changePic', 'AdminController@changePic');
+
+    Route::get('/statistics', 'AdminController@statistics');
 });
 
 Auth::routes();

@@ -20,7 +20,8 @@ class GiftRequest extends FormRequest
             'price' => 'required',
             // 'imagePath' => 'required',
             'description' => 'required',
-            'count' => 'required'
+            'count' => 'required',
+            'submitButton' => 'required'
         ];
     }
 }

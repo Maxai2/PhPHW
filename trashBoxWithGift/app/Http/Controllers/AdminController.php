@@ -50,9 +50,8 @@ class AdminController extends Controller
         return view('adminpanel.crudforgifts')->with('gifts', $gifts->toArray(null));
     }
 
-    public function updateGift(GiftRequest $giftReq) {
-        // dd($giftReq);
-        $value = $giftReq->validated();
+    public function updateAddGift(GiftRequest $giftReq) {
+        $tempValue = $giftReq->validated();
 
         $newImg = $_FILES["imagePath"];
 
@@ -63,9 +62,18 @@ class AdminController extends Controller
             $value["imagePath"] = $destPath;
         }
 
-       Gift::find($value["id"])->update($value);
+        $value["name"] = $tempValue["name"];
+        $value["price"] = $tempValue["price"];
+        $value["description"] = $tempValue["description"];
+        $value["count"] = $tempValue["count"];
 
-       return redirect('admin/gifts');
+        if ($tempValue["submitButton"] == "Update") {
+            Gift::find($tempValue["id"])->update($value);
+        } else if ($tempValue["submitButton"] == "Add") {
+            Gift::create($value);
+        }
+
+        return redirect('admin/gifts');
     }
 
     public function deleteGift(Request $req) {
@@ -81,10 +89,18 @@ class AdminController extends Controller
     public function changePic() {
         $image = $_FILES["imagePath"];
 
+        @mkdir('storage/temp');
+
         $newPath = 'storage\\temp\\'.$image["name"];
         copy($image["tmp_name"], $newPath);
 
         return response()->json(asset($newPath), 200);
+    }
+
+    public function statistics() {
+
+
+        return view('adminpanel.statistics');
     }
 
     /*

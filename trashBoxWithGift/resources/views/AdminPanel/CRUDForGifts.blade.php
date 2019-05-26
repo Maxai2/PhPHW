@@ -59,7 +59,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    {!! Form::open(array('url' => '/admin/gifts/updateGift', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'form')) !!}
+                    {!! Form::open(array('url' => '/admin/gifts/updateAddGift', 'method' => 'post', 'enctype' => 'multipart/form-data', 'id' => 'form')) !!}
                         <div class="modal-body">
                             <div class="imgContChangePic">
                                 <img id='image'>
@@ -67,29 +67,30 @@
                             <div class="custom-file">
                                 {!! Form::label('image', 'Choose file...', ['class' => 'custom-file-label', 'id' => 'fileInputLbl']) !!}
                                 {!! Form::file('imagePath', ['class' => 'custom-file-input', 'id' => 'imagePathId', 'onchange' => 'changeLbl(this)']) !!}
+                                <span id="spanHint">(If you do not select an image, it will be taken by default)</span>
                             </div>
                             <hr>
                             <div class="form-group">
                                 {!! Form::label('name', 'Name: ') !!}
-                                {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'giftName']) !!}
+                                {!! Form::text('name', null, ['class' => 'form-control', 'id' => 'giftName', 'required' => 'true']) !!}
                             </div>
                             <div class="form-group">
                                 {!! Form::label('description', 'Description: ') !!}
-                                {!! Form::textarea('description', null, ['class' => 'form-control', 'id' => 'giftDescription']) !!}
+                                {!! Form::textarea('description', null, ['class' => 'form-control', 'id' => 'giftDescription', 'required' => 'true']) !!}
                             </div>
                             <div class="form-group">
                                 {!! Form::label('price', 'Price: ') !!}
-                                {!! Form::number('price', null, ['class' => 'form-control', 'id' =>'giftPrice']) !!}
+                                {!! Form::number('price', null, ['class' => 'form-control', 'id' =>'giftPrice', 'required' => 'true', 'min' => 1, 'max' => 100]) !!}
                             </div>
                             <div class="form-group">
                                 {!! Form::label('count', 'Count: ') !!}
-                                {!! Form::number('count', null, ['class' => 'form-control', 'id' => 'giftCount']) !!}
+                                {!! Form::number('count', null, ['class' => 'form-control', 'id' => 'giftCount', 'required' => 'true', 'min' => 1, 'max' => 10]) !!}
                             </div>
                         </div>
                         <div class="modal-footer">
                             {!! Form::hidden('id', null, ['id' => 'giftId']) !!}
-                            {!! Form::submit('Update', ['class' => 'btn btn-primary', 'name' => 'submitButton', 'value' => 'update']) !!}
-                            {!! Form::submit('Add', ['class' => 'btn btn-primary', 'name' => 'submitButton', 'value' => 'update']) !!}
+                            {!! Form::submit('Update', ['class' => 'btn btn-primary', 'name' => 'submitButton', 'id' => 'submitBtnUpdate', 'value' => 'update']) !!}
+                            {!! Form::submit('Add', ['class' => 'btn btn-primary', 'name' => 'submitButton', 'id' => 'submitBtnAdd', 'value' => 'add']) !!}
                         </div>
                     {!! Form::close() !!}
                 </div>
@@ -102,8 +103,22 @@
 @section('scripts')
     <script>
         function newGift() {
+            document.getElementById('spanHint').style.visibility = 'visible';
+
             document.getElementById('image').src = '';
             document.getElementById('fileInputLbl').innerText = 'Choose file...';
+            document.getElementById('imagePathId').src = '';
+            document.getElementById('imagePathId').value = '';
+
+            document.getElementById('giftId').value = '';
+            document.getElementById('giftName').value = '';
+            document.getElementById('giftDescription').value = '';
+            document.getElementById('giftPrice').value = 0;
+            document.getElementById('giftCount').value = 0;
+            document.getElementById('giftId').value = 0;
+
+            document.getElementById('submitBtnUpdate').style.display = 'none';
+            document.getElementById('submitBtnAdd').style.display = 'inline-block';
         }
 
         var modalConfirm = function(callback){
@@ -145,6 +160,7 @@
         });
 
         function updateModelFunc(id, name, description, imagePath, price, count) {
+            document.getElementById('spanHint').style.visibility = 'hidden';
             document.getElementById('giftId').value = id;
             document.getElementById('image').src = imagePath;
             document.getElementById('imagePathId').src = imagePath;
@@ -154,6 +170,9 @@
             document.getElementById('giftDescription').value = description;
             document.getElementById('giftPrice').value = price;
             document.getElementById('giftCount').value = count;
+
+            document.getElementById('submitBtnUpdate').style.display = 'inline-block';
+            document.getElementById('submitBtnAdd').style.display = 'none';
         }
 
         function changeLbl(obj) {
