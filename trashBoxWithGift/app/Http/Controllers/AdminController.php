@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Gift;
 use App\Http\Requests\GiftRequest;
 use App\Http\Resources\GiftResource;
+use App\Models\TrashHistory;
 
 class AdminController extends Controller
 {
@@ -98,9 +99,9 @@ class AdminController extends Controller
     }
 
     public function statistics() {
+        $totTrashCount = TrashHistory::count();
 
-
-        return view('adminpanel.statistics');
+        return view('adminpanel.statistics')->with('totTrashCount', $totTrashCount);
     }
 
     /*
