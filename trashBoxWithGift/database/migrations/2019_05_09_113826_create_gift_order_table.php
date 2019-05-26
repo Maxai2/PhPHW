@@ -13,7 +13,7 @@ class CreateGiftOrderTable extends Migration
      */
     public function up()
     {
-        Schema::create('gift_order', function (Blueprint $table) {
+        Schema::create('gift_orders', function (Blueprint $table) {
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('gift_id');
             $table->integer('quantity');
@@ -31,6 +31,6 @@ class CreateGiftOrderTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gift_order');
+        Schema::dropIfExists('gift_orders');
     }
 }

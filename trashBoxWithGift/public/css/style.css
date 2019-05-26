@@ -212,6 +212,10 @@ textarea {
   height: 120px;
   margin-bottom: 10px;
 }
+.staticDiv {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+}
 .switch {
   position: relative;
   width: 50px;
