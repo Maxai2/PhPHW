@@ -305,13 +305,26 @@ textarea
 
 .staticDiv
 {
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
 
-    .total
+  .total
+  {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .topDiv
+  {
+
+    .tabCont
     {
-
+      border: 1px solid lightgray;
+      margin-bottom: 10px;
+      padding: 5px;
     }
+  }
 }
 
 .switch

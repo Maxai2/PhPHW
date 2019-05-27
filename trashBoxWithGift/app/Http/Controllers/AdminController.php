@@ -9,6 +9,7 @@ use App\Models\Gift;
 use App\Http\Requests\GiftRequest;
 use App\Http\Resources\GiftResource;
 use App\Models\TrashHistory;
+use App\Models\GiftOrder;
 
 class AdminController extends Controller
 {
@@ -100,8 +101,14 @@ class AdminController extends Controller
 
     public function statistics() {
         $totTrashCount = TrashHistory::count();
+        $giftOrderArray = GiftOrder::all();
+        $totNumGift = 0;
 
-        return view('adminpanel.statistics')->with('totTrashCount', $totTrashCount);
+        foreach ($giftOrderArray as $go) {
+            $totNumGift += $go->quantity;
+        }
+
+        return view('adminpanel.statistics')->with('totTrashCount', $totTrashCount)->with('totNumGift', $totNumGift);
     }
 
     /*

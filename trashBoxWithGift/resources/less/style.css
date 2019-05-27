@@ -222,6 +222,16 @@ textarea {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
 }
+.staticDiv .total {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.staticDiv .topDiv .tabCont {
+  border: 1px solid lightgray;
+  margin-bottom: 10px;
+  padding: 5px;
+}
 .switch {
   position: relative;
   width: 50px;

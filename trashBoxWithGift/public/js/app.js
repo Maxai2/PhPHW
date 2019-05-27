@@ -36932,9 +36932,9 @@ if (token) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\VsProj\PhPHW\trashBoxWithGift\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! D:\VsProj\PhPHW\trashBoxWithGift\resources\less\style.less */"./resources/less/style.less");
-module.exports = __webpack_require__(/*! D:\VsProj\PhPHW\trashBoxWithGift\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Mahm_iz81\Documents\PhPHW\trashBoxWithGift\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\Mahm_iz81\Documents\PhPHW\trashBoxWithGift\resources\less\style.less */"./resources/less/style.less");
+module.exports = __webpack_require__(/*! C:\Users\Mahm_iz81\Documents\PhPHW\trashBoxWithGift\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
