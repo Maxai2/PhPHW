@@ -16,7 +16,10 @@
                             <th scope="col">Trash count</th>
                         </tr>
 
-                        
+                        <tr>
+                            @foreach($)
+                        </tr>
+
                     </table>
                 </div>
                 <div class="tabCont">

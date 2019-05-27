@@ -108,6 +108,28 @@ class AdminController extends Controller
             $totNumGift += $go->quantity;
         }
 
+        $trashCol = TrashHistory::all();
+        $colUsIdCount = [];
+
+        foreach ($trashCol as $value) {
+            $tempValue = $value->user_id;
+            $countRep = 0;
+
+            foreach ($trashCol as $value) {
+                if ($value->user_id == $tempValue) {
+                    $countRep++;
+                }
+            }
+
+            $colUsIdCount[$tempValue] = $countRep;
+        }
+
+        dd($colUsIdCount);
+
+        // foreach (TrashHistory::all()->sortByDesc('user_id') as $th) {
+        //     $topGB[$th->]
+        // }
+
         return view('adminpanel.statistics')->with('totTrashCount', $totTrashCount)->with('totNumGift', $totNumGift);
     }
 
