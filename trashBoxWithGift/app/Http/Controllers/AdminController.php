@@ -10,6 +10,7 @@ use App\Http\Requests\GiftRequest;
 use App\Http\Resources\GiftResource;
 use App\Models\TrashHistory;
 use App\Models\GiftOrder;
+use App\Models\Order;
 
 class AdminController extends Controller
 {
@@ -101,13 +102,14 @@ class AdminController extends Controller
 
     public function statistics() {
         $totTrashCount = TrashHistory::count();
+        //-----------------------------------------------
         $giftOrderArray = GiftOrder::all();
         $totNumGift = 0;
 
         foreach ($giftOrderArray as $go) {
             $totNumGift += $go->quantity;
         }
-
+        //-----------------------------------------------
         $trashCol = TrashHistory::all();
         $colUsIdCount = [];
 
@@ -124,13 +126,38 @@ class AdminController extends Controller
             $colUsIdCount[$tempValue] = $countRep;
         }
 
-        dd($colUsIdCount);
+        $topGB = [];
+        $cnt = 0;
 
-        // foreach (TrashHistory::all()->sortByDesc('user_id') as $th) {
-        //     $topGB[$th->]
-        // }
+        foreach ($colUsIdCount as $id => $count) {
+            $name = User::find($id)->name;
+            $topGB[$name] = $count;
+            $cnt++;
+            if ($cnt == 5) {
+                break;
+            }
+        }
+        //-----------------------------------------------
+        $giftOrderCol = Order::all();
+        $userTotCoinsCol = [];
 
-        return view('adminpanel.statistics')->with('totTrashCount', $totTrashCount)->with('totNumGift', $totNumGift);
+        foreach ($giftOrderCol as $go) {
+            $tempUsId = $go->user_id;
+            $totalGiftPrice = 0;
+
+            foreach ($giftOrderCol as $go) {
+                if ($tempUsId == $go->user_id) {
+                    $totalGiftPrice = GiftOrder::find($go->)
+                }
+            }
+
+            $userTotCoinsCol[$tempUsId] = $totalGiftPrice;
+        }
+
+        //-----------------------------------------------
+        //-----------------------------------------------
+
+        return view('adminpanel.statistics')->with('totTrashCount', $totTrashCount)->with('totNumGift', $totNumGift)->with('topGB', $topGB);
     }
 
     /*

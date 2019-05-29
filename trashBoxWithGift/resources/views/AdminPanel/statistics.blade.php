@@ -16,9 +16,12 @@
                             <th scope="col">Trash count</th>
                         </tr>
 
-                        <tr>
-                            @foreach($)
-                        </tr>
+                        @foreach($topGB as $name => $count) 
+                            <tr>
+                                <td>{{$name}}</td>
+                                <td>{{$count}}</td>
+                            </tr>
+                        @endforeach
 
                     </table>
                 </div>
