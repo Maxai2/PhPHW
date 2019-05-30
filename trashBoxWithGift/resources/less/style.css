@@ -219,13 +219,20 @@ textarea {
   margin-bottom: 10px;
 }
 .staticDiv {
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: calc(85vh);
 }
 .staticDiv .total {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+.staticDiv .topDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 .staticDiv .topDiv .tabCont {
   border: 1px solid lightgray;

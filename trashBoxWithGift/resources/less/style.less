@@ -305,8 +305,10 @@ textarea
 
 .staticDiv
 {
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: calc(100vh - 15vh);
 
   .total
   {
@@ -317,6 +319,9 @@ textarea
 
   .topDiv
   {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 
     .tabCont
     {

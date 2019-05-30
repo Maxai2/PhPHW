@@ -129,6 +129,8 @@ class AdminController extends Controller
         $topGB = [];
         $cnt = 0;
 
+        arsort($colUsIdCount);
+
         foreach ($colUsIdCount as $id => $count) {
             $name = User::find($id)->name;
             $topGB[$name] = $count;
@@ -138,26 +140,36 @@ class AdminController extends Controller
             }
         }
         //-----------------------------------------------
-        $giftOrderCol = Order::all();
+        $giftOrderCol = GiftOrder::all();
         $userTotCoinsCol = [];
 
         foreach ($giftOrderCol as $go) {
-            $tempUsId = $go->user_id;
+            $tempUsId = Order::find($go->order_id)->user_id;
             $totalGiftPrice = 0;
 
-            foreach ($giftOrderCol as $go) {
-                if ($tempUsId == $go->user_id) {
-                    $totalGiftPrice = GiftOrder::find($go->)
-                }
-            }
+            $totalGiftPrice += $go->quantity * Gift::find($go->gift_id)->price;
 
-            $userTotCoinsCol[$tempUsId] = $totalGiftPrice;
+            if (isset($userTotCoinsCol[$tempUsId]))
+                $userTotCoinsCol[$tempUsId] += $totalGiftPrice;
+            else
+                $userTotCoinsCol[$tempUsId] = $totalGiftPrice;
         }
 
-        //-----------------------------------------------
+        arsort($userTotCoinsCol);
+        $cnt = 0;
+        foreach ($userTotCoinsCol as $id => $priceTot) {
+            $name = User::find($id)->name;
+            $ucArr[$name] = $priceTot;
+            $cnt++;
+            if ($cnt == 5) {
+                break;
+            }
+        }
         //-----------------------------------------------
 
-        return view('adminpanel.statistics')->with('totTrashCount', $totTrashCount)->with('totNumGift', $totNumGift)->with('topGB', $topGB);
+        //-----------------------------------------------
+
+        return view('adminpanel.statistics')->with('totTrashCount', $totTrashCount)->with('totNumGift', $totNumGift)->with('topGB', $topGB)->with('ucArr', $ucArr);
     }
 
     /*
